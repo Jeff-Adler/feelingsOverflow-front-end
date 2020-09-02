@@ -48,7 +48,7 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/login", configObj)
       .then(response => response.json())
-      .then(console.log())
+      .then(console.log()) //need to setState and redirect to relevant page
   }
 
   render () {
