@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
+import Login from './Components/Login'
 
 class App extends React.Component {
 
@@ -30,7 +31,24 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
-      .then(user => console.log(user))
+      .then(console.log()) //fill-in with setState
+  }
+
+  loginHandler = (userInfo) => {
+    console.log("logging in",userInfo)
+
+    const configObj = {
+      method: "POST",
+      headers: {
+        "accepts" : "application/json",
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify({user: userInfo})
+    }
+
+    fetch("http://localhost:3000/api/v1/login", configObj)
+      .then(response => response.json())
+      .then(console.log())
   }
 
   render () {
@@ -39,7 +57,8 @@ class App extends React.Component {
         <div className="App">
           <Navbar />
           <h1>Pillow Talk.</h1>
-          <Route exact path="/signup" render={() => <Signup signupHandler={this.signupHandler}/>} />
+          <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
+          <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
           <PostContainer user={this.state.user}/>
         </div>
       </Router>
