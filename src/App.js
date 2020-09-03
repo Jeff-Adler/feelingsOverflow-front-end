@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, withRouter, Switch} from 'react-router-dom';
-// import { Switch } from 'react-router-dom'
 import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
