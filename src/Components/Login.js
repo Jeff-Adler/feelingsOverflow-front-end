@@ -11,8 +11,7 @@ class Login extends React.Component {
 
     changeHandler = (event) => {
         event.persist()
-        this.setState({[event.target.name] : event.target.value}, 
-            () => console.log(this.state[event.target.name]))
+        this.setState({[event.target.name] : event.target.value})
     }
 
     submitHandler = (event) => {

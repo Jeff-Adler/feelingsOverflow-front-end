@@ -16,6 +16,22 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount () {
+    const token = localStorage.getItem("token")
+    if (token) {
+      fetch("http://localhost:3000/api/v1/profile", {
+        method: "GET",
+        headers: {
+                    Authorization: `Bearer ${token}`
+                 }
+        })
+          .then(response => response.json())
+          .then(data => console.log("in CDM?", data))
+      } else {
+        this.props.history.push("/signup")
+      }
+  }
+
   signupHandler = (userObj) => {
 
     console.log(JSON.stringify({user: userObj}))
@@ -31,7 +47,7 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
-      .then(console.log()) //fill-in with setState
+      .then(data => this.setState({user : data.user}, () => console.log(this.state.user))) 
   }
 
   loginHandler = (userInfo) => {
@@ -48,7 +64,14 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/login", configObj)
       .then(response => response.json())
-      .then(console.log()) //need to setState and redirect to relevant page
+      .then(data => 
+        {   
+
+        console.log("Token: ", data.jwt)
+        localStorage.setItem("token",data.jwt)
+        this.setState({user : data.user}, () => console.log("logged in", this.state.user)) //may want to use this.props.history.push to redirect
+
+        })
   }
 
   render () {
