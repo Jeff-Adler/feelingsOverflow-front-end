@@ -13,6 +13,11 @@ function Navbar (props) {
                     <li>Login</li>
                 </NavLink>
             }
+
+            <NavLink to="/posts">
+                <li>Posts</li>
+            </NavLink>
+
         </ul>
     )
 }

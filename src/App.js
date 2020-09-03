@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter, Switch} from 'react-router-dom';
+// import { Switch } from 'react-router-dom'
 import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
@@ -12,7 +13,11 @@ class App extends React.Component {
     super ()
 
     this.state = {
-      user:false
+      user:false,
+      posts: [
+        {id: 1, positive: "good thing that happened today", negative: "bad thing that happened today", severe: false, category: "misc", user_id: 1},
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "family", user_id: 1}
+      ] //remove after real API added
     }
   }
 
@@ -91,9 +96,11 @@ class App extends React.Component {
         <div className="App">
           <Navbar user={this.state.user} clickHandler={this.logOutHandler}/>
           <h1>Pillow Talk.</h1>
-          <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
-          <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
-          <PostContainer user={this.state.user}/>
+          <Switch>
+            <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
+            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
+            <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
+          </Switch>
         </div>
       </Router>
     )
