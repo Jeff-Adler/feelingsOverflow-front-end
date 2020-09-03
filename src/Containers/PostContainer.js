@@ -17,6 +17,7 @@ renderPosts = () => {
                 "User not validated!"}
             </div>
                 <>
+                <h2>Post List</h2>
                  {this.renderPosts()}
                 </>
             </>

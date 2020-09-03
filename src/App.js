@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
+import PostForm from './Components/PostForm'
 
 class App extends React.Component {
 
@@ -90,6 +91,14 @@ class App extends React.Component {
     this.setState({user:null})
   }
 
+  submitHandler =(newPostObj) => {
+    // let postsArray = [...this.state.posts]
+    this.setState({
+      posts: [...this.state.posts, newPostObj]
+    })
+  }
+
+
   render () {
     return (
       <Router>
@@ -100,6 +109,7 @@ class App extends React.Component {
             <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
             <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
+            <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
           </Switch>
         </div>
       </Router>
