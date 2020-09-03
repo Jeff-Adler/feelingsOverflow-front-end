@@ -26,9 +26,13 @@ class App extends React.Component {
                  }
         })
           .then(response => response.json())
-          .then(data => console.log("in CDM?", data))
+          .then(data => {
+                          console.log("in CDM?", data)
+                          this.setState({user : data.user})
+                        }
+              )
       } else {
-        this.props.history.push("/signup")
+        // this.props.history.push("/login") Need to fix this.props.history to get this to work
       }
   }
 
@@ -74,11 +78,17 @@ class App extends React.Component {
         })
   }
 
+  logOutHandler = () => {
+    localStorage.removeItem("token")
+    // this.props.history.push("/login") Need to fix this.props.history to get this to work
+    this.setState({user:null})
+  }
+
   render () {
     return (
       <Router>
         <div className="App">
-          <Navbar />
+          <Navbar user={this.state.user} clickHandler={this.logOutHandler}/>
           <h1>Pillow Talk.</h1>
           <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
           <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
