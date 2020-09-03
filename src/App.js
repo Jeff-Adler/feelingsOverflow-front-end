@@ -7,6 +7,8 @@ import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
 import PostForm from './Components/PostForm'
+import CommentContainer from './Containers/CommentContainer.js'
+import CommentForm from './Components/CommentForm'
 
 class App extends React.Component {
 
@@ -17,7 +19,11 @@ class App extends React.Component {
       user:false,
       posts: [
         {id: 1, positive: "good thing that happened today", negative: "bad thing that happened today", severe: false, category: "misc", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "family", user_id: 1}
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "family", user_id: 1},
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "relationships", user_id: 1},
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: false, category: "health", user_id: 1},
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "misc", user_id: 1},
+        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "friends", user_id: 1}
       ] //remove after real API added
     }
   }
@@ -110,6 +116,8 @@ class App extends React.Component {
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
             <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
+            <Route path="/comments" render={()=> <CommentContainer name={this.state.posts}/>} /> 
+            <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/>
           </Switch>
         </div>
       </Router>

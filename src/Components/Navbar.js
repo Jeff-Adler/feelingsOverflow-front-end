@@ -3,25 +3,25 @@ import { NavLink } from 'react-router-dom'
 
 function Navbar (props) {
     return (
-        <>
+        <ul id="navbar">
             <NavLink to="/signup">
-                Create Account 
+                <li>Create Account </li>
             </NavLink>
 
             {props.user ? <li onClick={props.clickHandler}>Log Out</li> :
                 <NavLink to="/login">
-                    Login 
+                    <li>Login </li>
                 </NavLink>
             }
 
             <NavLink to="/posts">
-                Posts 
+            <li>Posts </li>
             </NavLink>
 
             <NavLink to="/createpost">
-                Create Post 
+            <li>Create Post </li>
             </NavLink>
-        </>
+        </ul>
     )
 }
 
