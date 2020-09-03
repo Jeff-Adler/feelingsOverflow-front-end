@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 function Navbar (props) {
     return (
-        <Navbar>
+        <>
             <NavLink to="/signup">
                 Create Account 
             </NavLink>
@@ -21,7 +21,7 @@ function Navbar (props) {
             <NavLink to="/createpost">
                 Create Post 
             </NavLink>
-        </Navbar>
+        </>
     )
 }
 
