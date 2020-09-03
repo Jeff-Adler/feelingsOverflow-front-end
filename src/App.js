@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, withRouter} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
@@ -32,7 +32,7 @@ class App extends React.Component {
                         }
               )
       } else {
-        // this.props.history.push("/login") Need to fix this.props.history to get this to work
+        this.props.history.push("/login") 
       }
   }
 
@@ -73,14 +73,15 @@ class App extends React.Component {
 
         console.log("Token: ", data.jwt)
         localStorage.setItem("token",data.jwt)
-        this.setState({user : data.user}, () => console.log("logged in", this.state.user)) //may want to use this.props.history.push to redirect
+        this.setState({user : data.user}, 
+          () => console.log("logged in", this.state.user)) //use this.props.history.push to redirect after login
 
         })
   }
 
   logOutHandler = () => {
     localStorage.removeItem("token")
-    // this.props.history.push("/login") Need to fix this.props.history to get this to work
+    this.props.history.push("/login") 
     this.setState({user:null})
   }
 
@@ -99,4 +100,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
