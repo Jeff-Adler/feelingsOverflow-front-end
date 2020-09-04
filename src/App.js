@@ -7,7 +7,6 @@ import Signup from './Components/Signup'
 import Login from './Components/Login'
 import PostForm from './Components/PostForm'
 
-
 class App extends React.Component {
 
   constructor () {
@@ -70,7 +69,7 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
-      .then(data => this.setState({user : data.user}, () => console.log(this.state.user))) 
+      .then(data => this.setState({user : data.user})) 
   }
 
   loginHandler = (userInfo) => {
@@ -93,7 +92,9 @@ class App extends React.Component {
         console.log("Token: ", data.jwt)
         localStorage.setItem("token",data.jwt)
         this.setState({user : data.user}, 
-          () => console.log("logged in", this.state.user)) //use this.props.history.push to redirect after login
+          () => {console.log("logged in", this.state.user)
+                this.props.history.push("/") 
+                }) 
 
         })
   }
@@ -131,7 +132,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
-          <Navbar user={this.state.user} clickHandler={this.logOutHandler}/>
+          {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <h1>Pillow Talk.</h1>
           <Switch>
             <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
