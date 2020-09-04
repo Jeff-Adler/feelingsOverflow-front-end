@@ -1,9 +1,13 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
 import CommentForm from './CommentForm'
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter as Router, Route, NavLink, withRouter } from 'react-router-dom'
 
 class Post extends React.Component {
+
+    showPost = () => {
+        this.props.history.push(`/posts/${this.props.postObj.id}/`)
+    }
 
     render() {
         // console.log(this.props.postObj)
@@ -15,10 +19,10 @@ class Post extends React.Component {
                         <p>Negative: {this.props.postObj.negative}</p>
                         <p>Severe: {this.props.postObj.severe ? "Yes" : "No"}</p>
                         <p>Category: {this.props.postObj.category}</p>
-                       <NavLink to={`/posts/${this.props.postObj.id}/`}>
+                       {/* <NavLink to={`/posts/${this.props.postObj.id}/`}>
                              <p>View Post</p>
-                            {/* <p onClick={this.clickHandler}>View Post</p> */}
-                        </NavLink>
+                        </NavLink> */}
+                        <p onClick={this.showPost}>REDIRECT</p>
 
                         {/* this link works upon refresh.  we need a clickhandler to set state. */}
                         {/* we also need to add a condition so this link does not appear when we are on the show page */}
@@ -37,6 +41,6 @@ class Post extends React.Component {
     }
 }
 
-export default Post
+export default withRouter(Post)
 
 

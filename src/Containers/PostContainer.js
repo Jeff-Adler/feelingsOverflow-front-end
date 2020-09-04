@@ -1,6 +1,6 @@
 import React from 'react';
 import Posts from '../Components/Posts'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 
 class PostContainer extends React.Component {
 
@@ -42,4 +42,4 @@ renderPosts = () => {
     }
 }
 
-export default PostContainer
+export default withRouter(PostContainer)
