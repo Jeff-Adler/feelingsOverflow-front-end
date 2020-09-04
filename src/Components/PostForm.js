@@ -15,9 +15,13 @@ submitHelper = (e) => {
 }
 
 severeChangeHelper = (e) => {
+    let severe = false
+    if (e.target.value === "Yes") {
+        severe = true
+    }
     this.setState({
-        severe: e.target.value
-    })
+        severe: severe
+    },() => console.log(this.state.severe))
 }
 
 thoughtsChangeHelper =(e) => {
@@ -52,17 +56,17 @@ categoryChangeHelper =(e) => {
                     <label>Severe
                         <input 
                             type="radio" 
-                            value="Yes" 
+                            value="Yes"
                             name="severe"
-                            checked={this.state.severe === "Yes"}
-                            onChange={this.severeChangeHelper}/>
+                            checked={this.state.severe === true}
+                            onChange={e => this.severeChangeHelper(e)}/>
                             Yes
                         <input 
                             type="radio" 
-                            value="No" 
+                            value="No"
                             name="severe"
-                            checked={this.state.severe === "No"}
-                            onChange={this.severeChangeHelper}/>
+                            checked={this.state.severe === false}
+                            onChange={e => this.severeChangeHelper(e)}/>
                             No
                         </label> 
                     <br/><br/>

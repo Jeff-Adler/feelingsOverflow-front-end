@@ -18,15 +18,22 @@ class App extends React.Component {
 
     this.state = {
       user:false,
-      posts: [
-        {id: 1, positive: "good thing that happened today", negative: "bad thing that happened today", severe: false, category: "misc", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "family", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "relationships", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: false, category: "health", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "misc", user_id: 1},
-        {id: 2, positive: "another good thing that happened today", negative: "another bad thing that happened today", severe: true, category: "friends", user_id: 1}
-      ] //remove after real API added
+      posts: [] 
     }
+  }
+
+  retrievePosts = (token) => {
+    fetch("http://localhost:3000/posts", {
+      method: "GET",
+      headers: {
+                  Authorization: `Bearer ${token}`
+               }
+      })
+        .then(response => response.json())
+        .then(posts => {
+          console.log(posts)
+          this.setState({posts:posts})
+        })
   }
 
   componentDidMount () {
@@ -44,6 +51,8 @@ class App extends React.Component {
                           this.setState({user : data.user})
                         }
               )
+
+      this.retrievePosts(token)
       } else {
         this.props.history.push("/login") 
       }
@@ -99,10 +108,25 @@ class App extends React.Component {
   }
 
   submitHandler =(newPostObj) => {
-    // let postsArray = [...this.state.posts]
-    this.setState({
-      posts: [...this.state.posts, newPostObj]
-    })
+    const token = localStorage.getItem("token")
+    const configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "accepts" : "application/json",
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify({post : newPostObj})
+    }
+
+    fetch("http://localhost:3000/posts", configObj)
+      .then(response => response.json())
+      .then(post => {
+        console.log(post)
+        this.setState({
+          posts: [post,...this.state.posts]
+        })
+      })
   }
 
 
