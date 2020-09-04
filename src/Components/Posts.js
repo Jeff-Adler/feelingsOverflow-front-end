@@ -28,7 +28,6 @@ class Post extends React.Component {
     }
 
 
-
     render() {
         // console.log(this.props.postObj)
         return (
@@ -40,8 +39,10 @@ class Post extends React.Component {
                         <p>Severe: {this.props.postObj.severe ? "Yes" : "No"}</p>
                         <p>Category: {this.props.postObj.category}</p>
                        <NavLink to={`/posts/${this.props.postObj.id}/`}>
-                            <li>View Post</li>
+                             <p>View Post</p>
+                            {/* <p onClick={this.clickHandler}>View Post</p> */}
                         </NavLink>
+
                         {/* this link works upon refresh.  we need a clickhandler to set state. */}
                         {/* we also need to add a condition so this link does not appear when we are on the show page */}
 

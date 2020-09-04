@@ -16,7 +16,7 @@ renderPosts = () => {
         {/* if posts have not yet rendered, add a loading note */}
         {this.props.posts.length === 0 ? <h1> LOADING</h1> :
 
-        
+
         // if posts have rendered, redirect as below
             <Switch>
                 {/* if route has a condition, render as follows.   */}
@@ -25,7 +25,7 @@ renderPosts = () => {
                 let foundPost = this.props.posts.find((post) => post.id ===id)
                 console.log("found post", foundPost)
                 // debugger
-                return <Posts postObj={foundPost}/>
+                return <Posts postObj={foundPost} />
 
             }} />
                 {/* if route does not have a condition, render all posts */}
