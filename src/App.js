@@ -20,6 +20,7 @@ class App extends React.Component {
     }
   }
 
+  //retrieves all posts from backend
   retrievePosts = (token) => {
     fetch("http://localhost:3000/posts", {
       method: "GET",
@@ -29,36 +30,35 @@ class App extends React.Component {
       })
         .then(response => response.json())
         .then(posts => {
-          console.log(posts)
           this.setState({posts:posts})
         })
   }
 
-  componentDidMount () {
-    const token = localStorage.getItem("token")
-    if (token) {
-      fetch("http://localhost:3000/api/v1/profile", {
+  //sends current_user token to load user's profile from backend
+  retrieveUserProfile = (token) => {
+    fetch("http://localhost:3000/api/v1/profile", {
         method: "GET",
         headers: {
                     Authorization: `Bearer ${token}`
                  }
         })
           .then(response => response.json())
-          .then(data => {
-                          console.log("in CDM?", data)
-                          this.setState({user : data.user})
-                        }
-              )
+          .then(data => {this.setState({user : data.user})})
+  }
 
+  componentDidMount () {
+    //retrieves token associated with current_user on frontend
+    const token = localStorage.getItem("token")
+    if (token) {
+      this.retrieveUserProfile(token)
       this.retrievePosts(token)
       } else {
+        //redirects to login page if user isn't authenticated
         this.props.history.push("/login") 
       }
   }
 
   signupHandler = (userObj) => {
-
-    console.log(JSON.stringify({user: userObj}))
 
     const configObj = {
       method: "POST",
@@ -75,8 +75,6 @@ class App extends React.Component {
   }
 
   loginHandler = (userInfo) => {
-    console.log("logging in",userInfo)
-
     const configObj = {
       method: "POST",
       headers: {
@@ -90,14 +88,11 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => 
         {   
-
-        console.log("Token: ", data.jwt)
         localStorage.setItem("token",data.jwt)
-        this.setState({user : data.user}, 
-          () => {console.log("logged in", this.state.user)
-                this.props.history.push("/") 
-                }) 
-
+        this.setState(
+            {user : data.user}, 
+            () => {this.props.history.push("/")}
+          ) 
         })
   }
 
@@ -141,7 +136,7 @@ class App extends React.Component {
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
             <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
-            <Route path="/comments" render={()=> <CommentContainer name={this.state.posts}/>} /> 
+            <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 
             <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/>
           </Switch>
         </div>

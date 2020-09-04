@@ -3,7 +3,10 @@ import React from 'react'
 class Comments extends React.Component {
     render () {
         return (
-            <p>array of comments here</p>
+            <>
+                <p>Comment: {this.props.comment.comment}</p>
+                <p>Commenter: {this.props.comment.commenter_id}</p><br/>
+            </>
         )
     }
 
