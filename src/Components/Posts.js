@@ -12,7 +12,7 @@ class Post extends React.Component {
     componentDidMount () {
         const token = localStorage.getItem("token")
         if (token) {
-          fetch("http://localhost:3000/posts/66/comments", {
+          fetch("http://localhost:3000/posts/", {
             method: "GET",
             headers: {
                         Authorization: `Bearer ${token}`
@@ -20,7 +20,7 @@ class Post extends React.Component {
             })
               .then(response => response.json())
               .then(comments => {
-                              console.log("Posts CDM?", comments)
+                            //   console.log("Posts CDM?", comments)
                               this.setState({comments : comments})
                             }
                   )
@@ -28,21 +28,26 @@ class Post extends React.Component {
     }
 
 
-
     render() {
+        // console.log(this.props.postObj)
         return (
             <Router>
                 <div className="container">
-                    {/* <h3>Post Title</h3> */}
+                    <h3>Post {this.props.postObj.id}</h3>
                         <p>Positive: {this.props.postObj.positive}</p>
                         <p>Negative: {this.props.postObj.negative}</p>
                         <p>Severe: {this.props.postObj.severe ? "Yes" : "No"}</p>
                         <p>Category: {this.props.postObj.category}</p>
-                        <NavLink id="create-comment" to="/createcomment">
-                            <li>Add Comment</li>
+                       <NavLink to={`/posts/${this.props.postObj.id}/`}>
+                             <p>View Post</p>
+                            {/* <p onClick={this.clickHandler}>View Post</p> */}
                         </NavLink>
-                        <Route path='/comments' render={()=> <CommentContainer/>} /> 
-                        <Route path='/comments' render={() => <CommentForm/>}/>    
+
+                        {/* this link works upon refresh.  we need a clickhandler to set state. */}
+                        {/* we also need to add a condition so this link does not appear when we are on the show page */}
+
+                        {/* <Route path='/comments' render={()=> <CommentContainer/>} /> 
+                        <Route path='/comments' render={() => <CommentForm/>}/>     */}
                 </div>
             </Router>
         )
