@@ -7,10 +7,8 @@ class CommentContainer extends React.Component {
     render() {
         return (
             <>
-            <h3>This is the comment container</h3>
-                <ul>
-                    <li><Comments /></li>
-                </ul>
+            {/* <h3>This is the comment container</h3> */}
+                <Comments />
                 <CommentForm />
             </>
         )

@@ -37,6 +37,12 @@
   }
 }
 
+#navbar{
+  position: sticky; top: 0;
+  background-color: white;
+  text-align: left
+}
+
 #navbar ul{
   list-style: none;
 }
@@ -50,7 +56,24 @@
   border: grey solid 1px;
   padding: 1rem;
   /* width: 15rem; */
-  display: inline-grid;
-  margin: 1rem 2rem;
+  display: block;
+  /* display: inline-grid; */
+  margin: 1rem;
   /* box-shadow: 3px 4px #e04b52; */
 }
+
+.container p{
+  font-size: small;
+  flex-direction: row;
+  text-align: left;
+  margin: 0;
+  line-height: 1
+}
+
+#create-comment{
+  font-size: x-small;
+  flex-direction: row;
+  text-align: left;
+  margin: 0
+}
+
