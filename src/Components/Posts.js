@@ -28,7 +28,7 @@ class Post extends React.Component {
                         {/* we also need to add a condition so this link does not appear when we are on the show page */}
 
                         <CommentContainer postObj={this.props.postObj}/>
-                        <Route path='posts/' render={(routerProps) => {
+                        <Route path='posts/:id' render={(routerProps) => {
                                                                             console.log("Loading Comments Container ",routerProps)
                                                                             return(
                                                                                 <CommentContainer {...routerProps}/>
