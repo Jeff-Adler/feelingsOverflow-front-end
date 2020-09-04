@@ -23,9 +23,7 @@ class CommentContainer extends React.Component {
                               this.setState({
                                     comments : comments,
                                     isLoaded : true
-                                            }, 
-                                            () => console.log(this.state.comments)
-                                            )
+                                            })
                             }
                   )
         }
