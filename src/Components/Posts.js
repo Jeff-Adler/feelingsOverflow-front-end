@@ -39,11 +39,14 @@ class Post extends React.Component {
                         <p>Negative: {this.props.postObj.negative}</p>
                         <p>Severe: {this.props.postObj.severe ? "Yes" : "No"}</p>
                         <p>Category: {this.props.postObj.category}</p>
-                        <NavLink to={`/posts/${this.props.postObj.id}/comments`}>
-                            <li>Add Comment</li>
+                       <NavLink to={`/posts/${this.props.postObj.id}/`}>
+                            <li>View Post</li>
                         </NavLink>
-                        <Route path='/comments' render={()=> <CommentContainer/>} /> 
-                        <Route path='/comments' render={() => <CommentForm/>}/>    
+                        {/* this link works upon refresh.  we need a clickhandler to set state. */}
+                        {/* we also need to add a condition so this link does not appear when we are on the show page */}
+
+                        {/* <Route path='/comments' render={()=> <CommentContainer/>} /> 
+                        <Route path='/comments' render={() => <CommentForm/>}/>     */}
                 </div>
             </Router>
         )

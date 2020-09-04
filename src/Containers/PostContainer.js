@@ -11,8 +11,12 @@ renderPosts = () => {
     render () {
         return (
             <>
+
+
         {/* if posts have not yet rendered, add a loading note */}
         {this.props.posts.length === 0 ? <h1> LOADING</h1> :
+
+        
         // if posts have rendered, redirect as below
             <Switch>
                 {/* if route has a condition, render as follows.   */}
