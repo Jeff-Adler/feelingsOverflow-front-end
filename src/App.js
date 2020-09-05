@@ -8,6 +8,7 @@ import Login from './Components/Login'
 import PostForm from './Components/PostForm'
 import CommentContainer from './Containers/CommentContainer'
 import CommentForm from './Components/CommentForm'
+import UserContainer from './Containers/UserContainer'
 
 class App extends React.Component {
 
@@ -138,6 +139,7 @@ class App extends React.Component {
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
             <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 
             <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/>
+            <Route path='/profile' render={() => <UserContainer user={this.state.user}/>}/>
           </Switch>
         </div>
       </Router>
