@@ -13,6 +13,7 @@ class CommentForm extends React.Component{
     submitHandler = (event) => {
         event.preventDefault()
         this.state.comment !== "" ? this.props.postComment(this.state) : alert("You need to write something!")
+        this.setState({comment: ""})
     }
 
     render() {

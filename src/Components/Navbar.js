@@ -8,10 +8,10 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+//   UncontrolledDropdown,
+//   DropdownToggle,
+//   DropdownMenu,
+//   DropdownItem,
   NavbarText
 } from 'reactstrap';
 
@@ -21,8 +21,7 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
   
     return (
-      <div>
-        <Navbar color="light" light expand="md">
+        <Navbar sticky="top" color="light" light expand="md">
           <NavbarBrand>
             pillow talk
           </NavbarBrand>
@@ -32,17 +31,19 @@ const NavBar = (props) => {
             <Nav className="mr-auto" navbar>
               
               <NavItem>
-                <NavLink tag={Link} to="/posts">posts</NavLink>
+                <NavLink tag={Link} to="/posts">all posts</NavLink>
               </NavItem>
               
+              <NavItem>
+                <NavLink tag={Link} to="/profile">
+                  my posts
+                </NavLink>
+              </NavItem>
+
               <NavItem>
                 <NavLink tag={Link} to="/createpost">create new post</NavLink>
               </NavItem>
 
-              <NavItem>
-                <NavLink tag={Link} to="/signup">create account</NavLink>
-              </NavItem>
-              
               <NavItem>
               {props.user ? <NavLink onClick={props.clickHandler} href="/login">log out </NavLink> :
                     <NavLink to="/login">
@@ -50,6 +51,9 @@ const NavBar = (props) => {
                     </NavLink>
                 }
               </NavItem>
+
+
+
  
 
                 {/* left this here in case we want to use a dropdown? */}
@@ -74,7 +78,6 @@ const NavBar = (props) => {
             <NavbarText> {props.user? `Welcome, ${props.user.username}! ` : null} </NavbarText>
           </Collapse>
         </Navbar>
-      </div>
     );
   }
   

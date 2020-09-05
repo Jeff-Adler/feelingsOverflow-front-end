@@ -1,6 +1,7 @@
 import React from 'react';
 import Posts from '../Components/Posts'
 import { Route, Switch, withRouter } from 'react-router-dom'
+import Search from '../Components/Search'
 
 class PostContainer extends React.Component {
 
@@ -30,6 +31,7 @@ renderPosts = () => {
             <Route path="/posts" render={() => {
                 return(
                     <>
+                        <Search />
                         {this.renderPosts()}
                     </>
                      )
