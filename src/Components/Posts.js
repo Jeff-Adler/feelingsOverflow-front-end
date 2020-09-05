@@ -36,6 +36,10 @@ class Post extends React.Component {
                                         </tr>
                                 </tbody>
                             </Table>
+                            <p>Positive thought: {this.props.postObj.positive}</p>
+                            <p>Negative thought: {this.props.postObj.negative}</p>
+                            
+                            <CommentContainer postObj={this.props.postObj}/>
 
                             </>
                             )
