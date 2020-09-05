@@ -22,8 +22,6 @@ renderPosts = () => {
             <Route path="/posts/:id" render={({match})=> {
                 let id = parseInt(match.params.id)
                 let foundPost = this.props.posts.find((post) => post.id ===id)
-                console.log("found post", foundPost)
-                // debugger
                 return <Posts postObj={foundPost} />
 
             }} />

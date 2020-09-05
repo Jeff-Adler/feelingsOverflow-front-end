@@ -9,7 +9,6 @@ class Post extends React.Component {
     }
 
     render() {
-        // console.log(this.props.postObj)
         return (
             <>
                 <Switch>
@@ -45,7 +44,6 @@ class Post extends React.Component {
                         )
                     }} />
                 </Switch>
-
             </>
         )
     }
