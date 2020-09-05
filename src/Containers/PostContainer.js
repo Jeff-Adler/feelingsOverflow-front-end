@@ -9,6 +9,7 @@ renderPosts = () => {
 }
 
     render () {
+        console.log("rendering container")
         return (
             <>
 

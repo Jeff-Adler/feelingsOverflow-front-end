@@ -10,6 +10,9 @@ import CommentContainer from './Containers/CommentContainer'
 import CommentForm from './Components/CommentForm'
 import UserContainer from './Containers/UserContainer'
 
+
+
+
 class App extends React.Component {
 
   constructor () {
@@ -127,6 +130,7 @@ class App extends React.Component {
 
 
   render () {
+    console.log("rendering app")
     return (
       <Router>
         <div className="App">
