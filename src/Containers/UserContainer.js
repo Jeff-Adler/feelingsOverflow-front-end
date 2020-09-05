@@ -1,6 +1,8 @@
 import React from 'react';
 import Posts from '../Components/Posts'
 import {Route, Switch} from 'react-router-dom'
+import { Table } from 'reactstrap';
+import Search from '../Components/Search'
 
 class UserContainer extends React.Component {
 
@@ -49,7 +51,26 @@ class UserContainer extends React.Component {
                        return(
                             <div>
                                 <h1>My posts:</h1>
-                                {this.state.isLoaded ? this.renderPosts() : "Loading!"}
+                                {this.state.isLoaded ? 
+                    <>
+                    <Search />
+                        <Table striped>
+                            <thead>
+                                <tr>
+                                    <th>Poster Name</th>
+                                    <th>Post Description</th>
+                                    <th>Category</th>
+                                    <th>Severe</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    {this.renderPosts()}
+                                </tbody>
+                        </Table>
+                        </>
+                        
+                        : "Loading!"}
                             </div>
                             )
                         }

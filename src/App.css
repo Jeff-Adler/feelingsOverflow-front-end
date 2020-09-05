@@ -84,3 +84,18 @@
   align-items: left;
   padding: 15px
 }
+
+tr:hover {
+  background-color: grey;
+}
+
+.formCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+  height: 150px;
+  width: 400px
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import Posts from '../Components/Posts'
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter, Link } from 'react-router-dom'
 import Search from '../Components/Search'
+import { Table, NavLink } from 'reactstrap';
 
 class PostContainer extends React.Component {
 
@@ -21,6 +22,7 @@ renderPosts = () => {
         // if posts have rendered, redirect as below
         <Switch>
                 {/* if route has a condition, render as follows.   */}
+            
             <Route path="/posts/:id" render={({match})=> {
                 let id = parseInt(match.params.id)
                 let foundPost = this.props.posts.find((post) => post.id ===id)
@@ -31,8 +33,24 @@ renderPosts = () => {
             <Route path="/posts" render={() => {
                 return(
                     <>
+
+                <NavLink tag={Link} to="/createpost" className="left">create new post</NavLink>
+
                         <Search />
-                        {this.renderPosts()}
+                        <Table striped>
+                            <thead>
+                                <tr>
+                                    <th>Poster Name</th>
+                                    <th>Post Description</th>
+                                    <th>Category</th>
+                                    <th>Severe</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    {this.renderPosts()}
+                                </tbody>
+                        </Table>
                     </>
                      )
             }} />
