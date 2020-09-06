@@ -44,7 +44,7 @@ class Post extends React.Component {
                             </>
                             )
                         }} />
-                    <Route path="/posts" render={() => {
+                    <Route path="/" render={() => {
                         return(
                             <>
                                         <tr onClick={this.showPost}>

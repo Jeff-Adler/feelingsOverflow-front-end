@@ -20,8 +20,7 @@ class UserContainer extends React.Component {
                     .then(response => response.json())
                     .then(posts => {
                     this.setState({posts:posts,
-                                    isLoaded:true},
-                        ()=>console.log(this.state.posts))
+                                    isLoaded:true})
                     })
         }
     }

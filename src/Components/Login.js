@@ -21,8 +21,12 @@ class Login extends React.Component {
         this.props.submitHandler(this.state)
     }
 
+    componentDidUpdate () {
+        console.log("login updating")
+    }
+
     componentWillUnmount () {
-        console.log("unmounting")
+        console.log("login unmounting")
     }
 
     render () {

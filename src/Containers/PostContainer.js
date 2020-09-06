@@ -11,7 +11,6 @@ renderPosts = () => {
 }
 
     render () {
-        console.log("rendering container")
         return (
             <>
 
@@ -30,7 +29,7 @@ renderPosts = () => {
 
             }} />
                 {/* if route does not have a condition, render all posts */}
-            <Route path="/posts" render={() => {
+            <Route path="/" render={() => {
                 return(
                     <>
 

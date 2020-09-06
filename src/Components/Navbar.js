@@ -17,6 +17,7 @@ const NavBar = (props) => {
     const toggle = () => setIsOpen(!isOpen);
   
     return (
+      <>
         <Navbar sticky="top" color="light" light expand="md">
           <NavbarBrand>
             PillowTalk
@@ -27,7 +28,9 @@ const NavBar = (props) => {
             <Nav className="mr-auto" navbar>
               
               <NavItem>
-                <NavLink tag={Link} to="/posts">all posts</NavLink>
+                <NavLink tag={Link} to="/">
+                  all posts
+                </NavLink>
               </NavItem>
               
               <NavItem>
@@ -47,6 +50,7 @@ const NavBar = (props) => {
             <NavbarText> {props.user? `Welcome, ${props.user.username}! ` : null} </NavbarText>
           </Collapse>
         </Navbar>
+      </>
     );
   }
   

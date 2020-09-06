@@ -12,8 +12,8 @@ import UserContainer from './Containers/UserContainer'
 
 class App extends React.Component {
 
-  constructor () {
-    super ()
+  constructor (props) {
+    super (props)
 
     this.state = {
       user:false,
@@ -33,8 +33,9 @@ class App extends React.Component {
       })
         .then(response => response.json())
         .then(posts => {
-          this.setState({posts:posts,
-                        isPostsLoaded:true})
+          this.setState({posts : posts,
+                        isPostsLoaded:true},
+                        () => console.log(this.state.posts))
         })
   }
 
@@ -47,17 +48,23 @@ class App extends React.Component {
                  }
         })
           .then(response => response.json())
-          .then(data => {this.setState({user : data.user,
-                                        isUserLoaded:true})})
+          .then(data => {
+            this.setState({user : data.user,
+                          isUserLoaded:true},
+                          () => console.log(this.state.user))
+          })
   }
 
   componentDidMount () {
+    console.log("App is mounting")
     //retrieves token associated with current_user on frontend
     const token = localStorage.getItem("token")
     if (token) {
+      console.log("Token retrieved")
       this.retrieveUserProfile(token)
       this.retrievePosts(token)
       } else {
+        console.log("Token not retrieved")
         //redirects to login page if user isn't authenticated
         this.props.history.push("/login") 
         this.setState({isUserLoaded:true,
@@ -94,19 +101,19 @@ class App extends React.Component {
     fetch("http://localhost:3000/api/v1/login", configObj)
       .then(response => response.json())
       .then(data => 
-        {   
-        localStorage.setItem("token",data.jwt)
-        this.setState(
-            {user : data.user}, 
-            () => {this.props.history.push("/")}
-          ) 
-        })
+          {   
+          localStorage.setItem("token",data.jwt)
+          this.setState({user:data.user}, 
+                        () => {this.props.history.push("/")
+                               window.location.reload()
+                        }) 
+          })
   }
 
   logOutHandler = () => {
     localStorage.removeItem("token")
     this.props.history.push("/login") 
-    this.setState({user:null})
+    this.setState({user:false})
   }
 
   submitHandler =(newPostObj) => {
@@ -141,11 +148,9 @@ class App extends React.Component {
           <Switch>
             <Route path="/login" render={() => <Login submitHandler={this.loginHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
-            {/* <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 
-            <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/> */}
             <Route path='/profile' render={() => <UserContainer user={this.state.user}/>}/>
+            <Route path='/' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
           </Switch>
         </div>
       </Router>
