@@ -24,37 +24,46 @@ class Signup extends React.Component {
     render () {
         return (
             <>
-                <br/><br/>
-                <h1>PillowTalk.</h1>
-                <h3>because we all have a voice.</h3>
-                <br/><br/>
-                <h4>Sign Up</h4>
-                <div className="center">
-                    <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
+                {this.props.user === false ?
+                <>
+                    <br/><br/>
+                    <h1>PillowTalk</h1>
+                    <h3>because we all have a voice.</h3>
+                    <br/><br/>
+                    <h4>Sign Up</h4>
+                    <div className="center">
+                        <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
 
-                        <FormGroup>
-                            <Label for="username" className="mr-sm-2">Username</Label>
-                            <Input type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
-                        </FormGroup>
+                            <FormGroup>
+                                <Label for="username" className="mr-sm-2">Username</Label>
+                                <Input type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
+                            </FormGroup>
 
-                        <FormGroup>
-                            <Label for="password" className="mr-sm-2">Password</Label>
-                            <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
-                        </FormGroup>
+                            <FormGroup>
+                                <Label for="password" className="mr-sm-2">Password</Label>
+                                <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
+                            </FormGroup>
 
-                        {/* we need to add the other fields */}
-                        
-                        <Button type="submit" value="Login">Submit</Button>
+                            {/* we need to add the other fields */}
+                            
+                            <Button type="submit" value="Login">Submit</Button>
 
-                    </Form>
-                </div>
-                <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink>
+                        </Form>
+                    </div>
+                    <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink>
+                </>
+                :
+                <>
+                    <div className="center">
+                        <h1>Please logout before signing up!</h1>
+                    </div> 
+                    <button type="button" onClick={this.props.clickHandler}>Logout</button>
+                </>
+                }
+                
             </>
         )
     }
 }
 
 export default Signup
-
-
-

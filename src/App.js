@@ -135,8 +135,8 @@ class App extends React.Component {
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
-            <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
-            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
+            <Route path="/login" render={() => <Login submitHandler={this.loginHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
+            <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
             {/* <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 

@@ -19,7 +19,7 @@ const NavBar = (props) => {
     return (
         <Navbar sticky="top" color="light" light expand="md">
           <NavbarBrand>
-            pillow talk
+            PillowTalk
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
