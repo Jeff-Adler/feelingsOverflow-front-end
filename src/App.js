@@ -34,8 +34,7 @@ class App extends React.Component {
         .then(response => response.json())
         .then(posts => {
           this.setState({posts : posts,
-                        isPostsLoaded:true},
-                        () => console.log(this.state.posts))
+                        isPostsLoaded:true})
         })
   }
 
@@ -50,21 +49,17 @@ class App extends React.Component {
           .then(response => response.json())
           .then(data => {
             this.setState({user : data.user,
-                          isUserLoaded:true},
-                          () => console.log(this.state.user))
+                          isUserLoaded:true})
           })
   }
 
   componentDidMount () {
-    console.log("App is mounting")
     //retrieves token associated with current_user on frontend
     const token = localStorage.getItem("token")
     if (token) {
-      console.log("Token retrieved")
       this.retrieveUserProfile(token)
       this.retrievePosts(token)
       } else {
-        console.log("Token not retrieved")
         //redirects to login page if user isn't authenticated
         this.props.history.push("/login") 
         this.setState({isUserLoaded:true,
@@ -85,7 +80,8 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
-      .then(data => this.setState({user : data.user})) 
+      .then(data => this.setState({user : data.user},
+                                  () => {this.loginHandler(this.state.user)}))
   }
 
   loginHandler = (userInfo) => {
@@ -131,7 +127,6 @@ class App extends React.Component {
     fetch("http://localhost:3000/posts", configObj)
       .then(response => response.json())
       .then(post => {
-        console.log(post)
         this.setState({
           posts: [post,...this.state.posts]
         })

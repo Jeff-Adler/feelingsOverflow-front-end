@@ -7,7 +7,8 @@ class Login extends React.Component {
         super(props)
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            authenticating: false
         }
     }
 
@@ -18,21 +19,19 @@ class Login extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault()
-        this.props.submitHandler(this.state)
-    }
-
-    componentDidUpdate () {
-        console.log("login updating")
-    }
-
-    componentWillUnmount () {
-        console.log("login unmounting")
+        this.setState({authenticating:true})
+        const formData = {username : this.state.username,
+                         password: this.state.password}
+        this.props.submitHandler(formData)
     }
 
     render () {
         return (
         <>
-            {this.props.user === false ?
+            {this.state.authenticating === false ?
+                <>
+                {this.props.user === false 
+                ?
                 <>
                 <br/><br/>
                 <h1>PillowTalk</h1>
@@ -58,7 +57,7 @@ class Login extends React.Component {
                 </div>
                     <NavLink tag={Link} to="/signup">New here? Sign up!</NavLink>
                 </>
-            :
+                :
                 <>
                     <div className="center">
                         <h1>Can't login until you logout!</h1>
@@ -66,6 +65,12 @@ class Login extends React.Component {
                     <button type="button" onClick={this.props.clickHandler}>Logout</button>
                 </>
                 
+                }
+                </>
+            :
+            <div className="center"> 
+                <h1>Authenticating...</h1>
+            </div> 
             }
             </>   
             )
