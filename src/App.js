@@ -10,9 +10,6 @@ import PostForm from './Components/PostForm'
 // import CommentForm from './Components/CommentForm'
 import UserContainer from './Containers/UserContainer'
 
-
-
-
 class App extends React.Component {
 
   constructor () {
@@ -20,7 +17,9 @@ class App extends React.Component {
 
     this.state = {
       user:false,
-      posts: [] 
+      posts: [], 
+      isUserLoaded: false,
+      isPostsLoaded: false
     }
   }
 
@@ -34,7 +33,8 @@ class App extends React.Component {
       })
         .then(response => response.json())
         .then(posts => {
-          this.setState({posts:posts})
+          this.setState({posts:posts,
+                        isPostsLoaded:true})
         })
   }
 
@@ -47,7 +47,8 @@ class App extends React.Component {
                  }
         })
           .then(response => response.json())
-          .then(data => {this.setState({user : data.user})})
+          .then(data => {this.setState({user : data.user,
+                                        isUserLoaded:true})})
   }
 
   componentDidMount () {
@@ -59,6 +60,8 @@ class App extends React.Component {
       } else {
         //redirects to login page if user isn't authenticated
         this.props.history.push("/login") 
+        this.setState({isUserLoaded:true,
+                        isPostsLoaded:true})
       }
   }
 
@@ -131,7 +134,8 @@ class App extends React.Component {
 
   render () {
     return (
-      <Router>
+      (this.state.isUserLoaded && this.state.isPostsLoaded ?
+        <Router>
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
@@ -145,6 +149,9 @@ class App extends React.Component {
           </Switch>
         </div>
       </Router>
+      :
+      "Loading"
+      )
     )
   }
 }
