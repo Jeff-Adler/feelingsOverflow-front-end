@@ -16,6 +16,7 @@ class Post extends React.Component {
                     <Route path="/posts/:id" render={() => {
                         return(
                             <>
+                            {this.props.user.id}
                             <Table striped>
                             <thead>
                                 <tr>

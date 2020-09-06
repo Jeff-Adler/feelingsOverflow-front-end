@@ -7,8 +7,7 @@ import { Table, NavLink } from 'reactstrap';
 class PostContainer extends React.Component {
 
 renderPosts = () => {
-    return this.props.posts.map(postObj => {console.log(postObj)
-                                            return <Posts key={postObj.id} postObj={postObj}/>})
+    return this.props.posts.map(postObj => {return <Posts key={postObj.id} postObj={postObj}/>})
 }
 
     render () {
@@ -26,7 +25,7 @@ renderPosts = () => {
             <Route path="/posts/:id" render={({match})=> {
                 let id = parseInt(match.params.id)
                 let foundPost = this.props.posts.find((post) => post.id ===id)
-                return <Posts postObj={foundPost} />
+                return <Posts postObj={foundPost} user={this.props.user}/>
 
             }} />
                 {/* if route does not have a condition, render all posts */}

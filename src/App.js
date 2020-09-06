@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, withRouter, Switch} from 'react-router-dom';
+import { Route, withRouter, Switch} from 'react-router-dom';
 import Navbar from './Components/Navbar';
 import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
@@ -139,7 +139,7 @@ class App extends React.Component {
       .then(post => {
         this.setState({
           posts: [post,...this.state.posts]
-        })
+                      }, () => {this.props.history.push(`/posts/${post.id}`)})
       })
   }
 
@@ -147,7 +147,6 @@ class App extends React.Component {
   render () {
     return (
       (this.state.isUserLoaded && this.state.isPostsLoaded ?
-        <Router>
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
@@ -158,7 +157,6 @@ class App extends React.Component {
             <Route path='/' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
           </Switch>
         </div>
-      </Router>
       :
         <div className="center">
           <h1>Loading</h1>

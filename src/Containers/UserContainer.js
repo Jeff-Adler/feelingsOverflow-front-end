@@ -29,7 +29,7 @@ class UserContainer extends React.Component {
         return (
             this.state.posts.map(postObj => {
                 return (
-                    <Posts key={postObj.id} postObj={postObj}/>
+                    <Posts key={postObj.id} user={this.props.user} postObj={postObj}/>
                 )
             })
         ) 
