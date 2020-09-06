@@ -7,7 +7,8 @@ import { Table, NavLink } from 'reactstrap';
 class PostContainer extends React.Component {
 
 renderPosts = () => {
-    return this.props.posts.map(postObj => <Posts key={postObj.id} postObj={postObj}/>)
+    return this.props.posts.map(postObj => {console.log(postObj)
+                                            return <Posts key={postObj.id} postObj={postObj}/>})
 }
 
     render () {
@@ -33,7 +34,7 @@ renderPosts = () => {
                 return(
                     <>
 
-                <NavLink tag={Link} to="/createpost" className="left">create new post</NavLink>
+                <NavLink tag={Link} to="/posts/new" className="center">What's on your mind?</NavLink>
 
                         <Search />
                         <Table striped>

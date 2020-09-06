@@ -11,7 +11,6 @@ class PostForm extends React.Component {
 
 submitHelper = (e) => {
     e.preventDefault()
-    console.log(this.state)
     return this.props.submitHandler(this.state)
 }
 
@@ -42,7 +41,7 @@ categoryChangeHelper =(e) => {
     render() {
         return(
                 <>
-                <h2>Create a Post</h2>
+                <br/><br/>
                 <div className="formCenter" >
                 <Form onSubmit = {this.submitHelper} style={{ width: "400px" }}>
 

@@ -44,11 +44,24 @@ class Post extends React.Component {
                             </>
                             )
                         }} />
+                    <Route path="/profile" render={() => {
+                    return(
+                            <>
+                                        <tr onClick={this.showPost}>
+                                            <th scope="row">{this.props.postObj.id}</th>
+                                                <td>{this.props.postObj.id}</td>
+                                                <td>{this.props.postObj.category}</td>
+                                                <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
+                                                <td>{this.props.postObj.created_at}</td>
+                                        </tr>
+                            </>
+                        )
+                    }} />
                     <Route path="/" render={() => {
                         return(
                             <>
                                         <tr onClick={this.showPost}>
-                                            <th scope="row">{this.props.postObj.poster_id}</th>
+                                            <th scope="row">{this.props.postObj.poster_name}</th>
                                                 <td>{this.props.postObj.id}</td>
                                                 <td>{this.props.postObj.category}</td>
                                                 <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
@@ -58,19 +71,6 @@ class Post extends React.Component {
                             </>
                             )
                         }} />
-                    <Route path="/profile" render={() => {
-                    return(
-                            <>
-                                        <tr onClick={this.showPost}>
-                                            <th scope="row">{this.props.postObj.poster_id}</th>
-                                                <td>{this.props.postObj.id}</td>
-                                                <td>{this.props.postObj.category}</td>
-                                                <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
-                                                <td>{this.props.postObj.created_at}</td>
-                                        </tr>
-                            </>
-                        )
-                    }} />
                 </Switch>
             </>
         )

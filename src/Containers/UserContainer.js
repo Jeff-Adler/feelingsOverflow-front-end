@@ -49,14 +49,15 @@ class UserContainer extends React.Component {
                    <Route path="/profile" render={() => {
                        return(
                             <div>
-                                <h1>My posts:</h1>
+                                <br/><br/>
+                                <h1>My posts</h1>
                                 {this.state.isLoaded ? 
                     <>
                     <Search />
                         <Table striped>
                             <thead>
                                 <tr>
-                                    <th>Poster Name</th>
+                                    <th>Post id</th>
                                     <th>Post Description</th>
                                     <th>Category</th>
                                     <th>Severe</th>

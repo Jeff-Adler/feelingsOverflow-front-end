@@ -121,6 +121,8 @@ class App extends React.Component {
   }
 
   submitHandler =(newPostObj) => {
+    newPostObj = {...newPostObj,
+                  poster_name : this.state.user.username}
     const token = localStorage.getItem("token")
     const configObj = {
       method: "POST",
@@ -151,7 +153,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
+            <Route path='/posts/new' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
             <Route path='/profile' render={() => <UserContainer user={this.state.user}/>}/>
             <Route path='/' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
           </Switch>
