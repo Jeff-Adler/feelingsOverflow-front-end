@@ -1,6 +1,6 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
-import { Route, Switch, NavLink, withRouter, Link } from 'react-router-dom'
+import { Route, Switch, withRouter} from 'react-router-dom'
 import { Table } from 'reactstrap';
 
 class Post extends React.Component {
@@ -79,16 +79,3 @@ class Post extends React.Component {
 
 export default withRouter(Post)
 
-
-
-{/* <div className="container">
-<h3>Post {this.props.postObj.id} Name</h3>
-    <p>Positive: {this.props.postObj.positive}</p>
-    <p>Negative: {this.props.postObj.negative}</p>
-    <p>Severe: {this.props.postObj.severe ? "Yes" : "No"}</p>
-    <p>Category: {this.props.postObj.category}</p><br/>
-        <NavLink tag={Link} to={`/posts/${this.props.postObj.id}/`}>
-            <p>View Post</p>
-        </NavLink> */}
-    {/* <p onClick={this.showPost}>SHOW POST</p> */}
-{/* </div> */}

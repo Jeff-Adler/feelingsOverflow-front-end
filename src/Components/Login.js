@@ -25,6 +25,9 @@ class Login extends React.Component {
         return (
             <>
             <br/><br/>
+            <h1>PillowTalk.</h1>
+            <h3>because we all have a voice.</h3>
+            <br/><br/>
             <h4>Returning User</h4>
             <div className="center">
             <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>

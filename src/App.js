@@ -6,8 +6,8 @@ import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
 import PostForm from './Components/PostForm'
-import CommentContainer from './Containers/CommentContainer'
-import CommentForm from './Components/CommentForm'
+// import CommentContainer from './Containers/CommentContainer'
+// import CommentForm from './Components/CommentForm'
 import UserContainer from './Containers/UserContainer'
 
 
@@ -134,14 +134,13 @@ class App extends React.Component {
       <Router>
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
-          <h1>Pillow Talk.</h1>
           <Switch>
             <Route exact path="/login" render={() => <Login submitHandler={this.loginHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler}/>} />
             <Route path='/posts' render={() => <PostContainer user={this.state.user} posts={this.state.posts} />}/>
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
-            <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 
-            <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/>
+            {/* <Route path='/comments' render={()=> <CommentContainer name={this.state.posts}/>} /> 
+            <Route path='/createcomment' render={() => <CommentForm submitHandler={this.commentSubmitHandler} /> }/> */}
             <Route path='/profile' render={() => <UserContainer user={this.state.user}/>}/>
           </Switch>
         </div>

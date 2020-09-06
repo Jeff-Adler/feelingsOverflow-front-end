@@ -49,14 +49,14 @@ categoryChangeHelper =(e) => {
                     <FormGroup>
                         <Label>Positive Thought</Label>
                         <br/>
-                        <textarea type="textarea" onChange={this.thoughtsChangeHelper} value={this.state.positive} type="text" name="positive" placeholder="enter positive thought here"/>
+                        <textarea type="textarea" onChange={this.thoughtsChangeHelper} value={this.state.positive}name="positive" placeholder="enter positive thought here"/>
                     </FormGroup>
                     <br/><br/>
 
                     <FormGroup>
                         <Label>Negative Thought</Label>
                         <br/>
-                        <textarea type="textarea" onChange={this.thoughtsChangeHelper} value={this.state.negative} type="text" name="negative" placeholder="enter negative thought here"/>
+                        <textarea type="textarea" onChange={this.thoughtsChangeHelper} value={this.state.negative} name="negative" placeholder="enter negative thought here"/>
                     </FormGroup>
                     <br/><br/>
 
