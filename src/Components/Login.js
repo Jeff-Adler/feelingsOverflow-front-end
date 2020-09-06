@@ -7,8 +7,7 @@ class Login extends React.Component {
         super(props)
         this.state = {
             username: "",
-            password: "",
-            authenticating: false
+            password: ""
         }
     }
 
@@ -19,7 +18,6 @@ class Login extends React.Component {
 
     submitHandler = (event) => {
         event.preventDefault()
-        this.setState({authenticating:true})
         const formData = {username : this.state.username,
                          password: this.state.password}
         this.props.submitHandler(formData)
@@ -28,7 +26,7 @@ class Login extends React.Component {
     render () {
         return (
         <>
-            {this.state.authenticating === false ?
+            {this.props.authenticating === false ?
                 <>
                 {this.props.user === false 
                 ?
@@ -38,6 +36,7 @@ class Login extends React.Component {
                 <h3>because we all have a voice.</h3>
                 <br/><br/>
                 <h4>Returning User</h4>
+                <h3 style={{color:"red"}}>{this.props.authenticationError}</h3>
                 <div className="center">
                 <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
 

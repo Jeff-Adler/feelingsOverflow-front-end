@@ -19,7 +19,9 @@ class App extends React.Component {
       user:false,
       posts: [], 
       isUserLoaded: false,
-      isPostsLoaded: false
+      isPostsLoaded: false,
+      authenticationError: "",
+      authenticating: false
     }
   }
 
@@ -85,6 +87,7 @@ class App extends React.Component {
   }
 
   loginHandler = (userInfo) => {
+    this.setState({authenticating: true})
     const configObj = {
       method: "POST",
       headers: {
@@ -97,12 +100,17 @@ class App extends React.Component {
     fetch("http://localhost:3000/api/v1/login", configObj)
       .then(response => response.json())
       .then(data => 
-          {   
-          localStorage.setItem("token",data.jwt)
-          this.setState({user:data.user}, 
-                        () => {this.props.history.push("/")
-                               window.location.reload()
-                        }) 
+          {if (data.jwt) {
+            localStorage.setItem("token",data.jwt)
+            this.setState({user:data.user,
+                          authenticating: false}, 
+                          () => {this.props.history.push("/")
+                                window.location.reload()
+                          }) 
+                      } else {
+                        this.setState({authenticationError: data.message,
+                                      authenticating:false})
+                      }
           })
   }
 
@@ -141,7 +149,7 @@ class App extends React.Component {
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
-            <Route path="/login" render={() => <Login submitHandler={this.loginHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
+            <Route path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route path='/createpost' render={() => <PostForm submitHandler={this.submitHandler} /> }/>
             <Route path='/profile' render={() => <UserContainer user={this.state.user}/>}/>
@@ -150,7 +158,9 @@ class App extends React.Component {
         </div>
       </Router>
       :
-      "Loading"
+        <div className="center">
+          <h1>Loading</h1>
+        </div>
       )
     )
   }
