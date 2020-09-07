@@ -8,16 +8,14 @@ class PostList extends React.Component {
     renderList = () => {
         return ( this.props.posts.map(postObj => {
             return (
-                <>
                     <tr key={`1-${postObj.id}`}>
                         <th scope="row">{postObj.poster_name}</th>
                             <td>{postObj.id}</td>
                             <td>{postObj.category}</td>
                             <td>{postObj.severe ? "Yes" : "No"}</td>
                             <td>{postObj.created_at.toString().substring(0,10)}</td>
+                            <td><NavLink tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink></td>
                     </tr>
-                    <NavLink tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
-                </>
             )})
         )
     }
@@ -36,6 +34,7 @@ class PostList extends React.Component {
                             <th>Category</th>
                             <th>Severe</th>
                             <th>Created At</th>
+                            <th>View Post</th>
                         </tr>
                     </thead>
                         <tbody>
