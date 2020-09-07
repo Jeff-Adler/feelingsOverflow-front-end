@@ -228,7 +228,7 @@ render() {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label for="moodLocation">If yes, what is it?</Label>
+                        <Label for="moodTriggerDetail">If yes, what is it?</Label>
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="moodTriggerDetail" 
@@ -367,6 +367,16 @@ render() {
                                 Other
                         </Label>
                     </FormGroup>
+
+                    <FormGroup>
+                        <Label for="moodCategory">If other, what is it?</Label>
+                        <Input onChange={this.changeHelper} 
+                        type="text" 
+                        name="moodCategoryDetail" 
+                        value={this.state.moodCategoryDetail}
+                        disabled={this.state.moodCategory !== "Other" ? 'disabled' : ''} />
+                    </FormGroup>
+
 
                     </FormGroup>
                     <br/>
