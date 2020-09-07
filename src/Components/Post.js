@@ -5,15 +5,11 @@ import { Table } from 'reactstrap';
 
 class Post extends React.Component {
 
-    showPost = () => {
-        this.props.history.push(`/posts/${this.props.postObj.id}/`)
-    }
-
     render() {
         return (
             <>
                 <Switch>
-                    <Route path="/posts/:id" render={() => {
+                    <Route exact path="/posts/:id" render={() => {
                         return(
                             <>
                             {this.props.user.id}
@@ -57,21 +53,7 @@ class Post extends React.Component {
                                         </tr>
                             </>
                         )
-                    }} />
-                    <Route path="/" render={() => {
-                        return(
-                            <>
-                                        <tr onClick={this.showPost}>
-                                            <th scope="row">{this.props.postObj.poster_name}</th>
-                                                <td>{this.props.postObj.id}</td>
-                                                <td>{this.props.postObj.category}</td>
-                                                <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
-                                                <td>{this.props.postObj.created_at}</td>
-                                        </tr>
-
-                            </>
-                            )
-                        }} />
+                    }} />                   
                 </Switch>
             </>
         )

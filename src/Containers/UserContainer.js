@@ -1,5 +1,5 @@
 import React from 'react';
-import Posts from '../Components/Posts'
+import Posts from '../Components/Post'
 import {Route, Switch} from 'react-router-dom'
 import { Table } from 'reactstrap';
 import Search from '../Components/Search'
@@ -10,7 +10,7 @@ class UserContainer extends React.Component {
 
     componentDidMount () {
         if (this.props.user.id) {
-            const token = localStorage.getItem("token")
+            const token = this.props.getToken()
             fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
                 method: "GET",
                 headers: {

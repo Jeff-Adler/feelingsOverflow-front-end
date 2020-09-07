@@ -1,63 +1,84 @@
 import React from 'react';
-import Posts from '../Components/Posts'
-import { Route, Switch, withRouter, Link } from 'react-router-dom'
-import Search from '../Components/Search'
-import { Table, NavLink } from 'reactstrap';
+import Post from '../Components/Post'
+import { Route, Switch, withRouter} from 'react-router-dom'
+import PostForm from '../Components/PostForm'
+import PostList from '../Components/PostList'
 
 class PostContainer extends React.Component {
 
-renderPosts = () => {
-    return this.props.posts.map(postObj => {return <Posts key={postObj.id} postObj={postObj}/>})
+state = {
+    posts : null
 }
 
-    render () {
-        return (
-            <>
-
-        {/* if posts have not yet rendered, add a loading note */}
-        {this.props.posts.length === 0 ? <h1> LOADING</h1> :
-
-
-        // if posts have rendered, redirect as below
-        <Switch>
-                {/* if route has a condition, render as follows.   */}
-            
-            <Route path="/posts/:id" render={({match})=> {
-                let id = parseInt(match.params.id)
-                let foundPost = this.props.posts.find((post) => post.id ===id)
-                return <Posts postObj={foundPost} user={this.props.user}/>
-
-            }} />
-                {/* if route does not have a condition, render all posts */}
-            <Route path="/" render={() => {
-                return(
-                    <>
-
-                <NavLink tag={Link} to="/posts/new" className="center">What's on your mind?</NavLink>
-
-                        <Search />
-                        <Table striped>
-                            <thead>
-                                <tr>
-                                    <th>Poster Name</th>
-                                    <th>Post Description</th>
-                                    <th>Category</th>
-                                    <th>Severe</th>
-                                    <th>Created At</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                    {this.renderPosts()}
-                                </tbody>
-                        </Table>
-                    </>
-                     )
-            }} />
-        </Switch>
-          }
-            </>        
-        )
+componentDidMount () {
+    if (this.props.user.id) {
+        this.retrievePosts()
     }
+}
+
+//retrieves all posts from backend
+retrievePosts = () => {
+    const token = this.props.getToken()
+    fetch("http://localhost:3000/posts", {
+        method: "GET",
+        headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+        .then(response => response.json())
+        .then(posts => {
+            this.setState({
+                posts : posts
+            })
+        })
+  }
+
+submitHandler = (newPostObj) => {
+    newPostObj = {
+        ...newPostObj,
+        poster_name : this.props.user.username
+    }
+    const token = this.props.getToken()
+    const configObj = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "accepts" : "application/json",
+        "content-type" : "application/json"
+      },
+      body: JSON.stringify({post : newPostObj})
+    }
+
+    fetch("http://localhost:3000/posts", configObj)
+      .then(response => response.json())
+      .then(post => {
+        this.setState({
+          posts: [post,...this.state.posts]
+                      }, 
+            () => {this.props.history.push(`/posts/${post.id}`)})
+      })
+}
+
+render () {
+    return (
+        <>
+            {this.state.posts === null 
+            ? 
+                <h1> LOADING</h1> 
+            :
+                <Switch> 
+                    <Route exact path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
+                    <Route exact path="/posts/:id" render={({match})=> {
+                        let id = parseInt(match.params.id)
+                        let foundPost = this.state.posts.find((post) => post.id ===id)
+                        return <Post postObj={foundPost} user={this.props.user}/>
+                    }} />
+                    <Route path="/" render={() => <PostList posts={this.state.posts}/>} />
+                </Switch>
+                }
+        </>        
+    )
+}
 }
 
 export default withRouter(PostContainer)
