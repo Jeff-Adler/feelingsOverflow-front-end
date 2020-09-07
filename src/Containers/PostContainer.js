@@ -59,6 +59,14 @@ submitHandler = (newPostObj) => {
       })
 }
 
+componentWillUnmount () {
+    console.log("post container is unmounting")
+}
+
+componentWillMount () {
+    console.log("post container is mounting")
+}
+
 render () {
     return (
         <>
@@ -73,7 +81,7 @@ render () {
                         let foundPost = this.state.posts.find((post) => post.id ===id)
                         return <Post postObj={foundPost} user={this.props.user}/>
                     }} />
-                    <Route path={this.props.match.url} render={() => <PostList posts={this.state.posts}/>} />
+                    <Route path="/" render={() => <PostList posts={this.state.posts}/>} />
                 </Switch>
                 }
         </>        

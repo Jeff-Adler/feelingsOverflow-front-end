@@ -22,6 +22,11 @@ class PostList extends React.Component {
         )
     }
 
+    componentWillUnmount () {
+        console.log("post list is unmounting")
+    }
+    
+
     render () {
         return(
             <>
