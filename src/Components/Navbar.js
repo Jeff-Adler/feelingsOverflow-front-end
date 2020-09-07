@@ -8,6 +8,10 @@ import {
   Nav,
   NavItem,
   NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
   NavbarText
 } from 'reactstrap';
 
@@ -19,8 +23,8 @@ const NavBar = (props) => {
     return (
       <>
         <Navbar sticky="top" color="light" light expand="md">
-          <NavbarBrand>
-            PillowTalk
+          <NavbarBrand tag={Link} to="/">
+            Feelings<strong>Overflow</strong>
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -29,23 +33,34 @@ const NavBar = (props) => {
               
               <NavItem>
                 <NavLink tag={Link} to="/">
-                  all posts
+                  Home
                 </NavLink>
               </NavItem>
               
               <NavItem>
                 <NavLink tag={Link} to="/user/posts">
-                  my posts
+                 My Posts
                 </NavLink>
               </NavItem>
+              
+              <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Account
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem tag={Link} to="/user/posts">
+                  Account Info
+                </DropdownItem>
+                <DropdownItem tag={Link} to="/user/posts">
+                  Analytics
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem tag={Link} onClick={props.clickHandler} to="/login">
+                  Log Out
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
 
-              <NavItem>
-              {props.user ? <NavLink onClick={props.clickHandler} href="/login">log out </NavLink> :
-                    <NavLink to="/login">
-                        login
-                    </NavLink>
-                }
-              </NavItem>
             </Nav>
             <NavbarText> {props.user? `Welcome, ${props.user.username}! ` : null} </NavbarText>
           </Collapse>
