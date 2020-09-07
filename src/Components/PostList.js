@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { Table, NavLink } from 'reactstrap';
 import Search from '../Components/Search'
 
@@ -16,7 +16,7 @@ class PostList extends React.Component {
                             <td key={`5-${postObj.id}`} id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
                             <td key={`6-${postObj.id}`} id={postObj.id}>{postObj.created_at}</td>
                     </tr>
-                    {/* <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink> */}
+                    <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
                 </>
             )})
         )
@@ -47,4 +47,4 @@ class PostList extends React.Component {
     }
 }
 
-export default withRouter(PostList)
+export default PostList

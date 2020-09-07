@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from '../Components/Post'
 import {Route, Switch} from 'react-router-dom'
-import UserList from '../Components/PostList'
+import UserList from '../Components/UserList'
 import NotFound from '../Components/Errors/404'
 
 class UserContainer extends React.Component {
@@ -35,7 +35,6 @@ class UserContainer extends React.Component {
                 :
                     <>
                         <br/><br/>
-                        <h1>User Page</h1>
                         <Switch>
                             <Route exact path="/user/info" render={() => <h1>My Info:</h1>}/>  
                             <Route exact path="/user/posts/:id" render={({match})=> {
