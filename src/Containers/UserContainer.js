@@ -26,6 +26,8 @@ class UserContainer extends React.Component {
     render () {
         return (
             <>
+                <br/><br/>
+                <h1>User Page</h1>
                 <Switch>
                     <Route path="/user/info" exact render={() => {
                        return(
