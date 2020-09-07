@@ -10,8 +10,8 @@ class PostList extends React.Component {
                     <ListGroupItem key={`1-${postObj.id}`}>
                         <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.positive}</ListGroupItemHeading>
                         <ListGroupItemText>
-                            {`
-                                ${postObj.poster_name}   
+                            <strong>{postObj.poster_name}</strong>
+                            {` 
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0    
                                 ${postObj.severe ? "Severe" : "Not severe"}  
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
