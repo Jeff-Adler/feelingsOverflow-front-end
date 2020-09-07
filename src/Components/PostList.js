@@ -28,7 +28,7 @@ class PostList extends React.Component {
         return(
         <>
             <br/><br/>
-            <h2><NavLink tag={Link} to="/posts/new" >What's on your mind?</NavLink></h2>
+            <h2><NavLink tag={Link} to="/posts/newform" >What's on your mind?</NavLink></h2>
             <div className="posts-container">
                 <ListGroup className="posts">
                     {this.renderList()}

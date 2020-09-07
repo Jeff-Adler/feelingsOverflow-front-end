@@ -6,6 +6,7 @@ import { Table } from 'reactstrap';
 class Post extends React.Component {
 
     render() {
+        console.log(this.props.postObj)
         return (
             <>
                 <Switch>
@@ -32,8 +33,15 @@ class Post extends React.Component {
                                             </tr>
                                     </tbody>
                                 </Table>
-                                <p>Positive thought: {this.props.postObj.positive}</p>
-                                <p>Negative thought: {this.props.postObj.negative}</p>
+                                <h3> Title: {this.props.postObj.mood_title}</h3>
+                                <p> {this.props.postObj.mood_description}</p>
+                                <p>I want to: {this.props.postObj.mood_purpose}</p>
+                                <p>Category: {this.props.postObj.mood_category} {this.props.postObj.mood_category_detail}</p>
+                                <p>How did you rate your mood? {this.props.postObj.mood_rating}</p>
+                                <p>How long were you feeling this way? {this.props.postObj.mood_length}</p>
+                                <p>Where were you when you were feeling this way? {this.props.postObj.mood_location}</p>
+                                <p>Do you know what made you feel this way, and if so, what was it? {this.props.postObj.mood_trigger} {this.props.postObj.mood_trigger_detail}</p>
+
                                 <CommentContainer postObj={this.props.postObj}/>
                             </>
                             )
