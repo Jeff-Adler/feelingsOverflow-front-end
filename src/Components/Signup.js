@@ -26,11 +26,10 @@ class Signup extends React.Component {
             <>
                 {this.props.user === false ?
                 <>
+                    <br/><br/><br/>
+                    <h1>Feelings<strong>Overflow</strong></h1>
                     <br/><br/>
-                    <h1>PillowTalk</h1>
-                    <h3>because we all have a voice.</h3>
-                    <br/><br/>
-                    <h4>Sign Up</h4>
+                    <h3>Sign Up</h3>
                     <div className="center">
                         <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
 
