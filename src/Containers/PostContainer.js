@@ -67,13 +67,13 @@ render () {
                 <h1> LOADING</h1> 
             :
                 <Switch> 
-                    <Route exact path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
+                    <Route path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
                     <Route exact path="/posts/:id" render={({match})=> {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
                         return <Post postObj={foundPost} user={this.props.user}/>
                     }} />
-                    <Route path="/" render={() => <PostList posts={this.state.posts}/>} />
+                    <Route path={this.props.match.url} render={() => <PostList posts={this.state.posts}/>} />
                 </Switch>
                 }
         </>        

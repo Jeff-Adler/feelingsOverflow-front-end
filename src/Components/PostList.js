@@ -5,20 +5,19 @@ import Search from '../Components/Search'
 
 class PostList extends React.Component {
 
-    showPost = (event) => {
-        this.props.history.push(`/posts/${event.target.id}/`)
-    }
-
     renderList = () => {
         return ( this.props.posts.map(postObj => {
             return (
-                <tr key={postObj.id} id={postObj.id} onClick={event => this.showPost(event)}>
-                    <th id={postObj.id} scope="row">{postObj.poster_name}</th>
-                        <td id={postObj.id}>{postObj.id}</td>
-                        <td id={postObj.id}>{postObj.category}</td>
-                        <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                        <td id={postObj.id}>{postObj.created_at}</td>
-                </tr>
+                <>
+                    <tr key={postObj.id} id={postObj.id}>
+                        <th id={postObj.id} scope="row">{postObj.poster_name}</th>
+                            <td id={postObj.id}>{postObj.id}</td>
+                            <td id={postObj.id}>{postObj.category}</td>
+                            <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
+                            <td id={postObj.id}>{postObj.created_at}</td>
+                    </tr>
+                    <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
+                </>
             )})
         )
     }
