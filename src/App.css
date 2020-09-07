@@ -95,3 +95,28 @@ textarea {
   height: 150px;
   width: 400px
 }
+
+/* Posts Index */
+
+.posts-container {
+  box-sizing: border-box;
+  position: relative;
+  padding: 2em 4em 4em;
+  border: 0px solid #d8d8d8;
+  margin: 1.5rem 0 0;
+}
+
+.posts {
+  text-align: left;
+}
+
+.list-group-item-heading {
+  font-weight: 300;
+  font-size: 1.50rem;
+}
+
+.list-group-item-text {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
