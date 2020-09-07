@@ -34,7 +34,7 @@ const NavBar = (props) => {
               </NavItem>
               
               <NavItem>
-                <NavLink tag={Link} to="/profile">
+                <NavLink tag={Link} to="/user/posts">
                   my posts
                 </NavLink>
               </NavItem>

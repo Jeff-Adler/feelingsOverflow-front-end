@@ -6,7 +6,6 @@ import Search from '../Components/Search'
 class PostList extends React.Component {
 
     showPost = (event) => {
-        console.log(event.target)
         this.props.history.push(`/posts/${event.target.id}/`)
     }
 

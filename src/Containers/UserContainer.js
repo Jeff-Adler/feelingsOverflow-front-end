@@ -1,12 +1,11 @@
 import React from 'react';
-import Posts from '../Components/Post'
+import Post from '../Components/Post'
 import {Route, Switch} from 'react-router-dom'
-import { Table } from 'reactstrap';
-import Search from '../Components/Search'
+import UserList from '../Components/PostList';
 
 class UserContainer extends React.Component {
 
-    state = {isLoaded : false}
+    state = {posts: null}
 
     componentDidMount () {
         if (this.props.user.id) {
@@ -19,59 +18,33 @@ class UserContainer extends React.Component {
                 })
                     .then(response => response.json())
                     .then(posts => {
-                    this.setState({posts:posts,
-                                    isLoaded:true})
+                    this.setState({posts:posts})
                     })
         }
-    }
-
-    renderPosts = () => {
-        return (
-            this.state.posts.map(postObj => {
-                return (
-                    <Posts key={postObj.id} user={this.props.user} postObj={postObj}/>
-                )
-            })
-        ) 
     }
 
     render () {
         return (
             <>
                 <Switch>
-                    <Route path="/profile/info" exact render={() => {
+                    <Route path="/user/info" exact render={() => {
                        return(
                             <h1>My Info:</h1>
                        )
                     }
                     }
                     />  
-                   <Route path="/profile" render={() => {
-                       return(
-                            <div>
-                                <br/><br/>
-                                <h1>My posts</h1>
-                                {this.state.isLoaded ? 
-                    <>
-                    <Search />
-                        <Table striped>
-                            <thead>
-                                <tr>
-                                    <th>Post id</th>
-                                    <th>Post Description</th>
-                                    <th>Category</th>
-                                    <th>Severe</th>
-                                    <th>Created At</th>
-                                </tr>
-                            </thead>
-                                <tbody>
-                                    {this.renderPosts()}
-                                </tbody>
-                        </Table>
-                        </>
-                        
-                        : "Loading!"}
-                            </div>
+                    <Route exact path="user/posts/:id" render={({match})=> {
+                        console.log("test")
+                        let id = parseInt(match.params.id)
+                        let foundPost = this.state.posts.find((post) => post.id ===id)
+                        return <Post postObj={foundPost} user={this.props.user}/>
+                    }} />
+                   <Route path="/user/posts" render={() => {
+                    return(
+                        <div>
+                            {this.state.posts !==  null  ? <UserList posts={this.state.posts} /> : "Loading!"}
+                        </div>
                             )
                         }
                     }

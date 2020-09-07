@@ -9,7 +9,7 @@ class Post extends React.Component {
         return (
             <>
                 <Switch>
-                    <Route exact path="/posts/:id" render={() => {
+                    <Route path="/posts/:id" render={() => {
                         return(
                             <>
                             {this.props.user.id}
@@ -35,25 +35,10 @@ class Post extends React.Component {
                             </Table>
                             <p>Positive thought: {this.props.postObj.positive}</p>
                             <p>Negative thought: {this.props.postObj.negative}</p>
-                            
                             <CommentContainer postObj={this.props.postObj}/>
-
                             </>
                             )
-                        }} />
-                    <Route path="/profile" render={() => {
-                    return(
-                            <>
-                                        <tr onClick={this.showPost}>
-                                            <th scope="row">{this.props.postObj.id}</th>
-                                                <td>{this.props.postObj.id}</td>
-                                                <td>{this.props.postObj.category}</td>
-                                                <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
-                                                <td>{this.props.postObj.created_at}</td>
-                                        </tr>
-                            </>
-                        )
-                    }} />                   
+                        }} />            
                 </Switch>
             </>
         )
