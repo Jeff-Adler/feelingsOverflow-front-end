@@ -9,14 +9,14 @@ class PostList extends React.Component {
         return ( this.props.posts.map(postObj => {
             return (
                 <>
-                    <tr key={`1-${postObj.id}`} id={postObj.id}>
-                        <th key={`2-${postObj.id}`} id={postObj.id} scope="row">{postObj.poster_name}</th>
-                            <td key={`3-${postObj.id}`} id={postObj.id}>{postObj.id}</td>
-                            <td key={`4-${postObj.id}`} id={postObj.id}>{postObj.category}</td>
-                            <td key={`5-${postObj.id}`} id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                            <td key={`6-${postObj.id}`} id={postObj.id}>{postObj.created_at}</td>
+                    <tr key={`1-${postObj.id}`}>
+                        <th scope="row">{postObj.poster_name}</th>
+                            <td>{postObj.id}</td>
+                            <td>{postObj.category}</td>
+                            <td>{postObj.severe ? "Yes" : "No"}</td>
+                            <td>{postObj.created_at}</td>
                     </tr>
-                    <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
+                    <NavLink tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
                 </>
             )})
         )
@@ -30,12 +30,12 @@ class PostList extends React.Component {
                 <Search />
                 <Table striped>
                     <thead>
-                        <tr key="0">
-                            <th key="1">Poster Name</th>
-                            <th key="2">Post Description</th>
-                            <th key="3">Category</th>
-                            <th key="4">Severe</th>
-                            <th key="5">Created At</th>
+                        <tr>
+                            <th>Poster Name</th>
+                            <th>Post Description</th>
+                            <th>Category</th>
+                            <th>Severe</th>
+                            <th>Created At</th>
                         </tr>
                     </thead>
                         <tbody>
