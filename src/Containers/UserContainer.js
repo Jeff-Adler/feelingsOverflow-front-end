@@ -37,7 +37,6 @@ class UserContainer extends React.Component {
                     }
                     />  
                     <Route exact path="user/posts/:id" render={({match})=> {
-                        console.log("test")
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
                         return <Post postObj={foundPost} user={this.props.user}/>
@@ -55,7 +54,6 @@ class UserContainer extends React.Component {
             </>
         )
     }
-
 }
 
 export default UserContainer
