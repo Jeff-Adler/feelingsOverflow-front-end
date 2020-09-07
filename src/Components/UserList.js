@@ -1,25 +1,25 @@
 import React from 'react'
-import { Table } from 'reactstrap';
+import { Link} from 'react-router-dom'
+import { Table, NavLink  } from 'reactstrap';
 import Search from '../Components/Search'
 
 
 class UserList extends React.Component {
 
-    showPost = (event) => {
-        this.props.history.push(`/user/posts/${event.target.id}/`)
-    }
-
     renderList = () => {
         return (
             this.props.posts.map(postObj => {
                 return (
-                    <tr key={postObj.id}  id={postObj.id} onClick={event => this.showPost(event)}>
-                        <th id={postObj.id} scope="row">{postObj.id}</th>
-                            <td id={postObj.id}>{postObj.id}</td>
-                            <td id={postObj.id}>{postObj.category}</td>
-                            <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                            <td id={postObj.id}>{postObj.created_at.toString().substring(0,10)}</td>
-                    </tr>
+                    <>
+                        <tr key={postObj.id}>
+                            <th scope="row">{postObj.id}</th>
+                                <td>{postObj.id}</td>
+                                <td>{postObj.category}</td>
+                                <td>{postObj.severe ? "Yes" : "No"}</td>
+                                <td>{postObj.created_at.toString().substring(0,10)}</td>
+                        </tr>
+                        <NavLink tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
+                    </>
                 )
             })
         ) 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import { Table, NavLink } from 'reactstrap';
 import Search from '../Components/Search'
 
@@ -9,23 +9,18 @@ class PostList extends React.Component {
         return ( this.props.posts.map(postObj => {
             return (
                 <>
-                    <tr key={postObj.id} id={postObj.id}>
-                        <th id={postObj.id} scope="row">{postObj.poster_name}</th>
-                            <td id={postObj.id}>{postObj.id}</td>
-                            <td id={postObj.id}>{postObj.category}</td>
-                            <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                            <td id={postObj.id}>{postObj.created_at.toString().substring(0,10)}</td>
+                    <tr key={`1-${postObj.id}`}>
+                        <th scope="row">{postObj.poster_name}</th>
+                            <td>{postObj.id}</td>
+                            <td>{postObj.category}</td>
+                            <td>{postObj.severe ? "Yes" : "No"}</td>
+                            <td>{postObj.created_at.toString().substring(0,10)}</td>
                     </tr>
-                    <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
+                    <NavLink tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
                 </>
             )})
         )
     }
-
-    componentWillUnmount () {
-        console.log("post list is unmounting")
-    }
-    
 
     render () {
         return(
@@ -52,4 +47,4 @@ class PostList extends React.Component {
     }
 }
 
-export default withRouter(PostList)
+export default PostList

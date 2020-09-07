@@ -6,6 +6,7 @@ import PostContainer from './Containers/PostContainer'
 import Signup from './Components/Signup'
 import Login from './Components/Login'
 import UserContainer from './Containers/UserContainer'
+import NotFound from './Components/Errors/404'
 
 class App extends React.Component {
 
@@ -108,10 +109,12 @@ class App extends React.Component {
         <div className="App">
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
-            <Route path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route path='/user' render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
-            <Route path='/' render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
+            <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
+            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
+            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
+            <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
+            <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
+            <Route component={NotFound} />
           </Switch>
         </div>
       :
