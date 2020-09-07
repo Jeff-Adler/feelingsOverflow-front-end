@@ -3,6 +3,7 @@ import Post from '../Components/Post'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import PostForm from '../Components/PostForm'
 import PostList from '../Components/PostList'
+import NotFound from '../Components/Errors/404'
 
 class PostContainer extends React.Component {
 
@@ -59,14 +60,6 @@ submitHandler = (newPostObj) => {
       })
 }
 
-componentWillUnmount () {
-    console.log("post container is unmounting")
-}
-
-componentWillMount () {
-    console.log("post container is mounting")
-}
-
 render () {
     return (
         <>
@@ -75,13 +68,17 @@ render () {
                 <h1> LOADING</h1> 
             :
                 <Switch> 
-                    <Route path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
+                    <Route exact path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
                     <Route exact path="/posts/:id" render={({match})=> {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
-                        return <Post postObj={foundPost} user={this.props.user}/>
+                        return (
+                            foundPost ? <Post postObj={foundPost} user={this.props.user}/> : <h3>Not Found</h3>
+                        )
                     }} />
-                    <Route path="/" render={() => <PostList posts={this.state.posts}/>} />
+                    <Route exact path="/posts" render={() => <PostList posts={this.state.posts}/>} />
+                    <Route exact path="/" render={() => <PostList posts={this.state.posts}/>} />
+                    <Route component={NotFound} />
                 </Switch>
                 }
         </>        
