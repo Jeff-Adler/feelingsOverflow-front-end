@@ -1,13 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
-import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import {NavLink, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
 
 class PostList extends React.Component {
     renderList = () => {
         return (this.props.posts.map(postObj => {
             return (
-                    <ListGroupItem key={`1-${postObj.id}`}>
+                    <ListGroupItem key={postObj.id}>
                         <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.positive}</ListGroupItemHeading>
                         <ListGroupItemText>
                             <strong>{postObj.poster_name}</strong>
@@ -27,11 +26,15 @@ class PostList extends React.Component {
 
     render () {
         return(
+        <>
+            <br/><br/>
+            <h2><NavLink tag={Link} to="/posts/new" >What's on your mind?</NavLink></h2>
             <div className="posts-container">
                 <ListGroup className="posts">
                     {this.renderList()}
                 </ListGroup>   
-            </div>         
+            </div>  
+        </>       
         )
     }
 
