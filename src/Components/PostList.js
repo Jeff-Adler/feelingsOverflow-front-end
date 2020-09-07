@@ -25,7 +25,8 @@ class PostList extends React.Component {
     render () {
         return(
             <>
-                <NavLink tag={Link} to="/posts/new" className="center">What's on your mind?</NavLink>
+                <br/><br/>
+                <NavLink tag={Link} to="/posts/new" >What's on your mind?</NavLink>
                 <Search />
                 <Table striped>
                     <thead>
