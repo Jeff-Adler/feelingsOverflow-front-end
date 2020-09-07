@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from '../Components/Post'
 import {Route, Switch} from 'react-router-dom'
-import UserList from '../Components/PostList';
+import UserList from '../Components/UserList';
 
 class UserContainer extends React.Component {
 

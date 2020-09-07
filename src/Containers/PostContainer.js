@@ -3,6 +3,7 @@ import Post from '../Components/Post'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import PostForm from '../Components/PostForm'
 import PostList from '../Components/PostList'
+import NewPostForm from '../Components/NewPostForm'
 
 class PostContainer extends React.Component {
 
@@ -75,7 +76,9 @@ render () {
                 <h1> LOADING</h1> 
             :
                 <Switch> 
-                    <Route path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} />      
+                    <Route path="/posts/new" render={() => <PostForm submitHandler={this.submitHandler} />} /> 
+                    {/* remove below when done testing */}
+                    <Route path="/posts/newform" render={() => <NewPostForm submitHandler={this.submitHandler} />} />      
                     <Route exact path="/posts/:id" render={({match})=> {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
