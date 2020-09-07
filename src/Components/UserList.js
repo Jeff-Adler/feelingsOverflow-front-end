@@ -2,6 +2,7 @@ import React from 'react'
 import { Table } from 'reactstrap';
 import Search from '../Components/Search'
 
+
 class UserList extends React.Component {
 
     showPost = (event) => {
@@ -17,7 +18,7 @@ class UserList extends React.Component {
                             <td id={postObj.id}>{postObj.id}</td>
                             <td id={postObj.id}>{postObj.category}</td>
                             <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                            <td id={postObj.id}>{postObj.created_at}</td>
+                            <td id={postObj.id}>{postObj.created_at.toString().substring(0,10)}</td>
                     </tr>
                 )
             })
@@ -28,7 +29,7 @@ class UserList extends React.Component {
         return (
             <>
                 <Search />
-                <Table striped>
+                <Table hover>
                     <thead>
                         <tr>
                             <th>Post id</th>

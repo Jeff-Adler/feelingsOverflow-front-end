@@ -14,7 +14,7 @@ class PostList extends React.Component {
                             <td id={postObj.id}>{postObj.id}</td>
                             <td id={postObj.id}>{postObj.category}</td>
                             <td id={postObj.id}>{postObj.severe ? "Yes" : "No"}</td>
-                            <td id={postObj.id}>{postObj.created_at}</td>
+                            <td id={postObj.id}>{postObj.created_at.toString().substring(0,10)}</td>
                     </tr>
                     <NavLink key={postObj.id * 100} tag={Link} to={`/posts/${postObj.id}/`}>View Post</NavLink>
                 </>
@@ -33,7 +33,7 @@ class PostList extends React.Component {
                 <br/><br/>
                 <NavLink tag={Link} to="/posts/new" >What's on your mind?</NavLink>
                 <Search />
-                <Table striped>
+                <Table >
                     <thead>
                         <tr>
                             <th>Poster Name</th>

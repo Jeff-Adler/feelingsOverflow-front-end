@@ -11,7 +11,8 @@ class NewPostForm extends React.Component {
         moodDescription: "",
         moodPurpose: null,
         moodTitle: "",
-        moodCategory: null
+        moodCategory: null,
+        moodCategoryDetail: null
     }
 
 submitHelper = (e) => {

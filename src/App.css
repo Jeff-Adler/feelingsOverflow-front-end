@@ -85,10 +85,6 @@
   padding: 15px
 }
 
-tr:hover {
-  background-color: grey;
-}
-
 .formCenter {
   display: flex;
   justify-content: center;

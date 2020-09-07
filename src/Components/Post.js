@@ -13,7 +13,7 @@ class Post extends React.Component {
                         return(
                             <>
                             {this.props.user.id}
-                            <Table striped>
+                            <Table hover>
                             <thead>
                                 <tr>
                                     <th>Poster Name</th>
@@ -29,7 +29,7 @@ class Post extends React.Component {
                                                 <td>{this.props.postObj.id}</td>
                                                 <td>{this.props.postObj.category}</td>
                                                 <td>{this.props.postObj.severe ? "Yes" : "No"}</td>
-                                                <td>{this.props.postObj.created_at}</td>
+                                                <td>{this.props.postObj.created_at.toString().substring(0,10)}</td>
                                         </tr>
                                 </tbody>
                             </Table>
