@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Form, FormGroup, Label, Input, NavLink} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+
 class Signup extends React.Component {
     constructor (props) {
         super(props)
@@ -58,6 +59,7 @@ class Signup extends React.Component {
                     <h1>Feelings<strong>Overflow</strong></h1>
                     <br/><br/>
                     <h3>Sign Up</h3><br/>
+                    
                     <div className="center">
                     
                         <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
@@ -72,14 +74,9 @@ class Signup extends React.Component {
                                 <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
                             
-                            <strong>Optional questions:</strong><br/>
-
                             <FormGroup>
                                 <Label for="age" className="mr-sm-2">Age</Label>
-                                <Input type="select" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)}>
-                                    {this.renderAgeDropdownItems()}
-                                </Input>
-                                {/* <Input type="text" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} /> */}
+                                <Input type="date" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <FormGroup tag="fieldset">
@@ -135,7 +132,8 @@ class Signup extends React.Component {
 
                             <FormGroup>
                                 <Label for="location" className="mr-sm-2">Location</Label>
-                                <Input type="text" name="location" placeholder="location" autoComplete="address-level2" value={this.state.location} onChange={event => this.changeHandler(event)} />
+                                {/* <Input type="text" name="location" placeholder="location" autoComplete="address-level2" value={this.state.location} onChange={event => this.changeHandler(event)} /> */}
+                                <Input type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <Button type="submit" value="Login">Submit</Button><br/><br/>
