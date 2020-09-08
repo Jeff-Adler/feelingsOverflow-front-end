@@ -1,6 +1,7 @@
 import React from 'react'
-import Comments from '../Components/Comments'
+import Comment from '../Components/Comment'
 import CommentForm from '../Components/CommentForm'
+import {ListGroup, ListGroupItem} from 'reactstrap';
 
 
 class CommentContainer extends React.Component {
@@ -89,9 +90,9 @@ class CommentContainer extends React.Component {
     renderComments = () => {
         return (this.state.comments.map(comment => {
             return (
-                <div key={comment.id} className="comment_container" >
-                    <Comments key={comment.id} comment={comment} downVoteHandler={this.downVoteHandler} upVoteHandler={this.upVoteHandler}/>
-                </div>
+                <ListGroupItem key={comment.id}>
+                    <Comment comment={comment} downVoteHandler={this.downVoteHandler} upVoteHandler={this.upVoteHandler}/>
+                </ListGroupItem>
             )
         }))
     }
@@ -116,7 +117,7 @@ class CommentContainer extends React.Component {
             })
               .then(response => response.json())
               .then(comment => {
-                              this.setState({comments:[...this.state.comments,comment]})
+                              this.setState({comments:[...this.state.comments,comment]}, () => console.log(comment))
                             }
                   )
     }
@@ -125,11 +126,18 @@ class CommentContainer extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Comments</h3>
-                    {this.state.isLoaded ? this.renderComments() : "Loading!"}<br/>
-                    <CommentForm postComment={this.postComment}/>
-            </div>
+            <>
+                    {this.state.isLoaded 
+                    ? 
+                    <>
+                        <CommentForm postComment={this.postComment}/>
+                        <ListGroup className="list-group">
+                            {this.renderComments()}
+                        </ListGroup>
+                    </>
+                    : 
+                    "Loading!"}
+            </>
         )
     }
 }

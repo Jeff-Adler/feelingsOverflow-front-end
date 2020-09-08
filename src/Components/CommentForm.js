@@ -1,4 +1,5 @@
 import React from 'react';
+import CommentModal from './CommentModal'
 
 class CommentForm extends React.Component{
 
@@ -8,7 +9,7 @@ class CommentForm extends React.Component{
     }
 
     changeHandler = (event) => {
-        this.setState({comment : event.target.value})
+        this.setState({comment : event.target.value}, () => console.log(this.state.comment))
     }
 
     submitHandler = (event) => {
@@ -20,11 +21,7 @@ class CommentForm extends React.Component{
     render() {
         return (
             <>
-                <p>Comment Form</p>
-                <form onSubmit={event => this.submitHandler(event)}>
-                    <input type="textarea" placeholder="write a comment" value={this.state.comment} onChange={event => this.changeHandler(event)}/>
-                    <input type="submit"/>
-                </form>
+                <CommentModal submitHandler={this.submitHandler} changeHandler={this.changeHandler} comment={this.state.comment} buttonLabel="Leave a comment?" text="test"/><br/>
             </>
         )
     }

@@ -1,6 +1,9 @@
+body {
+  background-color: #F5F5F5;
+}
+
 .App {
   text-align: center;
-  /* background-color: lightgray; */
 }
 
 .App-logo {
@@ -38,6 +41,9 @@
   }
 }
 
+.navbar {
+  border: 1.25px solid rgba(0,0,0,.125);
+}
 
 #navbar ul{
   list-style: none;
@@ -111,6 +117,14 @@ textarea {
   text-align: left;
 }
 
+.list-group {
+  border-radius: 1.25rem;
+}
+
+.list-group-item {
+  border: 1.25px solid rgba(0,0,0,.125);
+}
+
 .list-group-item-heading {
   font-weight: 300;
   font-size: 1.50rem;
@@ -121,3 +135,8 @@ textarea {
   font-size: 1rem;
 }
 
+/* Post Show Page */
+
+.post-text {
+  font-size: 1.25rem;
+}
