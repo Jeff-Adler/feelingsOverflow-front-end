@@ -1,9 +1,12 @@
 import React from 'react';
+import { Input } from 'reactstrap';
 
 class Search extends React.Component {
     render () {
         return(
-            <h5 className="left">Add search function!</h5>
+            <form>
+            <Input type="text" placeholder="search by title or description" value={this.props.searchValue} onChange={this.props.changeHandler} />
+        </form>
         )
     }
 }

@@ -4,8 +4,22 @@ import {NavLink, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemTe
 import Search from './Search'
 
 class PostList extends React.Component {
+    
+state = {searchValue:''}
+
+    changeHandler = (e) => {
+        this.setState({searchValue: e.target.value})
+        // console.log(e.target.value)
+    }
+    
+    searchPosts = () => {
+        return this.props.posts.filter(postObj => {
+            return postObj.mood_description.toLowerCase().includes(this.state.searchValue.toLowerCase()) || postObj.mood_title.toLowerCase().includes(this.state.searchValue.toLowerCase())
+            })
+        }
+    
     renderList = () => {
-        return (this.props.posts.map(postObj => {
+        return (this.searchPosts().map(postObj => {
             return (
                     <ListGroupItem key={postObj.id}>
                         <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>
@@ -31,8 +45,8 @@ class PostList extends React.Component {
         return(
         <>
             <br/><br/>
-            <Search/>
             <h2><NavLink tag={Link} to="/posts/newform" >What's on your mind?</NavLink></h2>
+            <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />
             <div className="posts-container">
                 <ListGroup className="posts">
                     {this.renderList()}
