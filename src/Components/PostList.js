@@ -7,14 +7,16 @@ class PostList extends React.Component {
         return (this.props.posts.map(postObj => {
             return (
                     <ListGroupItem key={postObj.id}>
-                        <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.positive}</ListGroupItemHeading>
+                        <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>
                         <ListGroupItemText>
                             <strong>{postObj.poster_name}</strong>
                             {` 
-                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0    
-                                ${postObj.severe ? "Severe" : "Not severe"}  
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${postObj.category}    
+                                ${postObj.mood_purpose}
+                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0    
+                                ${postObj.mood_rating}  
+                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
+                                ${postObj.mood_category}    
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
                                 ${postObj.created_at.toString().substring(0,10)}
                             `}
