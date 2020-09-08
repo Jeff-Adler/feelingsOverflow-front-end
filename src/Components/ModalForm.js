@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
-import { Form, FormGroup, Input} from 'reactstrap';
+import CommentForm from './CommentForm'
 
-const CommentModal = (props) => {
+const ModalForm = (props) => {
   const {
     buttonLabel,
     className
@@ -18,12 +18,13 @@ const CommentModal = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Leave a comment</ModalHeader>
         <ModalBody>
-          <Form onSubmit={event => props.submitHandler(event)}>
+          <CommentForm postComment={props.postComment}/>
+          {/* <Form onSubmit={event => props.submitHandler(event)}>
             <FormGroup>
               <Input value={props.comment} onChange={event => props.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
             </FormGroup>
             <Button color="primary">Submit</Button>
-          </Form>
+          </Form> */}
         </ModalBody>
         {/* <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
@@ -34,4 +35,4 @@ const CommentModal = (props) => {
   );
 }
 
-export default CommentModal;
+export default ModalForm;

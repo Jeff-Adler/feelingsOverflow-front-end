@@ -1,5 +1,5 @@
 import React from 'react';
-import CommentModal from './CommentModal'
+import { Button, Form, FormGroup, Input} from 'reactstrap';
 
 class CommentForm extends React.Component{
 
@@ -18,10 +18,26 @@ class CommentForm extends React.Component{
         this.setState({comment: ""})
     }
 
+    renderForm = () => {
+        return (
+            <Form onSubmit={event => this.submitHandler(event)}>
+                <FormGroup>
+                    <Input value={this.state.comment} onChange={event => this.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
+                </FormGroup>
+                <Button color="primary">Submit</Button>
+            </Form>
+        )
+    }
+
     render() {
         return (
             <>
-                <CommentModal submitHandler={this.submitHandler} changeHandler={this.changeHandler} comment={this.state.comment} buttonLabel="Leave a comment?" text="test"/><br/>
+                <Form onSubmit={event => this.submitHandler(event)}>
+                    <FormGroup>
+                        <Input value={this.state.comment} onChange={event => this.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
+                    </FormGroup>
+                    <Button color="primary">Submit</Button>
+                </Form>
             </>
         )
     }
