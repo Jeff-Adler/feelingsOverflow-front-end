@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import CommentForm from './CommentForm'
+import NewPostForm from'./NewPostForm'
 
 const ModalForm = (props) => {
   const {
@@ -18,7 +19,12 @@ const ModalForm = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Leave a comment</ModalHeader>
         <ModalBody>
-          <CommentForm postComment={props.postComment} toggle={toggle}/>
+          {props.parentComponent === "commentContainer" 
+          ? 
+            <CommentForm postComment={props.postComment} toggle={toggle}/> 
+          :
+            <NewPostForm submitHandler={props.submitHandler} toggle={toggle}/>
+          }
         </ModalBody>
         {/* <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

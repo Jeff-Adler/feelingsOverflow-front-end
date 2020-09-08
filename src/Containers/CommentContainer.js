@@ -121,15 +121,13 @@ class CommentContainer extends React.Component {
                   )
     }
 
-
-
     render() {
         return (
             <>
                     {this.state.isLoaded 
                     ? 
                     <>
-                        <ModalForm postComment={this.postComment} buttonLabel="Leave a comment?"/><br/>
+                        <ModalForm postComment={this.postComment} parentComponent={"commentContainer"} buttonLabel="Leave a comment?"/><br/>
                         <ListGroup className="list-group">
                             {this.renderComments()}
                         </ListGroup>

@@ -82,8 +82,8 @@ render () {
                             foundPost ? <Post postObj={foundPost} user={this.props.user}/> : <h3>Not Found</h3>
                         )
                     }} />
-                    <Route exact path="/posts" render={() => <PostList posts={this.state.posts}/>} />
-                    <Route exact path="/" render={() => <PostList posts={this.state.posts}/>} />
+                    <Route exact path="/posts" render={() => <PostList submitHandler={this.submitHandler} posts={this.state.posts}/>} />
+                    <Route exact path="/" render={() => <PostList submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route component={NotFound} />
                 </Switch>
                 }
