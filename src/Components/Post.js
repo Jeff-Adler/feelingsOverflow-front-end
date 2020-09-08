@@ -1,6 +1,6 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
-import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 
 class Post extends React.Component {
 
@@ -9,22 +9,22 @@ render() {
         <div className="posts-container">
             <ListGroup className="list-group">
                 <ListGroupItem>
-                    <p>{this.props.postObj.mood_title}</p><br/>
+                    <strong>{this.props.postObj.mood_title}</strong><br/><br/>
                     <p className="post-text"> {this.props.postObj.mood_description}</p><br/>
-                    <strong>{this.props.postObj.poster_name}</strong>
+                    <strong>{this.props.postObj.poster_name}</strong><br/><br/>
                             {` 
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.props.postObj.mood_trigger} ${this.props.postObj.mood_trigger_detail}
+                                Trigger: ${this.props.postObj.mood_trigger} ${this.props.postObj.mood_trigger_detail}
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.props.postObj.mood_location}
+                                Location: ${this.props.postObj.mood_location}
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.props.postObj.mood_purpose}
+                                Purpose: ${this.props.postObj.mood_purpose}
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.props.postObj.mood_length}
+                                Length: ${this.props.postObj.mood_length}
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0    
-                                ${this.props.postObj.mood_rating}  
+                                Rating: ${this.props.postObj.mood_rating}  
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.props.postObj.mood_category} ${this.props.postObj.mood_category_detail}  
+                                Category: ${this.props.postObj.mood_category} ${this.props.postObj.mood_category_detail}  
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
                                 ${this.props.postObj.created_at.toString().substring(0,10)}
                             `}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Comment from '../Components/Comment'
 import CommentForm from '../Components/CommentForm'
-import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import {ListGroup, ListGroupItem} from 'reactstrap';
 
 class CommentContainer extends React.Component {
     state = {
@@ -32,8 +32,8 @@ class CommentContainer extends React.Component {
     renderComments = () => {
         return (this.state.comments.map(comment => {
             return (
-                <ListGroupItem>
-                    <Comment key={comment.id} comment={comment}/>
+                <ListGroupItem key={comment.id}>
+                    <Comment comment={comment}/>
                 </ListGroupItem>
             )
         }))
@@ -59,7 +59,7 @@ class CommentContainer extends React.Component {
             })
               .then(response => response.json())
               .then(comment => {
-                              this.setState({comments:[...this.state.comments,comment]})
+                              this.setState({comments:[...this.state.comments,comment]}, () => console.log(comment))
                             }
                   )
     }

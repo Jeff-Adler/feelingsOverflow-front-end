@@ -4,7 +4,7 @@ class Comment extends React.Component {
     render () {
         return (
             <>
-                {`${this.props.comment.comment}\xa0${this.props.comment.commenter_id}`}        
+                {`${this.props.comment.comment}\xa0Commenter: ${this.props.comment.commenter_id}`}        
             </>
         )
     }

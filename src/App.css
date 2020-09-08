@@ -4,7 +4,6 @@ body {
 
 .App {
   text-align: center;
-  background-color: #F5F5F5;
 }
 
 .App-logo {
@@ -137,3 +136,7 @@ textarea {
 }
 
 /* Post Show Page */
+
+.post-text {
+  font-size: 1.25rem;
+}
