@@ -2,6 +2,7 @@ import React from 'react'
 import Comment from '../Components/Comment'
 import {ListGroup, ListGroupItem} from 'reactstrap';
 import ModalForm from '../Components/ModalForm'
+import Vote from '../Components/Vote'
 
 class CommentContainer extends React.Component {
     state = {
@@ -128,6 +129,7 @@ class CommentContainer extends React.Component {
                     ? 
                     <>
                         <ModalForm postComment={this.postComment} parentComponent={"commentContainer"} buttonLabel="Leave a comment?"/><br/>
+                        <Vote/>
                         <ListGroup className="list-group">
                             {this.renderComments()}
                         </ListGroup>
