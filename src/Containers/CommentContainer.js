@@ -2,6 +2,7 @@ import React from 'react'
 import Comments from '../Components/Comments'
 import CommentForm from '../Components/CommentForm'
 
+
 class CommentContainer extends React.Component {
     state = {
         comments:null,
@@ -28,11 +29,68 @@ class CommentContainer extends React.Component {
         }
     }
 
+    upVoteHandler = (voteObj) => {
+        let id = voteObj.id
+        console.log(id)
+        let newVote = voteObj.votes + 1
+
+        const token = localStorage.getItem("token")
+
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({votes: newVote})
+        }
+
+        fetch(`http://localhost:3000/comments/${id}`, configObj)
+        .then(resp => resp.json())
+        .then(updatedCommentObj => {
+            let comments = [...this.state.comments]
+            let newObj = comments.find(comment => comment.id === updatedCommentObj.id)
+            newObj.votes = updatedCommentObj.votes
+            this.setState({comments: comments})            
+        })
+    }
+
+    downVoteHandler = (voteObj) => {
+        let id = voteObj.id
+        console.log(id)
+        let newVote = voteObj.votes - 1
+
+        const token = localStorage.getItem("token")
+
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({votes: newVote})
+        }
+
+        fetch(`http://localhost:3000/comments/${id}`, configObj)
+        .then(resp => resp.json())
+        .then(updatedCommentObj => {
+            let comments = [...this.state.comments]
+            let newObj = comments.find(comment => comment.id === updatedCommentObj.id)
+            newObj.votes = updatedCommentObj.votes
+            this.setState({comments: comments})            
+        })
+    }
+
+
+
+
     renderComments = () => {
         return (this.state.comments.map(comment => {
             return (
-                <div key={comment.id} className="comment_container">
-                    <Comments key={comment.id} comment={comment}/>
+                <div key={comment.id} className="comment_container" >
+                    <Comments key={comment.id} comment={comment} downVoteHandler={this.downVoteHandler} upVoteHandler={this.upVoteHandler}/>
                 </div>
             )
         }))
@@ -62,6 +120,8 @@ class CommentContainer extends React.Component {
                             }
                   )
     }
+
+
 
     render() {
         return (

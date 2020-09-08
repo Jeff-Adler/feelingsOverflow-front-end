@@ -3,7 +3,8 @@ import React from 'react';
 class CommentForm extends React.Component{
 
     state = {
-        comment : ""
+        comment : "",
+        votes: 0
     }
 
     changeHandler = (event) => {
