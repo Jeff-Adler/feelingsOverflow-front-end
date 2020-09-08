@@ -103,6 +103,12 @@ textarea {
   width: 400px
 }
 
+/* Search bar */
+
+.form-control {
+  width: 400px;
+}
+
 /* Posts Index */
 
 .posts-container {

@@ -60,7 +60,7 @@ class UserList extends React.Component {
                 {/* <Search/> */}
                 <h2>Post History</h2>
                 <div className="posts-container">
-                <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />
+                <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /><br/>
                 <Button onClick={this.sortByCategory}>Sort by Category</Button>
                     <ListGroup className="posts">
                         {this.renderList()}

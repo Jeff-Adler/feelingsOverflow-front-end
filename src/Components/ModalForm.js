@@ -26,10 +26,6 @@ const ModalForm = (props) => {
             <NewPostForm submitHandler={props.submitHandler} toggle={toggle}/>
           }
         </ModalBody>
-        {/* <ModalFooter>
-          <Button color="primary" onClick={toggle}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggle}>Cancel</Button>
-        </ModalFooter> */}
       </Modal>
     </div>
   );

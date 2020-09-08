@@ -57,8 +57,8 @@ state = {searchValue:''}
         return(
         <>
             <br/><br/>
-            <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/>
-            <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />
+            <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/><br/>
+            <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /><br/>
             <Button onClick={this.sortByCategory}>Sort by Category</Button>
             <div className="posts-container">
                 <ListGroup className="posts">

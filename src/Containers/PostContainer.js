@@ -71,7 +71,6 @@ render () {
                 ""
             :
                 <Switch> 
-                    {/* <Route path="/posts/newform" render={() => <NewPostForm submitHandler={this.submitHandler} />} />       */}
                     <Route exact path="/posts/:id" render={({match})=> {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
