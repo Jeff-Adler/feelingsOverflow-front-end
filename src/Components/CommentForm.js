@@ -19,17 +19,6 @@ class CommentForm extends React.Component{
         this.props.toggle()
     }
 
-    renderForm = () => {
-        return (
-            <Form onSubmit={event => this.submitHandler(event)}>
-                <FormGroup>
-                    <Input value={this.state.comment} onChange={event => this.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
-                </FormGroup>
-                <Button color="primary">Submit</Button>
-            </Form>
-        )
-    }
-
     render() {
         return (
             <>

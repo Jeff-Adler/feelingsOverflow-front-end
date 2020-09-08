@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {NavLink, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
 import Search from './Search'
 import ModalForm from './ModalForm'
 
@@ -34,7 +34,6 @@ class PostList extends React.Component {
             <br/><br/>
             <Search/>
             <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/>
-            <h2><NavLink tag={Link} to="/posts/newform" >What's on your mind?</NavLink></h2>
             <div className="posts-container">
                 <ListGroup className="posts">
                     {this.renderList()}
