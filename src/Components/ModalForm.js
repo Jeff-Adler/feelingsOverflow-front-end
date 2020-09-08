@@ -18,13 +18,7 @@ const ModalForm = (props) => {
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Leave a comment</ModalHeader>
         <ModalBody>
-          <CommentForm postComment={props.postComment}/>
-          {/* <Form onSubmit={event => props.submitHandler(event)}>
-            <FormGroup>
-              <Input value={props.comment} onChange={event => props.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
-            </FormGroup>
-            <Button color="primary">Submit</Button>
-          </Form> */}
+          <CommentForm postComment={props.postComment} toggle={toggle}/>
         </ModalBody>
         {/* <ModalFooter>
           <Button color="primary" onClick={toggle}>Do Something</Button>{' '}

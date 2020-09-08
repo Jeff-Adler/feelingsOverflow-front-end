@@ -16,6 +16,7 @@ class CommentForm extends React.Component{
         event.preventDefault()
         this.state.comment !== "" ? this.props.postComment(this.state) : alert("You need to write something!")
         this.setState({comment: ""})
+        this.props.toggle()
     }
 
     renderForm = () => {
