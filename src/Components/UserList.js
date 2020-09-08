@@ -1,7 +1,7 @@
 import React from 'react'
 import Search from './Search'
 import {Link} from 'react-router-dom'
-import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 
 
 class UserList extends React.Component {
@@ -19,6 +19,16 @@ class UserList extends React.Component {
             })
         }
 
+    sortByCategory = () => {
+        let sortedPosts = (
+            this.props.posts.sort((a,b) => {
+            return (
+                a.mood_category.localeCompare(b.mood_category)
+                )
+            })
+        )
+        this.setState({posts: sortedPosts})
+    }
 
     renderList = () => {
         return (
@@ -50,6 +60,7 @@ class UserList extends React.Component {
                 <h2>Post History</h2>
                 <div className="posts-container">
                 <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />
+                <Button onClick={this.sortByCategory}>Sort by Category</Button>
                     <ListGroup className="posts">
                         {this.renderList()}
                     </ListGroup>   
