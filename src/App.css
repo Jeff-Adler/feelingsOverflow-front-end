@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  /* background-color: lightgray; */
+  background-color: #F5F5F5;
 }
 
 .App-logo {
@@ -38,6 +38,9 @@
   }
 }
 
+.navbar {
+  border: 1.25px solid rgba(0,0,0,.125);
+}
 
 #navbar ul{
   list-style: none;
@@ -109,6 +112,14 @@ textarea {
 
 .posts {
   text-align: left;
+}
+
+.list-group {
+  border-radius: 1.25rem;
+}
+
+.list-group-item {
+  border: 1.25px solid rgba(0,0,0,.125);
 }
 
 .list-group-item-heading {
