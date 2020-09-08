@@ -1,6 +1,7 @@
 import React from 'react'
-import Comments from '../Components/Comments'
+import Comment from '../Components/Comment'
 import CommentForm from '../Components/CommentForm'
+import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
 
 class CommentContainer extends React.Component {
     state = {
@@ -31,9 +32,9 @@ class CommentContainer extends React.Component {
     renderComments = () => {
         return (this.state.comments.map(comment => {
             return (
-                <div key={comment.id} className="comment_container">
-                    <Comments key={comment.id} comment={comment}/>
-                </div>
+                <ListGroupItem>
+                    <Comment key={comment.id} comment={comment}/>
+                </ListGroupItem>
             )
         }))
     }
@@ -65,11 +66,18 @@ class CommentContainer extends React.Component {
 
     render() {
         return (
-            <div>
-                <h3>Comments</h3>
-                    {this.state.isLoaded ? this.renderComments() : "Loading!"}<br/>
-                    <CommentForm postComment={this.postComment}/>
-            </div>
+            <>
+                    {this.state.isLoaded 
+                    ? 
+                    <>
+                        <CommentForm postComment={this.postComment}/>
+                        <ListGroup className="list-group">
+                            {this.renderComments()}
+                        </ListGroup>
+                    </>
+                    : 
+                    "Loading!"}
+            </>
         )
     }
 }

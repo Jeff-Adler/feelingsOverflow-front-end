@@ -19,11 +19,11 @@ class CommentForm extends React.Component{
     render() {
         return (
             <>
-                <p>Comment Form</p>
+                <strong><p>Leave feedback?</p></strong>
                 <form onSubmit={event => this.submitHandler(event)}>
                     <input type="textarea" placeholder="write a comment" value={this.state.comment} onChange={event => this.changeHandler(event)}/>
                     <input type="submit"/>
-                </form>
+                </form><br/>
             </>
         )
     }

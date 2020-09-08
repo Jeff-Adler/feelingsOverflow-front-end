@@ -30,11 +30,15 @@ class UserList extends React.Component {
 
     render() {
         return (
-            <div className="posts-container">
-                <ListGroup className="posts">
-                    {this.renderList()}
-                </ListGroup>   
-            </div>   
+            <>
+                <br/>
+                <h2>Post History</h2>
+                <div className="posts-container">
+                    <ListGroup className="posts">
+                        {this.renderList()}
+                    </ListGroup>   
+                </div>   
+            </>
         )
     }
 }
