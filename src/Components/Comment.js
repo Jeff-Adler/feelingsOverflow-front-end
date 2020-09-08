@@ -2,21 +2,14 @@ import React from 'react'
 import { Button } from 'reactstrap';
 
 class Comment extends React.Component {
-    upVoteHelper = () => {
-        this.props.upVoteHandler(this.props.comment)
-    }
-
-    downVoteHelper = () => {
-        this.props.downVoteHandler(this.props.comment)
-    }
 
     render () {
         return (
             <>
                 {`${this.props.comment.comment} Commenter: ${this.props.comment.commenter_id}`}
-                <p>Votes: {this.props.comment.vote_tally}</p>
-                <Button onClick={this.upVoteHelper}>Upvote</Button>
-                <Button onClick={this.downVoteHelper}>Downvote</Button>        
+                <p>Votes: {this.props.comment.vote_tally}</p>     
+                <Button value="upvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment.id)}>Upvote</Button>
+                <Button value="downvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment.id)}>Downvote</Button>   
             </>
         )
     }

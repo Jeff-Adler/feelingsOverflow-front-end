@@ -28,74 +28,7 @@ class CommentContainer extends React.Component {
                   )
         }
     }
-
-    upVoteHandler = (voteObj) => {
-        let id = voteObj.id
-        console.log(id)
-        let newVote = voteObj.votes + 1
-
-        const token = localStorage.getItem("token")
-
-        const configObj = {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({votes: newVote})
-        }
-
-        fetch(`http://localhost:3000/comments/${id}`, configObj)
-        .then(resp => resp.json())
-        .then(updatedCommentObj => {
-            let comments = [...this.state.comments]
-            let newObj = comments.find(comment => comment.id === updatedCommentObj.id)
-            newObj.votes = updatedCommentObj.votes
-            this.setState({comments: comments})            
-        })
-    }
-
-    downVoteHandler = (voteObj) => {
-        let id = voteObj.id
-        console.log(id)
-        let newVote = voteObj.votes - 1
-
-        const token = localStorage.getItem("token")
-
-        const configObj = {
-            method: 'PATCH',
-            headers: {
-                Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify({votes: newVote})
-        }
-
-        fetch(`http://localhost:3000/comments/${id}`, configObj)
-        .then(resp => resp.json())
-        .then(updatedCommentObj => {
-            let comments = [...this.state.comments]
-            let newObj = comments.find(comment => comment.id === updatedCommentObj.id)
-            newObj.votes = updatedCommentObj.votes
-            this.setState({comments: comments})            
-        })
-    }
-
-
-
-
-    renderComments = () => {
-        return (this.state.comments.map(comment => {
-            return (
-                <ListGroupItem key={comment.id}>
-                    <Comment comment={comment} downVoteHandler={this.downVoteHandler} upVoteHandler={this.upVoteHandler}/>
-                </ListGroupItem>
-            )
-        }))
-    }
-
+    
     postComment = (formData) => {
         const commentObj = { 
                 comment:{
@@ -121,6 +54,50 @@ class CommentContainer extends React.Component {
                   )
     }
 
+    voteHandler = (voteType,commentId) => {
+        let upvote = true
+        if (voteType === "downvote") {
+            upvote = false
+        }
+
+        const voteObj = {
+            upvote : upvote
+        }
+
+        const token = localStorage.getItem("token")
+        const configObj = {
+            method: 'POST',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({vote: voteObj})
+        }  
+
+        fetch(`http://localhost:3000/comments/${commentId}/votes/create`, configObj)
+            .then(resp => resp.json())
+            .then(commentObj => { 
+                const commentIndex = this.state.comments.findIndex(comment => {
+                    return(
+                        comment.id === commentId
+                    )
+                })
+                this.state.comments[commentIndex] = commentObj
+                this.setState({comments:this.state.comments})
+            })
+    }
+
+    renderComments = () => {
+        return (this.state.comments.map(comment => {
+            return (
+                <ListGroupItem key={comment.id}>
+                    <Comment comment={comment} voteHandler={this.voteHandler}/>
+                </ListGroupItem>
+            )
+        }))
+    }
+        
     render() {
         return (
             <>
