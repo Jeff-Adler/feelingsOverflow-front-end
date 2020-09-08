@@ -374,7 +374,7 @@ render() {
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="mood_category_detail" 
-                        value={this.state.mood_category_detail}
+                        value={this.state.mood_category === "Other" ? this.state.mood_category_detail  : ""}
                         disabled={this.state.mood_category !== "Other" ? 'disabled' : ''} />
                     </FormGroup>
 
