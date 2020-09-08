@@ -68,7 +68,7 @@ render () {
         <>
             {this.state.posts === null 
             ? 
-                <h1> LOADING</h1> 
+                ""
             :
                 <Switch> 
                     {/* <Route path="/posts/newform" render={() => <NewPostForm submitHandler={this.submitHandler} />} />       */}

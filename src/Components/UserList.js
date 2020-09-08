@@ -32,6 +32,7 @@ class UserList extends React.Component {
         return (
             <>
                 <br/>
+                {/* <Search/> */}
                 <h2>Post History</h2>
                 <div className="posts-container">
                     <ListGroup className="posts">

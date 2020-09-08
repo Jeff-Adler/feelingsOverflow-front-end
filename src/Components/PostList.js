@@ -32,7 +32,7 @@ class PostList extends React.Component {
         return(
         <>
             <br/><br/>
-            <Search/>
+            {/* <Search/> */}
             <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/>
             <div className="posts-container">
                 <ListGroup className="posts">

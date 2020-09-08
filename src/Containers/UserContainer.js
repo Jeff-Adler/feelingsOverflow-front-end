@@ -31,7 +31,7 @@ render () {
         <>
             {this.state.posts === null 
             ?
-                <h1>LOADING</h1> 
+                ""
             :
                 <>
                     <br/><br/>

@@ -118,9 +118,7 @@ class App extends React.Component {
           </Switch>
         </div>
       :
-        <div className="center">
-          <h1>Loading</h1>
-        </div>
+        ""
       )
     )
   }
