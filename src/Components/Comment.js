@@ -10,12 +10,11 @@ class Comment extends React.Component {
         this.props.downVoteHandler(this.props.comment)
     }
 
-
     render () {
         return (
             <>
                 {`${this.props.comment.comment} Commenter: ${this.props.comment.commenter_id}`}
-                <p>Votes: {this.props.comment.votes}</p>
+                <p>Votes: {this.props.comment.vote_tally}</p>
                 <Button onClick={this.upVoteHelper}>Upvote</Button>
                 <Button onClick={this.downVoteHelper}>Downvote</Button>        
             </>

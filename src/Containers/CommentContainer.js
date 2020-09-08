@@ -133,7 +133,7 @@ class CommentContainer extends React.Component {
                         </ListGroup>
                     </>
                     : 
-                    "Loading!"}
+                    ""}
             </>
         )
     }
