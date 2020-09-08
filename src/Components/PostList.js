@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {NavLink, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText} from 'reactstrap';
+import Search from './Search'
 
 class PostList extends React.Component {
     renderList = () => {
@@ -30,6 +31,7 @@ class PostList extends React.Component {
         return(
         <>
             <br/><br/>
+            <Search/>
             <h2><NavLink tag={Link} to="/posts/newform" >What's on your mind?</NavLink></h2>
             <div className="posts-container">
                 <ListGroup className="posts">
