@@ -17,12 +17,12 @@ class NewPostForm extends React.Component {
 
 submitHelper = (e) => {
     e.preventDefault()
+    this.props.toggle()
     return this.props.submitHandler(this.state)
 }
 
 
 changeHelper =(e) => {
-    console.log(e.target.name, e.target.value)
     this.setState({
         [e.target.name]: e.target.value
     })
@@ -33,7 +33,7 @@ render() {
             <>
                 <br/><br/>
                 <div className="formCenter" >
-                <Form onSubmit = {this.submitHelper} style={{ width: "600px" }}>
+                <Form onSubmit = {this.submitHelper} style={{ width: "400px" }}>
 
                     {/* Mood rating begin */}
                     <FormGroup tag="fieldset">
@@ -242,7 +242,7 @@ render() {
 
                     <FormGroup>
                         <Label for="mood_description">Okay, thanks for that info.  Now, describe the feeling as best as you can:</Label>
-                        <textarea style={{ width: "600px", height: "600px" }} onChange={this.changeHelper} 
+                        <textarea style={{ width: "400px", height: "400px", border: "1px solid #ced4da" }} onChange={this.changeHelper} 
                         type="text" 
                         name="mood_description" 
                         value={this.state.mood_description} />
@@ -382,7 +382,7 @@ render() {
                     </FormGroup>
                     <br/>
 
-                    <Button>Submit</Button>
+                    <Button color="primary">Submit</Button>
                 </Form>
                 </div>
             </>

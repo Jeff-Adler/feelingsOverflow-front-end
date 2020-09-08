@@ -57,6 +57,7 @@ class UserList extends React.Component {
         return (
             <>
                 <br/>
+                {/* <Search/> */}
                 <h2>Post History</h2>
                 <div className="posts-container">
                 <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />

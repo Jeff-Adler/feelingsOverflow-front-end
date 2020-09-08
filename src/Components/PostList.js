@@ -1,7 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {NavLink, ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
+import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 import Search from './Search'
+import ModalForm from './ModalForm'
 
 class PostList extends React.Component {
     
@@ -56,7 +57,7 @@ state = {searchValue:''}
         return(
         <>
             <br/><br/>
-            <h2><NavLink tag={Link} to="/posts/newform" >What's on your mind?</NavLink></h2>
+            <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/>
             <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} />
             <Button onClick={this.sortByCategory}>Sort by Category</Button>
             <div className="posts-container">
