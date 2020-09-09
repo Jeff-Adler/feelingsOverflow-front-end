@@ -75,7 +75,7 @@ class Signup extends React.Component {
                             </FormGroup>
                             
                             <FormGroup>
-                                <Label for="age" className="mr-sm-2">Age</Label>
+                                <Label for="age" className="mr-sm-2">Date of Birth</Label>
                                 <Input style={{ width: "300px" }} type="date" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
