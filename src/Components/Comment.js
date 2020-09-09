@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from 'reactstrap';
+import upvoteArrow from './Images/upvote_arrow.png'
+import downvoteArrow from './Images/downvote_arrow.png'
 
 class Comment extends React.Component {
 
@@ -16,17 +17,22 @@ class Comment extends React.Component {
     render () {
         return (
             <>
-                {`${this.props.comment.comment} Commenter: ${this.props.comment.commenter_id}`}
-                <p>Votes: {this.props.comment.vote_tally}</p>   
-                {this.checkIfVoted()
-                ?
-                "Already Voted"
+                {`${this.props.comment.comment} Commenter: ${this.props.comment.commenter_id}`}<br/>
+                {this.checkIfVoted() 
+                ? 
+                    <img id="upvote" src={upvoteArrow} alt="upvote"/>
                 :
-                    <>
-                        <Button value="upvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment)}>Upvote</Button>
-                        <Button value="downvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment)}>Downvote</Button> 
-                    </>
-                }           
+                    <img id="upvote" onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={upvoteArrow} alt="upvote"/>
+                }
+                {`\xa0`}{`\xa0`}
+                <strong>{this.props.comment.vote_tally}</strong>
+                {`\xa0`}{`\xa0`}
+                {this.checkIfVoted() 
+                ? 
+                    <img id="downvote" src={downvoteArrow} alt="downvote"/>
+                :
+                    <img id="downvote" onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={downvoteArrow} alt="downvote"/>
+                }                       
             </>
         )
     }
