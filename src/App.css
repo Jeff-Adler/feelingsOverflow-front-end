@@ -143,6 +143,11 @@ textarea {
   font-size: 1rem;
 }
 
+#post-form-button {
+  height:65px;
+  font-size: 1.25rem;
+}
+
 /* Post Show Page */
 
 .post-text {
