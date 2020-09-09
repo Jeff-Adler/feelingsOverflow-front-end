@@ -62,21 +62,21 @@ class Signup extends React.Component {
                     
                     <div className="center">
                     
-                        <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
+                        <Form onSubmit={event => this.submitHandler(event)} id="signup" style={{ width: "300px" }}>
                       
                             <FormGroup>
                                 <Label for="username" className="mr-sm-2">Username</Label>
-                                <Input type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
+                                <Input style={{ width: "300px" }} type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <FormGroup>
                                 <Label for="password" className="mr-sm-2">Password</Label>
-                                <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
+                                <Input style={{ width: "300px" }} type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
                             
                             <FormGroup>
                                 <Label for="age" className="mr-sm-2">Age</Label>
-                                <Input type="date" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} />
+                                <Input style={{ width: "300px" }} type="date" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <FormGroup tag="fieldset">
@@ -121,7 +121,7 @@ class Signup extends React.Component {
 
                             <FormGroup>
                                 <Label for="gender">Please Specify:</Label>
-                                <Input onChange={this.changeHandler} 
+                                <Input style={{ width: "300px" }} onChange={this.changeHandler} 
                                 type="text" 
                                 name="gender" 
                                 value={this.state.gender_other ? this.state.gender : ""}
@@ -132,16 +132,14 @@ class Signup extends React.Component {
 
                             <FormGroup>
                                 <Label for="location" className="mr-sm-2">Location</Label>
-                                {/* <Input type="text" name="location" placeholder="location" autoComplete="address-level2" value={this.state.location} onChange={event => this.changeHandler(event)} /> */}
-                                <Input type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={event => this.changeHandler(event)} />
+                                <Input style={{ width: "300px" }} type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <Button type="submit" value="Login">Submit</Button><br/><br/>
 
-                            {/* <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink> */}
                         </Form>
                     </div>
-                    <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink>
+                    <NavLink style={{ color: "black" }} tag={Link} to="/login">Returning User? Log In!</NavLink>
                 </>
                 :
                 <>

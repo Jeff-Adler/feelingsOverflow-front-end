@@ -41,19 +41,19 @@ class Login extends React.Component {
 
                     <FormGroup>
                         <Label for="username" className="mr-sm-2">Username</Label>
-                        <Input type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
+                        <Input style={{ width: "300px" }} type="text" name="username" placeholder="username" value={this.state.username} onChange={event => this.changeHandler(event)} />
                     </FormGroup>
 
                     <FormGroup>
                         <Label for="password" className="mr-sm-2">Password</Label>
-                        <Input type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
+                        <Input style={{ width: "300px" }} type="password" name="password" placeholder="password" value={this.state.password} onChange={event => this.changeHandler(event)} />
                     </FormGroup>
             
                     <Button type="submit" value="Login">Submit</Button>
 
                 </Form>
                 </div>
-                    <NavLink tag={Link} to="/signup">New here? Sign up!</NavLink>
+                    <NavLink style={{ color: "black" }} tag={Link} to="/signup">New here? Sign up!</NavLink>
                 </>
                 :
                 <>
