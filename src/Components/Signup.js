@@ -17,14 +17,23 @@ class Signup extends React.Component {
         }
     }
 
+    resetForm = () => {
+        this.setState({
+            username: "",
+            password: "",
+            birthdate: "",
+            gender: "",
+            gender_other: false,
+            location: ""
+        })
+    }
+
     changeHandler = (event) => {
         event.persist()
         this.setState({[event.target.name] : event.target.value}, () => {
-            console.log(event.target.name)
-            console.log(this.state[event.target.name])
-        if (this.state.gender === "Male" || this.state.gender === "Female") {
-            this.setState({gender_other: false})
-        }
+            if (this.state.gender === "Male" || this.state.gender === "Female") {
+                this.setState({gender_other: false})
+            }
         })
     }
 
@@ -38,8 +47,20 @@ class Signup extends React.Component {
     submitHandler = (event) => {
         event.preventDefault()
         this.props.submitHandler(this.state)
+        this.resetForm()
     }
 
+    renderErrors = () => {
+        return (
+            this.props.signupError.map((error,index) =>
+                {
+                    return (
+                        <p style={{color:"red"}} key={index}>{error}</p>
+                    )
+                }
+            )
+        )
+    }
 
     render () {
         return (
@@ -49,8 +70,8 @@ class Signup extends React.Component {
                     <br/><br/><br/>
                     <h1>Feelings<strong>Overflow</strong></h1>
                     <br/><br/>
-                    <h3>Sign Up</h3><br/>
-                    
+                    <h3>Sign Up</h3>
+                    {this.props.signupError !== null ? this.renderErrors() : ""}
                     <div className="formCenter">
                     
                         <Form onSubmit={event => this.submitHandler(event)} id="signup" style={{ width: "300px" }}>

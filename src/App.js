@@ -16,6 +16,7 @@ class App extends React.Component {
     this.state = {
       user:false,
       isUserLoaded: false,
+      signupError: null,
       authenticationError: "",
       authenticating: false
     }
@@ -64,9 +65,15 @@ class App extends React.Component {
 
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
-      .then(data => this.setState({user : data.user},
-        () => {this.loginHandler(this.state.user)}
-                                  ))
+      .then(data => {
+          if (data.jwt) {
+            this.setState({
+              user : data.user
+            }, () => {this.loginHandler(this.state.user)})
+          } else {
+            this.setState({signupError:data})
+          }
+      })
   }
 
   loginHandler = (userInfo) => {
@@ -110,8 +117,8 @@ class App extends React.Component {
           {this.state.user ? <Navbar user={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-\           <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
+            <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />
+            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
             <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route component={NotFound} />
