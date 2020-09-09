@@ -5,7 +5,6 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
  class UserEditForm extends React.Component {
 
     state={
-
         age: "",
         gender: "",
         gender_other:"",

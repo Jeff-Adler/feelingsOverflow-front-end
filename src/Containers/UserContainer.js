@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from '../Components/Post'
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch } from 'react-router-dom'
 import UserList from '../Components/UserList'
 import UserProfile from '../Components/UserProfile'
 import NotFound from '../Components/Errors/404'
@@ -9,14 +9,13 @@ import UserEditForm from '../Components/UserEditForm'
 class UserContainer extends React.Component {
 
 state = {
-        posts: null,
+        posts: null
         }
 
 
 submitHandler =(userObj) => {
-    // let currentUser = this.props.user 
+    
     let newUser = {
-        // ...currentUser,
         age: userObj.age,
         gender: userObj.gender,
         location: userObj.location
@@ -36,7 +35,10 @@ submitHandler =(userObj) => {
 
     fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, configObj)
     .then(response => response.json())
-    .then(console.log)
+    .then(newUserObj => {
+            this.props.history.push(`/user/info`)
+            window.location.reload()
+    })
 
 }
 
