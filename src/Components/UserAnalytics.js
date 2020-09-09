@@ -1,4 +1,6 @@
 import React from 'react'
+import { ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
+
 
 class UserAnalytics extends React.Component {
 
@@ -20,23 +22,46 @@ class UserAnalytics extends React.Component {
             })
     }
 
-    renderAnalytics = () => {
-        return( 
-            this.state.analytics.map((analytic,index) => {
-                return (
-                    <div key={index}>
-                        <strong>{Object.keys(analytic)[0]}: </strong>
-                        {/* {Object.values(analytic)[0]}<br/> */}
-                    </div>
-                )
-            })
-        )
-    }
-
     render () {
         return (
         <>
-            {this.state.analytics !== null ? this.renderAnalytics() : ""}
+            {this.state.analytics !== null 
+            ? 
+                <>
+                    <h3>User Profile</h3>
+                    <div className="center">
+                        <ListGroup id="user-form">
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[0])[0]}: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
+                        </ListGroupItem>
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[1])[0]}: </strong> {Object.values(this.state.analytics[1])[0]}</ListGroupItemText>
+                        </ListGroupItem>
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[2])[0]}: </strong> {Object.values(this.state.analytics[2])[0]}</ListGroupItemText>
+                        </ListGroupItem>
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[3])[0]}: </strong> {Object.values(this.state.analytics[3])[0]}</ListGroupItemText>
+                        </ListGroupItem>
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[4])[0]}: </strong> {Object.values(this.state.analytics[4])[0].id}</ListGroupItemText>
+                        </ListGroupItem>
+
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[5])[0]}: </strong> {Object.values(this.state.analytics[0])[0].id}</ListGroupItemText>
+                        </ListGroupItem>
+
+                    </ListGroup>
+                    </div>
+                </>
+            :
+                ""
+            }
         </>
         )
     }
