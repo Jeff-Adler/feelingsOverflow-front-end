@@ -48,7 +48,7 @@ const NavBar = (props) => {
                 Account
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag={Link} to="/user/posts">
+                <DropdownItem tag={Link} to="/user/info">
                   Account Info
                 </DropdownItem>
                 <DropdownItem tag={Link} to="/user/posts">

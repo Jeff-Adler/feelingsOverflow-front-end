@@ -78,12 +78,7 @@ body {
   text-align: left;
   margin: 0
 }
-.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* height:40vh;   */
-}
+
 
 .left {
   display: flex;
@@ -97,6 +92,19 @@ body {
   justify-content: center;
   align-items: center;
 }
+/* one of these can go */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#user-form {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 400px
+}
 
 textarea {
   height: 150px;
@@ -106,7 +114,7 @@ textarea {
 /* Search bar */
 
 .form-control {
-  width: 400px;
+  width: 300px;
 }
 
 /* Posts Index */
