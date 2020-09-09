@@ -7,7 +7,9 @@ import NotFound from '../Components/Errors/404'
 class PostContainer extends React.Component {
 
 state = {
-    posts : null
+    posts : null,
+    unsortedPosts : null,
+    sorted : false
 }
 
 componentDidMount () {
@@ -26,9 +28,10 @@ retrievePosts = () => {
                 }
             })
         .then(response => response.json())
-        .then(posts => {
+        .then(retrievedPosts => {
             this.setState({
-                posts : posts
+                posts : [...retrievedPosts],
+                unsortedPosts : [...retrievedPosts]
             })
         })
   }
@@ -62,6 +65,26 @@ submitHandler = (newPostObj) => {
       })
 }
 
+sortByCategory = () => {
+    if (this.state.sorted === false) {
+        const sortedPosts = this.state.posts.sort((a,b) => {
+            return (
+                a.mood_category.localeCompare(b.mood_category)
+                )
+        })
+        this.setState({
+            posts:[...sortedPosts],
+            sorted:true
+        })
+    } else {
+        const unsortedPosts = this.state.unsortedPosts 
+        this.setState({
+            posts:[...unsortedPosts],
+            sorted:false
+        })
+    }
+}
+
 render () {
     return (
         <>
@@ -77,8 +100,8 @@ render () {
                             foundPost ? <Post postObj={foundPost} user={this.props.user}/> : <h3>Not Found</h3>
                         )
                     }} />
-                    <Route exact path="/posts" render={() => <PostList submitHandler={this.submitHandler} posts={this.state.posts}/>} />
-                    <Route exact path="/" render={() => <PostList submitHandler={this.submitHandler} posts={this.state.posts}/>} />
+                    <Route exact path="/posts" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
+                    <Route exact path="/" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route component={NotFound} />
                 </Switch>
             }
