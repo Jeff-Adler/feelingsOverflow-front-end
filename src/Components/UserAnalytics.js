@@ -26,7 +26,7 @@ class UserAnalytics extends React.Component {
                 return (
                     <div key={index}>
                         <strong>{Object.keys(analytic)[0]}: </strong>
-                        {Object.values(analytic)[0]}<br/>
+                        {/* {Object.values(analytic)[0]}<br/> */}
                     </div>
                 )
             })
