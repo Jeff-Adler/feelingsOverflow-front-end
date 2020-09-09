@@ -82,10 +82,6 @@ class CommentContainer extends React.Component {
         if (voteType === "downvote") {
             upvote = false
         }
-        console.log(voteType)
-        console.log(voteType.id)
-
-        console.log(upvote)
 
         const voteObj = {
             upvote : upvote
