@@ -53,7 +53,6 @@ class App extends React.Component {
   }
 
   signupHandler = (userObj) => {
-console.log(userObj)
     const configObj = {
       method: "POST",
       headers: {

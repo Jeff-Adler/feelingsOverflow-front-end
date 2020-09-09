@@ -5,6 +5,7 @@ import UserList from '../Components/UserList'
 import UserProfile from '../Components/UserProfile'
 import NotFound from '../Components/Errors/404'
 import UserEditForm from '../Components/UserEditForm'
+import UserAnalytics from '../Components/UserAnalytics'
 
 class UserContainer extends React.Component {
 
@@ -58,7 +59,6 @@ componentDidMount () {
 }
 
 render () {
-    console.log(this.props.user)
     return (
         <>
             {this.state.posts === null 
@@ -77,6 +77,7 @@ render () {
                             )
                         }} 
                         />
+                        <Route exact path="/user/analytics" render={() => <UserAnalytics user={this.props.user} />}/>
                         <Route exact path="/user/posts" render={() => <UserList posts={this.state.posts} />}/>
                         <Route exact path="/user/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
                         <Route exact path="/user" render={() => <UserList posts={this.state.posts} />}/>
