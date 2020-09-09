@@ -28,32 +28,32 @@ class UserAnalytics extends React.Component {
             {this.state.analytics !== null 
             ? 
                 <>
-                    <h3>User Profile</h3>
+                    <h3>User Analytics</h3>
                     <div className="center">
                         <ListGroup id="user-form">
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[0])[0]}: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>User Since: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[1])[0]}: </strong> {Object.values(this.state.analytics[1])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>Total Comments: </strong> {Object.values(this.state.analytics[1])[0]}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[2])[0]}: </strong> {Object.values(this.state.analytics[2])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>Total Upvotes: </strong> {Object.values(this.state.analytics[2])[0]}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[3])[0]}: </strong> {Object.values(this.state.analytics[3])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>Total Downvotes: </strong> {Object.values(this.state.analytics[3])[0]}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[4])[0]}: </strong> {Object.values(this.state.analytics[4])[0].id}</ListGroupItemText>
+                            <ListGroupItemText><strong>Most Popular Comment: </strong> {Object.values(this.state.analytics[4])[0].id}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>{Object.keys(this.state.analytics[5])[0]}: </strong> {Object.values(this.state.analytics[0])[0].id}</ListGroupItemText>
+                            <ListGroupItemText><strong>Most Commented Post: </strong> {Object.values(this.state.analytics[0])[0].id}</ListGroupItemText>
                         </ListGroupItem>
 
                     </ListGroup>
