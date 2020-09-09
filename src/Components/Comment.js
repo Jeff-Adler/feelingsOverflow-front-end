@@ -1,6 +1,6 @@
 import React from 'react'
-import upvoteEnabled from './Images/upvoteEnabled.png'
-import downvoteEnabled from './Images/downvoteEnabled.png'
+import upvoteEnabled from './Images/upvote61b4de.png'
+import downvoteEnabled from './Images/downvotede8b61.png'
 import upvoteDisabled from './Images/upvoteDisabled.png'
 import downvoteDisabled from './Images/downvoteDisabled.png'
 

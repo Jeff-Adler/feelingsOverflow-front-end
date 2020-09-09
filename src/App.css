@@ -33,8 +33,11 @@ body {
   color: #61dafb;
 }
 
-/* Post list title styling */
+/* Postlist & Userlist styling */
 
+a:link {
+  color: #61b4de;
+}
 
 a:visited {
   color: #a0d2eb;
