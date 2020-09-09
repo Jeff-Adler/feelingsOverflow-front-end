@@ -6,7 +6,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
     state={
 
-        age: "",
+        birthdate: "",
         gender: "",
         gender_other:"",
         location: ""
@@ -19,30 +19,26 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
 
     locationChangeHandler = (e) => {
-        console.log(e.target.name, e.target.value)
         this.setState({
             location: e.target.value
         })
     }
 
     genderChangeHandler = (e) => {
-        console.log(e.target.name, e.target.value)
         this.setState({
             gender: e.target.value
         })
     }
 
     genderOtherChangeHandler = (e) => {
-        console.log(e.target.name, e.target.value)
         this.setState({
             gender_other: e.target.value
         })
     }
 
     birthDateChangeHandler = (e) => {
-        console.log(e.target.name, e.target.value)
         this.setState({
-            age: e.target.value
+            birthdate: e.target.value
         })
     }
 
@@ -56,8 +52,8 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
                     <Form onSubmit={this.submitHelper} style={{ width: "300px" }}>
                       
                       <FormGroup>
-                          <Label for="age" className="mr-sm-2">Date of Birth</Label>
-                          <Input type="date" name="age" placeholder="age" value={this.state.age} onChange={this.birthDateChangeHandler} />
+                          <Label for="birthdate" className="mr-sm-2">Date of Birth</Label>
+                          <Input type="date" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={this.birthDateChangeHandler} />
                       </FormGroup>
 
                       <FormGroup tag="fieldset">
