@@ -104,8 +104,7 @@ render () {
                                 foundUser ? <UserAnalytics user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }} />
-                        <Route exact path="/user/analytics" render={() => <UserAnalytics user={this.props.user} />}/>
-                        <Route exact path="/user/posts" render={() => <UserList posts={this.state.posts} />}/>
+                        <Route exact path="/user/posts" render={() => <UserList user={this.props.user} posts={this.state.posts} />}/>
                         <Route exact path="/user/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
                         <Route exact path="/user" render={() => <UserList posts={this.state.posts} />}/>
                         <Route component={NotFound} />

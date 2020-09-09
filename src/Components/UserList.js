@@ -56,12 +56,10 @@ class UserList extends React.Component {
     render() {
         return (
             <>
-                <br/>
-                {/* <Search/> */}
-                <h2>Post History</h2>
+                <h3>{this.props.user.username}'s Posts</h3><br/>
+                <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /> {`\xa0`}
+                <Button onClick={this.props.sortByCategory}>Sort by Category</Button>
                 <div className="posts-container">
-                <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /><br/>
-                <Button onClick={this.sortByCategory}>Sort by Category</Button>
                     <ListGroup className="posts">
                         {this.renderList()}
                     </ListGroup>   
