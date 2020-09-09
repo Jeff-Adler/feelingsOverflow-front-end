@@ -18,7 +18,7 @@ class UserAnalytics extends React.Component {
             })
               .then(response => response.json())
               .then(analyticData => {
-                this.setState({analytics:analyticData}, () => console.log(this.state.analytics))
+                this.setState({analytics:analyticData})
             })
     }
 
@@ -28,12 +28,12 @@ class UserAnalytics extends React.Component {
             {this.state.analytics !== null 
             ? 
                 <>
-                    <h3>User Analytics</h3>
+                    <h3>{this.props.user.username}'s Analytics</h3>
                     <div className="center">
                         <ListGroup id="user-form">
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>User Since: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>Joined: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>

@@ -10,7 +10,8 @@ import UserAnalytics from '../Components/UserAnalytics'
 class UserContainer extends React.Component {
 
 state = {
-        posts: null
+        posts: null,
+        users:null
         }
 
 
@@ -43,27 +44,44 @@ submitHandler =(userObj) => {
 
 }
 
-
-componentDidMount () {
-    if (this.props.user.id) {
-        const token = this.props.getToken()
-        fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
+retrieveUsers = (token) => {
+    fetch(`http://localhost:3000/api/v1/users`, {
             method: "GET",
             headers: {
                         Authorization: `Bearer ${token}`
                     }
             })
                 .then(response => response.json())
-                .then(posts => {
-                this.setState({posts:posts})
+                .then(users => {
+                this.setState({users:users})
                 })
+}
+
+retrievePosts = (token) => {
+    fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
+        method: "GET",
+        headers: {
+                    Authorization: `Bearer ${token}`
+                }
+        })
+            .then(response => response.json())
+            .then(posts => {
+            this.setState({posts:posts})
+            })
+}
+
+componentDidMount () {
+    if (this.props.user.id) {
+        const token = this.props.getToken()
+        this.retrievePosts(token)
+        this.retrieveUsers(token)
     }
 }
 
 render () {
     return (
         <>
-            {this.state.posts === null 
+            {this.state.posts === null || this.state.users === null
             ?
                 ""
             :
@@ -79,6 +97,13 @@ render () {
                             )
                         }} 
                         />
+                        <Route exact path="/user/:id/analytics" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id ===id)
+                            return (
+                                foundUser ? <UserAnalytics user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }} />
                         <Route exact path="/user/analytics" render={() => <UserAnalytics user={this.props.user} />}/>
                         <Route exact path="/user/posts" render={() => <UserList posts={this.state.posts} />}/>
                         <Route exact path="/user/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>

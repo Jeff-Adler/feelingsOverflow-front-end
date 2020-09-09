@@ -111,7 +111,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler}/>} />
-            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
+\           <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
             <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route component={NotFound} />

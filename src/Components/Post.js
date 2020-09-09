@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
-import {ListGroup, ListGroupItem} from 'reactstrap';
+import {NavLink, ListGroup, ListGroupItem} from 'reactstrap'
+import {Link} from 'react-router-dom'
 
 class Post extends React.Component {
 
@@ -10,8 +11,8 @@ render() {
             <ListGroup className="list-group">
                 <ListGroupItem>
                     <strong>{this.props.postObj.mood_title}</strong><br/><br/>
-                    <p className="post-text"> {this.props.postObj.mood_description}</p><br/>
-                    <strong>{this.props.postObj.poster_name}</strong><br/><br/>
+                    <p className="post-text"> {this.props.postObj.mood_description}</p>
+                    <NavLink tag={Link} to={`/user/${this.props.postObj.poster_id}/analytics`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
                             {` 
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
                                 Trigger: ${this.props.postObj.mood_trigger} ${this.props.postObj.mood_trigger_detail}
