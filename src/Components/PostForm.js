@@ -99,7 +99,7 @@ render() {
                     </Input>
                     <br/><br/>
 
-                    <Button>Submit</Button>
+                    <Button color="secondary">Submit</Button>
                 </Form>
                 </div>
             </>

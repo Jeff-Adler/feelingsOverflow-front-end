@@ -26,7 +26,7 @@ class CommentForm extends React.Component{
                     <FormGroup>
                         <Input value={this.state.comment} onChange={event => this.changeHandler(event)} type="textarea" name="text" id="exampleText"/>
                     </FormGroup>
-                    <Button color="primary">Submit</Button>
+                    <Button color="secondary">Submit</Button>
                 </Form>
             </>
         )

@@ -382,7 +382,7 @@ render() {
                     </FormGroup>
                     <br/>
 
-                    <Button color="primary">Submit</Button>
+                    <Button color="secondary">Submit</Button>
                 </Form>
                 </div>
             </>
