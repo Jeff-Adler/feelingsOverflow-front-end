@@ -2,12 +2,9 @@ import React from 'react';
 import { NavLink, ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
-
-
 class UserProfile extends React.Component {
 
     render() {
-        console.log("object passed", this.props.userObj)
         var today = new Date();
             var dd = String(today.getDate()).padStart(2, '0');
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -25,7 +22,7 @@ class UserProfile extends React.Component {
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText>Age: {yyyy - this.props.userObj.age} </ListGroupItemText>
+                    <ListGroupItemText>Birthdate: {this.props.userObj.birthdate} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>

@@ -10,7 +10,7 @@ class Signup extends React.Component {
         this.state = {
             username: "",
             password: "",
-            age: "",
+            birthdate: "",
             gender: "",
             gender_other: false,
             location: ""
@@ -20,9 +20,10 @@ class Signup extends React.Component {
     changeHandler = (event) => {
         event.persist()
         this.setState({[event.target.name] : event.target.value}, () => {
-            console.log(this.state.gender)
+            console.log(event.target.name)
+            console.log(this.state[event.target.name])
         if (this.state.gender === "Male" || this.state.gender === "Female") {
-            this.setState({gender_other: false},() => console.log(this.state.gender_other))
+            this.setState({gender_other: false})
         }
         })
     }
@@ -39,16 +40,6 @@ class Signup extends React.Component {
         this.props.submitHandler(this.state)
     }
 
-    renderAgeDropdownItems = () => {
-        let numArray = Array.apply(null, Array(100))
-        return (
-            numArray.map((key,index) => {
-                return (
-                    <option key={index}>{index}</option>
-                )
-            })
-        )
-    }
 
     render () {
         return (
@@ -75,8 +66,8 @@ class Signup extends React.Component {
                             </FormGroup>
                             
                             <FormGroup>
-                                <Label for="age" className="mr-sm-2">Date of Birth</Label>
-                                <Input style={{ width: "300px" }} type="date" name="age" placeholder="age" value={this.state.age} onChange={event => this.changeHandler(event)} />
+                                <Label for="birthdate" className="mr-sm-2">Date of Birth</Label>
+                                <Input style={{ width: "300px" }} type="date" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={event => this.changeHandler(event)} />
                             </FormGroup>
 
                             <FormGroup tag="fieldset">

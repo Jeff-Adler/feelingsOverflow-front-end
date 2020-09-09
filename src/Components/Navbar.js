@@ -51,7 +51,7 @@ const NavBar = (props) => {
                 <DropdownItem tag={Link} to="/user/info">
                   Account Info
                 </DropdownItem>
-                <DropdownItem tag={Link} to="/user/posts">
+                <DropdownItem tag={Link} to="/user/analytics">
                   Analytics
                 </DropdownItem>
                 <DropdownItem divider />

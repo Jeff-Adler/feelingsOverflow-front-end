@@ -53,7 +53,6 @@ class App extends React.Component {
   }
 
   signupHandler = (userObj) => {
-
     const configObj = {
       method: "POST",
       headers: {
@@ -66,7 +65,8 @@ class App extends React.Component {
     fetch("http://localhost:3000/api/v1/users", configObj)
       .then(response => response.json())
       .then(data => this.setState({user : data.user},
-                                  () => {this.loginHandler(this.state.user)}))
+        () => {this.loginHandler(this.state.user)}
+                                  ))
   }
 
   loginHandler = (userInfo) => {
