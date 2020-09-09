@@ -6,11 +6,12 @@ import ModalForm from './ModalForm'
 
 class PostList extends React.Component {
     
-state = {searchValue:''}
+state = {
+    searchValue:''
+}
 
     changeHandler = (e) => {
         this.setState({searchValue: e.target.value})
-        // console.log(e.target.value)
     }
     
     searchPosts = () => {
@@ -18,17 +19,6 @@ state = {searchValue:''}
             return postObj.mood_description.toLowerCase().includes(this.state.searchValue.toLowerCase()) || postObj.mood_title.toLowerCase().includes(this.state.searchValue.toLowerCase())
             })
         }
-
-    sortByCategory = () => {
-        let sortedPosts = (
-            this.props.posts.sort((a,b) => {
-            return (
-                a.mood_category.localeCompare(b.mood_category)
-                )
-            })
-        )
-        this.setState({posts: sortedPosts})
-    }
     
     renderList = () => {
         return (this.searchPosts().map(postObj => {
@@ -57,9 +47,9 @@ state = {searchValue:''}
         return(
         <>
             <br/><br/>
-            <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/><br/>
-            <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /><br/>
-            <Button onClick={this.sortByCategory}>Sort by Category</Button>
+            <ModalForm submitHandler={this.props.submitHandler} parentComponent="postList" buttonLabel="What's on your mind?"/><br/><br/>
+            <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /> {`\xa0`}
+            <Button onClick={this.props.sortByCategory}>Sort by Category</Button>
             <div className="posts-container">
                 <ListGroup className="posts">
                     {this.renderList()}

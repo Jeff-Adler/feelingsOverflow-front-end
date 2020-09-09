@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default () => {
-    return <h3>Not Found</h3>
+    return <h3>This is not a page!</h3>
 }

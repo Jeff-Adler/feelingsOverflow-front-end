@@ -1,5 +1,6 @@
 body {
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
+  background-color: #a0d2eb
 }
 
 .App {
@@ -31,6 +32,13 @@ body {
 .App-link {
   color: #61dafb;
 }
+
+/* Postlist & Userlist styling */
+
+a {
+  color: #61b4de;
+}
+
 
 @keyframes App-logo-spin {
   from {
@@ -124,7 +132,7 @@ textarea {
   position: relative;
   padding: 2em 4em 4em;
   border: 0px solid #d8d8d8;
-  margin: 1.5rem 0 0;
+  margin: 0 0 0;
 }
 
 .posts {
@@ -149,8 +157,37 @@ textarea {
   font-size: 1rem;
 }
 
+#post-form-button {
+  height:65px;
+  /* font-size: 1.40rem; */
+  /* font-weight: bolder; */
+  font-weight: 300;
+  font-size: 1.50rem;
+}
+
 /* Post Show Page */
 
 .post-text {
   font-size: 1.25rem;
+}
+
+/* Search bar */
+
+#search {
+  display: inline;
+}
+
+#searchForm {
+  display: inline;
+}
+
+.form-control {
+  width: 400px;
+  display: inline;
+}
+
+/* Signup */
+
+#signup {
+  width: 300px;
 }

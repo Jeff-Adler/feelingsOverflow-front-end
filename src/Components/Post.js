@@ -31,7 +31,7 @@ render() {
                 </ListGroupItem>
             </ListGroup>
             <br/>
-            <CommentContainer postObj={this.props.postObj}/>
+            <CommentContainer user={this.props.user} postObj={this.props.postObj}/>
         </div>
     ) 
 }
