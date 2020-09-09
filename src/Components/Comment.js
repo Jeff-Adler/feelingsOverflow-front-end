@@ -24,7 +24,7 @@ class Comment extends React.Component {
                 ? 
                     <img id="upvote" src={upvoteDisabled} alt="upvote"/>
                 :
-                    <img id="upvote" onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={upvoteEnabled} alt="upvote"/>
+                    <img id="upvote" style={{cursor:"pointer"}} onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={upvoteEnabled} alt="upvote"/>
                 }
                 {`\xa0`}{`\xa0`}
                 <strong>{this.props.comment.vote_tally}</strong>
@@ -33,7 +33,7 @@ class Comment extends React.Component {
                 ? 
                     <img id="downvote" src={downvoteDisabled} alt="downvote"/>
                 :
-                    <img id="downvote" onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={downvoteEnabled } alt="downvote"/>
+                    <img id="downvote" style={{cursor:"pointer"}} onClick={event => this.props.voteHandler(event.target.id, this.props.comment)} src={downvoteEnabled } alt="downvote"/>
                 }                       
             </>
         )
