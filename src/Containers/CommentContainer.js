@@ -77,7 +77,7 @@ class CommentContainer extends React.Component {
                   )
     }
 
-    voteHandler = (voteType,commentId) => {
+    voteHandler = (voteType,comment) => {
         let upvote = true
         if (voteType === "downvote") {
             upvote = false
@@ -98,16 +98,19 @@ class CommentContainer extends React.Component {
             body: JSON.stringify({vote: voteObj})
         }  
 
-        fetch(`http://localhost:3000/comments/${commentId}/votes/create`, configObj)
+        fetch(`http://localhost:3000/comments/${comment.id}/votes/create`, configObj)
             .then(resp => resp.json())
             .then(commentObj => { 
-                const commentIndex = this.state.comments.findIndex(comment => {
+                const commentIndex = this.state.comments.findIndex(searchedComment => {
                     return(
-                        comment.id === commentId
+                        searchedComment.id === comment.id
                     )
                 })
                 this.state.comments[commentIndex] = commentObj
-                this.setState({comments:this.state.comments})
+                this.setState({
+                    comments:this.state.comments,
+                    votedComments:[...this.state.votedComments,comment]
+                })
             })
     }
 

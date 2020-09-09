@@ -23,8 +23,8 @@ class Comment extends React.Component {
                 "Already Voted"
                 :
                     <>
-                        <Button value="upvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment.id)}>Upvote</Button>
-                        <Button value="downvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment.id)}>Downvote</Button> 
+                        <Button value="upvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment)}>Upvote</Button>
+                        <Button value="downvote" onClick={event => this.props.voteHandler(event.target.value, this.props.comment)}>Downvote</Button> 
                     </>
                 }           
             </>
