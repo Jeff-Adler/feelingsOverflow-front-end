@@ -10,7 +10,6 @@ state = {searchValue:''}
 
     changeHandler = (e) => {
         this.setState({searchValue: e.target.value})
-        // console.log(e.target.value)
     }
     
     searchPosts = () => {

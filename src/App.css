@@ -145,8 +145,10 @@ textarea {
 
 #post-form-button {
   height:65px;
-  font-size: 1.40rem;
+  /* font-size: 1.40rem; */
   /* font-weight: bolder; */
+  font-weight: 300;
+  font-size: 1.50rem;
 }
 
 /* Post Show Page */
