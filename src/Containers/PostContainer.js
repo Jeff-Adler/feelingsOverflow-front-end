@@ -2,7 +2,6 @@ import React from 'react';
 import Post from '../Components/Post'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import PostList from '../Components/PostList'
-// import NewPostForm from '../Components/NewPostForm'
 import NotFound from '../Components/Errors/404'
 
 class PostContainer extends React.Component {
