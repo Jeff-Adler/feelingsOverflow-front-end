@@ -1,5 +1,6 @@
 body {
-  background-color: #F5F5F5;
+  /* background-color: #F5F5F5; */
+  background-color: #a0d2eb
 }
 
 .App {
@@ -30,6 +31,13 @@ body {
 
 .App-link {
   color: #61dafb;
+}
+
+/* Post list title styling */
+
+
+a:visited {
+  color: #a0d2eb;
 }
 
 @keyframes App-logo-spin {
@@ -101,12 +109,6 @@ body {
 textarea {
   height: 150px;
   width: 400px
-}
-
-/* Search bar */
-
-.form-control {
-  width: 400px;
 }
 
 /* Posts Index */
