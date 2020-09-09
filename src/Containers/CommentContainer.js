@@ -6,13 +6,21 @@ import ModalForm from '../Components/ModalForm'
 class CommentContainer extends React.Component {
     state = {
         comments:null,
-        isLoaded:false
+        votedComments:null,
+        isLoaded:false,
+        loadedVotedComments:false
     }
 
     componentDidMount () {
         const token = localStorage.getItem("token")
         if (token) {
-          fetch(`http://localhost:3000/posts/${this.props.postObj.id}/comments`, {
+          this.retrieveComments(token)
+          this.retrievePastVotes(token)
+        }
+    }
+
+    retrieveComments = (token) => {
+        fetch(`http://localhost:3000/posts/${this.props.postObj.id}/comments`, {
             method: "GET",
             headers: {
                         Authorization: `Bearer ${token}`
@@ -26,7 +34,22 @@ class CommentContainer extends React.Component {
                                             })
                             }
                   )
-        }
+    }
+
+    retrievePastVotes = (token) => {
+        if (token) {
+            fetch(`http://localhost:3000/users/${this.props.user.id}/voted_comments`, {
+              method: "GET",
+              headers: {
+                          Authorization: `Bearer ${token}`
+                       }
+              })
+                .then(response => response.json())
+                .then(votedComments => {this.setState({
+                    votedComments : votedComments,
+                    loadedVotedComments:true
+                })})
+          }
     }
     
     postComment = (formData) => {
@@ -49,7 +72,7 @@ class CommentContainer extends React.Component {
             })
               .then(response => response.json())
               .then(comment => {
-                              this.setState({comments:[...this.state.comments,comment]}, () => console.log(comment))
+                              this.setState({comments:[...this.state.comments,comment]})
                             }
                   )
     }
@@ -92,7 +115,7 @@ class CommentContainer extends React.Component {
         return (this.state.comments.map(comment => {
             return (
                 <ListGroupItem key={comment.id}>
-                    <Comment comment={comment} voteHandler={this.voteHandler}/>
+                    <Comment votedComments={this.state.votedComments} comment={comment} voteHandler={this.voteHandler}/>
                 </ListGroupItem>
             )
         }))
@@ -101,7 +124,7 @@ class CommentContainer extends React.Component {
     render() {
         return (
             <>
-                    {this.state.isLoaded 
+                    {this.state.isLoaded && this.state.loadedVotedComments
                     ? 
                     <>
                         <ModalForm postComment={this.postComment} parentComponent={"commentContainer"} buttonLabel="Leave a comment?"/><br/>
