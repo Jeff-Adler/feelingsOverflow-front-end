@@ -35,13 +35,10 @@ body {
 
 /* Postlist & Userlist styling */
 
-a:link {
+a {
   color: #61b4de;
 }
 
-a:visited {
-  color: #a0d2eb;
-}
 
 @keyframes App-logo-spin {
   from {
