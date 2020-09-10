@@ -50,9 +50,9 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
                     
                     <Form onSubmit={this.submitHelper} style={{ width: "300px" }}>
                       
-                      <FormGroup>
-                          <Label for="birthdate" className="mr-sm-2">Date of Birth</Label>
-                          <Input type="date" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={this.birthDateChangeHandler} />
+                      <FormGroup >
+                          <Label for="birthdate" className="mr-sm-2" >Date of Birth</Label>
+                          <Input style={{ width: "300px" }} type="date" name="birthdate" placeholder="birthdate" value={this.state.birthdate} onChange={this.birthDateChangeHandler} />
                       </FormGroup>
 
                       <FormGroup tag="fieldset">
@@ -97,7 +97,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
                       <FormGroup>
                           <Label for="gender">Please Specify:</Label>
-                          <Input onChange={this.genderOtherChangeHandler} 
+                          <Input style={{ width: "300px" }} onChange={this.genderOtherChangeHandler} 
                           type="text" 
                           name="gender_other" 
                           value={this.state.gender === "Other" ? this.state.gender_other : ''}
@@ -108,7 +108,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
                       <FormGroup>
                           <Label for="location" className="mr-sm-2">Location</Label>
-                          <Input type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={this.locationChangeHandler}  />
+                          <Input style={{ width: "300px" }} type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={this.locationChangeHandler}  />
                       </FormGroup>
 
                             <Button type="submit" value="Login">Submit</Button><br/><br/>

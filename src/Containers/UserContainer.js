@@ -15,10 +15,10 @@ state = {
         }
 
 
-submitHandler =(userObj) => {
+submitHandler = (userObj) => {
     
     let newUser = {
-        age: userObj.age,
+        birthdate: userObj.birthdate,
         gender: userObj.gender,
         location: userObj.location
     }
@@ -32,16 +32,15 @@ submitHandler =(userObj) => {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(newUser)
+        body: JSON.stringify({user:newUser})
     }
 
     fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, configObj)
-    .then(response => response.json())
-    .then(newUserObj => {
-            this.props.history.push(`/user/info`)
-            window.location.reload()
+        .then(response => response.json())
+        .then(data => { 
+                this.props.updateUser(data.user)               
+                this.props.history.push(`/user/info`)
     })
-
 }
 
 retrieveUsers = (token) => {

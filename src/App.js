@@ -35,7 +35,7 @@ class App extends React.Component {
                  }
         })
           .then(response => response.json())
-          .then(data => {
+          .then(data => { 
             this.setState({user : data.user,
                           isUserLoaded:true})
           })
@@ -104,6 +104,10 @@ class App extends React.Component {
           })
   }
 
+  updateUser = (userData) => {
+    this.setState({user:userData})
+  }
+
   logOutHandler = () => {
     localStorage.removeItem("token")
     this.props.history.push("/login") 
@@ -118,7 +122,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />
-            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} user={this.state.user} getToken={this.getToken}/>}/>
+            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} updateUser={this.updateUser} user={this.state.user} getToken={this.getToken}/>}/>
             <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route component={NotFound} />
