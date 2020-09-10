@@ -18,7 +18,7 @@ render() {
                 <ListGroupItem>
                     <strong>{this.props.postObj.mood_title}</strong><br/>
                     <i>{this.props.postObj.mood_category === "Other" ? this.props.postObj.mood_category_detail : this.props.postObj.mood_category}</i><br/><br/>
-                    <p className="post-text"> {this.props.postObj.mood_description}</p>
+                    <strong><p className="post-text"> {this.props.postObj.mood_description}</p></strong>
                     <NavLink tag={Link} to={`/user/${this.props.postObj.poster_id}/analytics`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
                     <div className="post-details">
                         {`\xa0`}
