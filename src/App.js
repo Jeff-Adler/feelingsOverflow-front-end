@@ -114,6 +114,31 @@ class App extends React.Component {
     this.setState({user:false})
   }
 
+  deleteHandler = (postObj) => {
+    let id = postObj.id
+    let posterId = postObj.poster_id
+    // debugger
+
+    const token = this.getToken()
+    const configObj = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+    }
+    fetch(`http://localhost:3000/posts/${id}`, configObj)
+    .then(response => response.json())
+    .then(data => { 
+      debugger              
+      this.props.history.push(`/user/posts`)
+})
+
+
+
+}
+
   render () {
     return (
       (this.state.isUserLoaded ?
@@ -122,9 +147,9 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />
-            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} updateUser={this.updateUser} user={this.state.user} getToken={this.getToken}/>}/>
-            <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
-            <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
+            <Route path="/user" render={(routerProps) => <UserContainer {...routerProps} deleteHandler={this.deleteHandler} updateUser={this.updateUser} user={this.state.user} getToken={this.getToken}/>}/>
+            <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} deleteHandler={this.deleteHandler} user={this.state.user} getToken={this.getToken} />}/>
+            <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} deleteHandler={this.deleteHandler} user={this.state.user} getToken={this.getToken} />}/>
             <Route component={NotFound} />
           </Switch>
         </div>

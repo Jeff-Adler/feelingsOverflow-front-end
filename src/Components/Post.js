@@ -1,6 +1,6 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
-import {NavLink, ListGroup, ListGroupItem} from 'reactstrap'
+import {NavLink, ListGroup, ListGroupItem, Button} from 'reactstrap'
 import {Link} from 'react-router-dom'
 var moment = require('moment');
 
@@ -11,7 +11,25 @@ convertCreatedDate = () => {
     return convertedCreateDate
 }
 
+deleteHelper = () => {
+    this.props.deleteHandler(this.props.postObj)
+}
+
+createButton = () => {
+    if(this.props.user.id === this.props.postObj.poster_id){
+        return(
+            <>
+        <Button>Edit</Button>
+        {`\xa0`}
+        <Button onClick={this.deleteHelper}>Delete</Button>
+        <br/>
+        </>
+        )
+    }
+}
+
 render() {
+    console.log(this.props)
     return(
         <div className="posts-container">
             <ListGroup className="list-group">
@@ -34,6 +52,7 @@ render() {
                     </div>
                 </ListGroupItem>
             </ListGroup>
+                {this.createButton()}
             <br/>
             <CommentContainer user={this.props.user} postObj={this.props.postObj}/>
         </div>
