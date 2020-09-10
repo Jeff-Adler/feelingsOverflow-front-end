@@ -204,3 +204,18 @@ textarea {
   background-color: transparent !important;
   color: #212529 !important;
 }
+
+/* Signup page */
+
+.form-check {
+  text-align: left;
+}
+
+.form-group {
+  text-align: center;
+}
+
+#signup-gender {
+  font-size: 1rem;
+  font-weight: 400;
+}

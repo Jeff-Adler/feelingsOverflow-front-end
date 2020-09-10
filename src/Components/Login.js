@@ -34,7 +34,7 @@ class Login extends React.Component {
                 <br/><br/><br/>
                 <h1>Feelings<strong>Overflow</strong></h1>
                 <br/><br/>
-                <h3>Returning User</h3>
+                <h3>Returning User</h3><br/>
                 <h3 style={{color:"red"}}>{this.props.authenticationError}</h3>
                 <div className="center">
                 <Form onSubmit={event => this.submitHandler(event)} style={{ width: "300px" }}>
@@ -52,7 +52,7 @@ class Login extends React.Component {
                     <Button type="submit" value="Login">Submit</Button>
 
                 </Form>
-                </div>
+                </div><br/>
                     <NavLink style={{ color: "black" }} tag={Link} to="/signup">New here? Sign up!</NavLink>
                 </>
                 :

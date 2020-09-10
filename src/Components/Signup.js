@@ -70,7 +70,7 @@ class Signup extends React.Component {
                     <br/><br/><br/>
                     <h1>Feelings<strong>Overflow</strong></h1>
                     <br/><br/>
-                    <h3>Sign Up</h3>
+                    <h3>Sign Up</h3><br/>
                     {this.props.signupError !== null ? this.renderErrors() : ""}
                     <div className="formCenter">
                     
@@ -93,7 +93,7 @@ class Signup extends React.Component {
 
                             <FormGroup tag="fieldset">
                         
-                            <legend>Gender</legend>
+                            <legend id="signup-gender">Gender</legend>
 
                             <FormGroup check>
                                 <Label check>
