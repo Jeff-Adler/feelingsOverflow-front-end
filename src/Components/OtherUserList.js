@@ -3,21 +3,35 @@ import Search from './Search'
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 
-class UserList extends React.Component {
+class OtherUserList extends React.Component {
 
-    state = {searchValue:''}
-
-    changeHandler = (e) => {
-        this.setState({searchValue: e.target.value})
+    state = {
+        searchValue:'',
+        posts:null
     }
-    
+
+    componentDidMount () {
+        console.log(this.props.user.id)
+        const token = this.props.getToken()
+        // fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
+        // method: "GET",
+        // headers: {
+        //             Authorization: `Bearer ${token}`
+        //         }
+        // })
+        //     .then(response => response.json())
+        //     .then(posts => { console.log(posts)
+        //     this.setState({posts:posts})
+        //     })
+    }
+
     searchPosts = () => {
-        return this.props.posts.filter(postObj => {
+        return this.state.posts.filter(postObj => {
             return postObj.mood_description.toLowerCase().includes(this.state.searchValue.toLowerCase()) || postObj.mood_title.toLowerCase().includes(this.state.searchValue.toLowerCase())
             })
         }
 
-    //need to update this
+    //don't think this is active
     sortByCategory = () => {
         let sortedPosts = (
             this.props.posts.sort((a,b) => {
@@ -55,17 +69,25 @@ class UserList extends React.Component {
     render() {
         return (
             <>
-                <h3>{this.props.user.username}'s Posts</h3><br/>
-                <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /> {`\xa0`}
-                <Button onClick={this.props.sortByCategory}>Sort by Category</Button>
-                <div className="posts-container">
-                    <ListGroup className="posts">
-                        {this.renderList()}
-                    </ListGroup>   
-                </div>   
+                {this.state.posts !== null 
+                ?
+                    <>
+                        <h3>{this.props.user.username}'s Posts</h3><br/>
+                        <Search changeHandler={this.changeHandler} searchValue={this.state.searchValue} /> {`\xa0`}
+                        <Button onClick={this.props.sortByCategory}>Sort by Category</Button>
+                        <div className="posts-container">
+                            <ListGroup className="posts">
+                                {this.renderList()}
+                            </ListGroup>   
+                        </div>  
+                    </>
+                :
+                    <h3>"User has no posts!"</h3>
+                } 
             </>
         )
     }
+
 }
 
-export default UserList
+export default OtherUserList

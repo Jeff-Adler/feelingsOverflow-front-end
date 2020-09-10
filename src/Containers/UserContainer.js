@@ -6,6 +6,7 @@ import UserProfile from '../Components/UserProfile'
 import NotFound from '../Components/Errors/404'
 import UserEditForm from '../Components/UserEditForm'
 import UserAnalytics from '../Components/UserAnalytics'
+import OtherUserList from '../Components/OtherUserList'
 
 class UserContainer extends React.Component {
 
@@ -104,6 +105,14 @@ render () {
                             )
                         }} />
                         <Route exact path="/user/posts" render={() => <UserList user={this.props.user} posts={this.state.posts} />}/>
+                        <Route exact path="/user/:id/posts" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id === id)
+                            console.log(foundUser)
+                            return (
+                                foundUser ? <OtherUserList getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }}/>
                         <Route exact path="/user/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
                         <Route exact path="/user" render={() => <UserList posts={this.state.posts} />}/>
                         <Route component={NotFound} />
