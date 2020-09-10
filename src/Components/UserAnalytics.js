@@ -28,7 +28,7 @@ class UserAnalytics extends React.Component {
             {this.state.analytics !== null 
             ? 
                 <>
-                    <h3>{this.props.user.username}'s Analytics</h3>
+                    <h3>{this.props.user.username}'s Stats</h3>
                     <div className="center">
                         <ListGroup id="user-form">
 
@@ -49,11 +49,11 @@ class UserAnalytics extends React.Component {
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>Most Popular Comment: </strong> {Object.values(this.state.analytics[4])[0].id}</ListGroupItemText>
+                            <ListGroupItemText><strong>Most Popular Comment: </strong> {Object.values(this.state.analytics[4])[0] !== null ? Object.values(this.state.analytics[4])[0].id : ""}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>Most Commented Post: </strong> {Object.values(this.state.analytics[0])[0].id}</ListGroupItemText>
+                            <ListGroupItemText><strong>Most Commented Post: </strong> {Object.values(this.state.analytics[5])[0] !== null ? Object.values(this.state.analytics[5])[0].id : ""}</ListGroupItemText>
                         </ListGroupItem>
 
                     </ListGroup>

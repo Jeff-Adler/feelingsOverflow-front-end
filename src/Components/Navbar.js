@@ -48,11 +48,11 @@ const NavBar = (props) => {
                 Account
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem tag={Link} to="/user/info">
+                <DropdownItem data-toggle="false" tag={Link} to="/user/info">
                   Account Info
                 </DropdownItem>
                 <DropdownItem tag={Link} to={`/user/${props.user.id}/analytics`}>
-                  Analytics
+                  Stats
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem tag={Link} onClick={props.clickHandler} to="/login">

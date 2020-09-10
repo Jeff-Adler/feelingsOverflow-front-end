@@ -191,3 +191,16 @@ textarea {
 #signup {
   width: 300px;
 }
+
+/* Navbar */
+
+  /* Disables react-strap blue highlighting on NavBar dropdown */
+.dropdown-item:focus {
+  -webkit-tap-highlight-color:transparent;
+  outline: none !important;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important; 
+  background-color: transparent !important;
+  color: #212529 !important;
+}
