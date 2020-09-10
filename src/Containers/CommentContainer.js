@@ -6,6 +6,7 @@ import ModalForm from '../Components/ModalForm'
 class CommentContainer extends React.Component {
     state = {
         comments:null,
+        sortedComments: null,
         votedComments:null,
         isLoaded:false,
         loadedVotedComments:false
@@ -29,9 +30,10 @@ class CommentContainer extends React.Component {
               .then(response => response.json())
               .then(comments => {
                               this.setState({
-                                    comments : comments,
+                                    comments : [...comments],
+                                    sortedComments : [...comments],
                                     isLoaded : true
-                                            })
+                                            }, () => this.sortComments())
                             }
                   )
     }
@@ -110,12 +112,23 @@ class CommentContainer extends React.Component {
                 this.setState({
                     comments:this.state.comments,
                     votedComments:[...this.state.votedComments,comment]
-                })
+                }, () => this.sortComments())
             })
     }
 
+    sortComments = () => {
+        const sortedComments = (
+            this.state.comments.sort((a,b) => {
+                return (
+                    b.vote_tally - a.vote_tally
+                )
+            })
+        )
+        this.setState({sortedComments:sortedComments})
+    }
+
     renderComments = () => {
-        return (this.state.comments.map(comment => {
+        return (this.state.sortedComments.map(comment => {
             return (
                 <ListGroupItem key={comment.id}>
                     <Comment votedComments={this.state.votedComments} comment={comment} voteHandler={this.voteHandler}/>
