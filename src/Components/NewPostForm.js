@@ -117,7 +117,7 @@ render() {
 
                     {/* Mood length begin */}
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1rem"}}>How long have you been feeling this way?</legend>
+                        <legend style={{fontSize:"1.25rem"}}>How long have you been feeling this way?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -196,13 +196,13 @@ render() {
 
 
                     <FormGroup>
-                        <Label style={{fontSize:"1rem"}} for="mood_location">Where are you when you are feeling this way?</Label>
+                        <Label style={{fontSize:"1.25rem"}} for="mood_location">Where are you when you are feeling this way?</Label>
                         <Input onChange={this.changeHelper} type="text" name="mood_location" value={this.state.mood_location} />
                     </FormGroup>
                     <br/><br/>
 
                     <FormGroup tag="fieldset">
-                        <legend  style={{fontSize:"1rem"}}>Do you know what may trigger this feeling?</legend>
+                        <legend  style={{fontSize:"1.25rem"}}>Do you know what may trigger this feeling?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -229,7 +229,7 @@ render() {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1rem"}} for="mood_trigger_detail">If yes, what is it?</Label>
+                        <Label style={{fontSize:"1.25rem"}} for="mood_trigger_detail">If yes, what is it?</Label>
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="mood_trigger_detail" 
@@ -241,8 +241,8 @@ render() {
                     <br/><br/>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1rem"}} for="mood_description">Okay, thanks for that info.  Now, describe the feeling as best as you can:</Label>
-                        <textarea style={{ fontSize:"1rem", width: "400px", height: "400px", border: "1px solid #ced4da" }} onChange={this.changeHelper} 
+                        <Label style={{fontSize:"1.25rem"}} for="mood_description">Okay, thanks for that info.  Now, describe the feeling as best as you can:</Label>
+                        <textarea style={{ fontSize:"1.25rem", width: "400px", height: "400px", border: "1px solid #ced4da" }} onChange={this.changeHelper} 
                         type="text" 
                         name="mood_description" 
                         value={this.state.mood_description} />
@@ -252,7 +252,7 @@ render() {
 
 
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1rem"}}>Do you want to use this post to:</legend>
+                        <legend style={{fontSize:"1.25rem"}}>Do you want to use this post to:</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -282,7 +282,7 @@ render() {
                     <br/><br/>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1rem"}} for="mood_title">Great, thanks for sharing!  What would you like to call this post?</Label>
+                        <Label style={{fontSize:"1.25rem"}} for="mood_title">Great, thanks for sharing!  What would you like to call this post?</Label>
                         <Input 
                             onChange={this.changeHelper} 
                             type="text" 
@@ -295,7 +295,7 @@ render() {
 
 
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1rem"}}>And how should we categorize this post?</legend>
+                        <legend style={{fontSize:"1.25rem"}}>And how should we categorize this post?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -370,7 +370,7 @@ render() {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1rem"}} for="mood_category">If other, what is it?</Label>
+                        <Label style={{fontSize:"1.25rem"}} for="mood_category">If other, what is it?</Label>
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="mood_category_detail" 
