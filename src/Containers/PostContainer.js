@@ -97,7 +97,7 @@ render () {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
                         return (
-                            foundPost ? <Post postObj={foundPost} user={this.props.user}/> : <h3>Not Found</h3>
+                            foundPost ? <Post postObj={foundPost} user={this.props.user} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
                         )
                     }} />
                     <Route exact path="/posts" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
