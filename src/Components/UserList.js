@@ -23,18 +23,6 @@ class UserList extends React.Component {
             })
         }
 
-    //need to update this
-    sortByCategory = () => {
-        let sortedPosts = (
-            this.props.posts.sort((a,b) => {
-            return (
-                a.mood_category.localeCompare(b.mood_category)
-                )
-            })
-        )
-        this.setState({posts: sortedPosts})
-    }
-
     renderList = () => {
         return (
             this.searchPosts().map(postObj => {

@@ -12,7 +12,9 @@ class UserContainer extends React.Component {
 
 state = {
         posts: null,
-        users:null
+        unsortedPosts : null,
+        users:null,
+        sorted : false
         }
 
 
@@ -65,8 +67,11 @@ retrievePosts = (token) => {
                 }
         })
             .then(response => response.json())
-            .then(posts => {
-            this.setState({posts:posts})
+            .then(retrievedPosts => {
+                this.setState({
+                    posts : [...retrievedPosts],
+                    unsortedPosts : [...retrievedPosts]
+                })
             })
 }
 
@@ -75,6 +80,26 @@ componentDidMount () {
         const token = this.props.getToken()
         this.retrievePosts(token)
         this.retrieveUsers(token)
+    }
+}
+
+sortByCategory = () => {
+    if (this.state.sorted === false) {
+        const sortedPosts = this.state.posts.sort((a,b) => {
+            return (
+                a.mood_category.localeCompare(b.mood_category)
+                )
+        })
+        this.setState({
+            posts:[...sortedPosts],
+            sorted:true
+        })
+    } else {
+        const unsortedPosts = this.state.unsortedPosts 
+        this.setState({
+            posts:[...unsortedPosts],
+            sorted:false
+        })
     }
 }
 
@@ -104,7 +129,7 @@ render () {
                                 foundUser ? <UserAnalytics user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }} />
-                        <Route exact path="/user/posts" render={() => <UserList user={this.props.user} posts={this.state.posts} />}/>
+                        <Route exact path="/user/posts" render={() => <UserList sortByCategory={this.sortByCategory} user={this.props.user} posts={this.state.posts} />}/>
                         {/* Requires refactoring: */}
                         {/* <Route exact path="/user/:id/posts" render={({match})=> {
                             let id = parseInt(match.params.id)
