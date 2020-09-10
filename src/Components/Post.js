@@ -54,7 +54,8 @@ render() {
             </ListGroup>
                 {this.createButton()}
             <br/>
-            <CommentContainer user={this.props.user} postObj={this.props.postObj}/>
+            <CommentContainer user={this.props.user} postObj={this.props.postObj}/> <br/>
+            { this.props.user.id === this.props.postObj.poster_id ? <Button style={{backgroundColor:"#cc0000", borderColor:"black"}} className="post-edit-delete-buttons" onClick={this.deleteHelper}>Delete</Button> : ""}
         </div>
     ) 
 }
