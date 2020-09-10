@@ -1,7 +1,8 @@
 import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
 import {NavLink, ListGroup, ListGroupItem, Button} from 'reactstrap'
-import {Link} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import EditPostForm from './EditPostForm.js'
 var moment = require('moment');
 
 class Post extends React.Component {
@@ -15,11 +16,22 @@ deleteHelper = () => {
     this.props.deleteHandler(this.props.postObj)
 }
 
+// editHelper = () => {
+//     this.props.editHandler(this.props.postObj)
+// }
+
+routeChange=()=> {
+    let postId = this.props.postObj.id
+    let path = `/posts/${postId}/edit`;
+    this.props.history.push(path)
+  }
+
 createButton = () => {
     if(this.props.user.id === this.props.postObj.poster_id){
         return(
             <>
-        <Button>Edit</Button>
+        <Button onClick={this.routeChange}>Edit</Button>
+        {/* to="/user/edit" */}
         {`\xa0`}
         <Button onClick={this.deleteHelper}>Delete</Button>
         <br/>
@@ -60,5 +72,5 @@ render() {
 }
 }
 
-export default Post
+export default withRouter(Post)
 

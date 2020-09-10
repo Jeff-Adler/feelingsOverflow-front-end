@@ -3,6 +3,7 @@ import Post from '../Components/Post'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import PostList from '../Components/PostList'
 import NotFound from '../Components/Errors/404'
+import EditPostForm from '../Components/EditPostForm.js'
 
 class PostContainer extends React.Component {
 
@@ -93,6 +94,14 @@ render () {
                 ""
             :
                 <Switch> 
+                    <Route exact path="/posts/:id/edit" render={({match})=> {
+                        let id = parseInt(match.params.id)
+                        let foundPost = this.state.posts.find((post) => post.id ===id)
+                        return (
+                            foundPost ? <EditPostForm postObj={foundPost} user={this.props.user} editHandler={this.props.editHandler} /> : <h3>Not Found</h3>
+                        )
+                    }} />
+
                     <Route exact path="/posts/:id" render={({match})=> {
                         let id = parseInt(match.params.id)
                         let foundPost = this.state.posts.find((post) => post.id ===id)
@@ -100,6 +109,7 @@ render () {
                             foundPost ? <Post postObj={foundPost} user={this.props.user} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
                         )
                     }} />
+
                     <Route exact path="/posts" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route exact path="/" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route component={NotFound} />
