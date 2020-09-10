@@ -16,10 +16,6 @@ deleteHelper = () => {
     this.props.deleteHandler(this.props.postObj)
 }
 
-// editHelper = () => {
-//     this.props.editHandler(this.props.postObj)
-// }
-
 routeChange=()=> {
     let postId = this.props.postObj.id
     let path = `/posts/${postId}/edit`;
@@ -30,7 +26,7 @@ createButton = () => {
     if(this.props.user.id === this.props.postObj.poster_id){
         return(
             <> <br/>
-        <Button className="post-edit-delete-buttons" >Edit</Button>
+        <Button className="post-edit-delete-buttons" onClick={this.routeChange} >Edit</Button>
         {`\xa0`}
         {/* <Button style={{backgroundColor:"#cc0000", borderColor:"secondary"}} className="post-edit-delete-buttons" onClick={this.deleteHelper}>Delete</Button> */}
         <br/>
