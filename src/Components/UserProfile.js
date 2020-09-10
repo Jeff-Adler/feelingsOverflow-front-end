@@ -7,7 +7,6 @@ class UserProfile extends React.Component {
 
     convertBirthdateToDate = () => {
         let convertBirthdate = moment(this.props.userObj.birthdate, "YYYY-MM-DD").format('MMMM Do, YYYY');
-        console.log(convertBirthdate)
         return convertBirthdate
     }
 

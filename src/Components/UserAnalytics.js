@@ -24,7 +24,6 @@ class UserAnalytics extends React.Component {
 
     convertJoinDateToDate = () => {
         let convertedJoinDate = moment(Object.values(this.state.analytics[0])[0], "YYYY-MM-DD").format('MMMM Do, YYYY');
-        console.log(convertedJoinDate)
         return convertedJoinDate
     }
 
