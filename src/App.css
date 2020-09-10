@@ -177,8 +177,8 @@ textarea {
   font-size: 1.25rem;
 }
 
-.post-details {
-
+.post-edit-delete-buttons {
+  width:70px;
 }
 
 /* Search bar */
