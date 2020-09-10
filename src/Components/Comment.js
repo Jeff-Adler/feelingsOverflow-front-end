@@ -19,7 +19,8 @@ class Comment extends React.Component {
     render () {
         return (
             <>
-                {`${this.props.comment.comment} Commenter: ${this.props.comment.commenter_id}`}<br/>
+                {this.props.comment.comment}<br/>
+                Commenter ID: {this.props.comment.commenter_id}<br/>
                 {this.checkIfVoted() 
                 ? 
                     <img id="upvote" src={upvoteDisabled} alt="upvote"/>
