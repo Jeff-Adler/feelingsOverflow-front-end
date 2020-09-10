@@ -30,15 +30,10 @@ class UserList extends React.Component {
                     <ListGroupItem key={postObj.id}>
                         <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>
                         <ListGroupItemText>
-                            {` 
-                                ${postObj.mood_purpose}
-                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0
-                                ${postObj.mood_rating}  
-                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${postObj.mood_category}    
-                                \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${this.convertCreatedDate(postObj)}
-                            `}
+                            <i>{postObj.mood_category === "Other" ? postObj.mood_category_detail : postObj.mood_category}</i><br/>
+                            <strong>{postObj.poster_name}</strong>
+                            {`\xa0\xa0\xa0\xa0\xa0\xa0\xa0`}
+                            {this.convertCreatedDate(postObj)}
                         </ListGroupItemText>
                     </ListGroupItem>
                 )
