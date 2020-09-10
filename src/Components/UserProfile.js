@@ -18,19 +18,19 @@ class UserProfile extends React.Component {
                 <ListGroup id="user-form">
 
                 <ListGroupItem>
-                    <ListGroupItemText>Username: {this.props.userObj.username} </ListGroupItemText>
+                    <ListGroupItemText><strong>Username:</strong> {this.props.userObj.username} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText>Birthdate: {this.props.userObj.birthdate} </ListGroupItemText>
+                    <ListGroupItemText><strong>Birthdate:</strong> {this.props.userObj.birthdate} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText>Gender: {this.props.userObj.gender} </ListGroupItemText>
+                    <ListGroupItemText><strong>Gender:</strong> {this.props.userObj.gender} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText>Location: {this.props.userObj.location} </ListGroupItemText>
+                    <ListGroupItemText><strong>Location:</strong> {this.props.userObj.location} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
@@ -38,7 +38,7 @@ class UserProfile extends React.Component {
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText><NavLink tag={Link} to="/user/edit">Edit my profile</NavLink></ListGroupItemText>
+                    <ListGroupItemText><NavLink tag={Link} to="/user/edit">Edit My Info</NavLink></ListGroupItemText>
                 </ListGroupItem>
 
             </ListGroup>
