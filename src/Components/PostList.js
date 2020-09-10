@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 import Search from './Search'
 import ModalForm from './ModalForm'
+import alertStar from './Images/alertStar.png'
+
 var moment = require('moment');
 
 class PostList extends React.Component {
@@ -30,7 +32,8 @@ renderList = () => {
     return (this.searchPosts().map(postObj => {
         return (
                 <ListGroupItem key={postObj.id}>
-                    <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>
+                    <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>{`\xa0`}            
+                    {postObj.mood_purpose === "Get Support" ? <img className="alert-star" src={alertStar} alt="needs support"/> : ""} 
                     <ListGroupItemText>
                         <i>{postObj.mood_category === "Other" ? postObj.mood_category_detail : postObj.mood_category}</i><br/>
                         <strong>{postObj.poster_name}</strong>

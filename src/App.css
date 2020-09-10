@@ -165,6 +165,12 @@ textarea {
   font-size: 1.50rem;
 }
 
+.alert-star {
+  width:1.5%;
+  height:1.5%;
+  vertical-align: 0.1%;
+}
+
 /* Post Show Page */
 
 .post-text {
