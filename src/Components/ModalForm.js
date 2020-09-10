@@ -17,7 +17,7 @@ const ModalForm = (props) => {
     <div>
       {props.parentComponent === "commentContainer" ? <Button color="secondary" onClick={toggle}>{buttonLabel}</Button> : <Button id="post-form-button" color="secondary" onClick={toggle}>{buttonLabel}</Button>}
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Leave a comment</ModalHeader>
+        <ModalHeader toggle={toggle}>{props.parentComponent === "commentContainer" ? "Leave a comment" : "Write post"}</ModalHeader>
         <ModalBody>
           {props.parentComponent === "commentContainer" 
           ? 

@@ -13,7 +13,7 @@ class UserProfile extends React.Component {
     render() {
         return (
             <>
-            <h3>User Profile</h3>
+            <h3>{this.props.userObj.username}'s Profile</h3>
              <div className="center">
                 <ListGroup id="user-form">
 
@@ -34,11 +34,11 @@ class UserProfile extends React.Component {
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText><NavLink tag={Link} to="/user/posts">View My Posts</NavLink></ListGroupItemText>
+                    <ListGroupItemText><NavLink tag={Link} to="/user/posts">View Posts</NavLink></ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText><NavLink tag={Link} to="/user/edit">Edit My Info</NavLink></ListGroupItemText>
+                    <ListGroupItemText><NavLink tag={Link} to="/user/edit">Edit Info</NavLink></ListGroupItemText>
                 </ListGroupItem>
 
             </ListGroup>
