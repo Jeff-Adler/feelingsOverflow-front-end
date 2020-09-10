@@ -13,6 +13,7 @@ class CommentContainer extends React.Component {
     }
 
     componentDidMount () {
+        // This is antipattern that should be refactored
         this.mounted = true
         const token = localStorage.getItem("token")
         if (token) {

@@ -2,6 +2,7 @@ import React from 'react'
 import Search from './Search'
 import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
+var moment = require('moment');
 
 class UserList extends React.Component {
 
@@ -9,6 +10,11 @@ class UserList extends React.Component {
 
     changeHandler = (e) => {
         this.setState({searchValue: e.target.value})
+    }
+
+    convertCreatedDate = (postObj) => {
+        let convertedCreateDate = moment(postObj.created_at, "YYYY-MM-DD").format('MMMM Do, YYYY');
+        return convertedCreateDate
     }
     
     searchPosts = () => {
@@ -43,7 +49,7 @@ class UserList extends React.Component {
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
                                 ${postObj.mood_category}    
                                 \xa0\xa0\xa0\xa0\xa0\xa0\xa0 
-                                ${postObj.created_at.toString().substring(0,10)}
+                                ${this.convertCreatedDate(postObj)}
                             `}
                         </ListGroupItemText>
                     </ListGroupItem>
