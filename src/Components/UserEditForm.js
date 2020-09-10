@@ -13,7 +13,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 
     submitHelper = (e) => {
         e.preventDefault()
-        this.props.submitHandler(this.state)
+        this.props.editHandler(this.state)
     }
 
 
@@ -114,8 +114,8 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
                             <Button type="submit" value="Login">Submit</Button><br/><br/>
 
                             {/* <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink> */}
-                        </Form>
-                    </div>
+                    </Form>
+                </div>
             </>
         )
     }

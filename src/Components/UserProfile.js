@@ -13,40 +13,39 @@ class UserProfile extends React.Component {
     render() {
         return (
             <>
-            <h3>{this.props.userObj.username}'s Profile</h3>
-             <div className="center">
-                <ListGroup id="user-form">
+                <h3>{this.props.userObj.username}'s Profile</h3>
+                <div className="center">
+                    <ListGroup id="user-form">
 
-                <ListGroupItem>
-                    <ListGroupItemText><strong>Username:</strong> {this.props.userObj.username} </ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>Username:</strong> {this.props.userObj.username} </ListGroupItemText>
+                        </ListGroupItem>
 
-                <ListGroupItem>
-                    <ListGroupItemText><strong>Birthdate:</strong> {this.convertBirthdateToDate()} </ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>Birthdate:</strong> {this.convertBirthdateToDate()} </ListGroupItemText>
+                        </ListGroupItem>
 
-                <ListGroupItem>
-                    <ListGroupItemText><strong>Gender:</strong> {this.props.userObj.gender} </ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>Gender:</strong> {this.props.userObj.gender} </ListGroupItemText>
+                        </ListGroupItem>
 
-                <ListGroupItem>
-                    <ListGroupItemText><strong>Location:</strong> {this.props.userObj.location} </ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><strong>Location:</strong> {this.props.userObj.location} </ListGroupItemText>
+                        </ListGroupItem>
 
-                <ListGroupItem>
-                    <ListGroupItemText><NavLink tag={Link} to="/user/posts">View Posts</NavLink></ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><NavLink tag={Link} to="/users/:id/posts">View Posts</NavLink></ListGroupItemText>
+                        </ListGroupItem>
 
-                <ListGroupItem>
-                    <ListGroupItemText><NavLink tag={Link} to="/user/edit">Edit Info</NavLink></ListGroupItemText>
-                </ListGroupItem>
+                        <ListGroupItem>
+                            <ListGroupItemText><NavLink tag={Link} to="/users/:id/edit">Edit Info</NavLink></ListGroupItemText>
+                        </ListGroupItem>
 
-            </ListGroup>
-            </div>
-        </>
+                    </ListGroup>
+                </div>
+            </>
         )
     }
 }
-
 
 export default UserProfile

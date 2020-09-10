@@ -6,19 +6,41 @@ import UserProfile from '../Components/UserProfile'
 import NotFound from '../Components/Errors/404'
 import UserEditForm from '../Components/UserEditForm'
 import UserAnalytics from '../Components/UserAnalytics'
-// import OtherUserList from '../Components/OtherUserList'
+import OtherUserList from '../Components/OtherUserList'
+import User from '../Components/User'
 
 class UserContainer extends React.Component {
 
 state = {
-        posts: null,
-        unsortedPosts : null,
-        users:null,
-        sorted : false
+        // posts: null,
+        // unsortedPosts : null,
+        users:null
+        // sorted : false
         }
 
+componentDidMount () {
+    if (this.props.user.id) {
+        const token = this.props.getToken()
+        // this.retrievePosts(token)
+        this.retrieveUsers(token)
+    }
+}
 
-submitHandler = (userObj) => {
+retrieveUsers = (token) => {
+    fetch(`http://localhost:3000/api/v1/users`, {
+            method: "GET",
+            headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+            })
+                .then(response => response.json())
+                .then(users => {
+                    this.setState({users:users})
+                })
+}
+
+//Sends user info patch requests
+editHandler = (userObj) => {
     
     let newUser = {
         birthdate: userObj.birthdate,
@@ -46,91 +68,45 @@ submitHandler = (userObj) => {
     })
 }
 
-retrieveUsers = (token) => {
-    fetch(`http://localhost:3000/api/v1/users`, {
-            method: "GET",
-            headers: {
-                        Authorization: `Bearer ${token}`
-                    }
-            })
-                .then(response => response.json())
-                .then(users => {
-                this.setState({users:users})
-                })
-}
-
-retrievePosts = (token) => {
-    fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
-        method: "GET",
-        headers: {
-                    Authorization: `Bearer ${token}`
-                }
-        })
-            .then(response => response.json())
-            .then(retrievedPosts => {
-                this.setState({
-                    posts : [...retrievedPosts],
-                    unsortedPosts : [...retrievedPosts]
-                })
-            })
-}
-
-componentDidMount () {
-    if (this.props.user.id) {
-        const token = this.props.getToken()
-        this.retrievePosts(token)
-        this.retrieveUsers(token)
-    }
-}
-
-sortByCategory = () => {
-    if (this.state.sorted === false) {
-        const sortedPosts = this.state.posts.sort((a,b) => {
-            return (
-                a.mood_category.localeCompare(b.mood_category)
-                )
-        })
-        this.setState({
-            posts:[...sortedPosts],
-            sorted:true
-        })
-    } else {
-        const unsortedPosts = this.state.unsortedPosts 
-        this.setState({
-            posts:[...unsortedPosts],
-            sorted:false
-        })
-    }
-}
-
 render () {
     return (
         <>
-            {this.state.posts === null || this.state.users === null
+            {this.state.users === null
             ?
                 ""
             :
                 <>
                     <br/><br/>
                     <Switch>
-                        <Route exact path="/user/info" render={() => <UserProfile userObj={this.props.user} />}/>  
-                        <Route exact path="/user/posts/:id" render={({match})=> {
+                        <Route exact path="/users/:id" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id ===id)
+                            return (
+                                foundUser ? <User editHandler={this.editHandler} users={this.state.users} user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }}/>
+                        <Route component={NotFound} />
+
+
+
+                        {/* Old Routes */}
+                        {/* <Route exact path="/users/info" render={() => <UserProfile userObj={this.props.user} />}/>  
+                        <Route exact path="/users/posts/:id" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundPost = this.state.posts.find((post) => post.id ===id)
                             return (
                                 foundPost ? <Post postObj={foundPost} user={this.props.user} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
                             )
-                        }} 
-                        />
-                        <Route exact path="/user/:id/analytics" render={({match})=> {
+                        }}  */}
+                        {/* /> */}
+                        {/* <Route exact path="/users/:id/analytics" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
                                 foundUser ? <UserAnalytics user={foundUser}/> : <h3>Not Found</h3>
                             )
-                        }} />
-                        <Route exact path="/user/posts" render={() => <UserList sortByCategory={this.sortByCategory} user={this.props.user} posts={this.state.posts} />}/>
-                        {/* Requires refactoring: */}
+                        }} /> */}
+                        {/* <Route exact path="/users/posts" render={() => <UserList sortByCategory={this.sortByCategory} user={this.props.user} posts={this.state.posts} />}/> */}
                         {/* <Route exact path="/user/:id/posts" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id === id)
@@ -139,9 +115,9 @@ render () {
                                 foundUser ? <OtherUserList getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/> */}
-                        <Route exact path="/user/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
-                        <Route exact path="/user" render={() => <UserList posts={this.state.posts} />}/>
-                        <Route component={NotFound} />
+                        {/* <Route exact path="/users/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
+                        <Route exact path="/users" render={() => <UserList posts={this.state.posts} />}/> */}
+                        {/* <Route component={NotFound} /> */}
                     </Switch>
                 </>
             }
