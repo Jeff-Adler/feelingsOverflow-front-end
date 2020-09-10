@@ -18,10 +18,10 @@ deleteHelper = () => {
 createButton = () => {
     if(this.props.user.id === this.props.postObj.poster_id){
         return(
-            <>
-        <Button>Edit</Button>
+            <> <br/>
+        <Button className="post-edit-delete-buttons" >Edit</Button>
         {`\xa0`}
-        <Button onClick={this.deleteHelper}>Delete</Button>
+        <Button style={{backgroundColor:"#cc0000", borderColor:"secondary"}} className="post-edit-delete-buttons" onClick={this.deleteHelper}>Delete</Button>
         <br/>
         </>
         )
