@@ -130,8 +130,7 @@ class App extends React.Component {
     }
     fetch(`http://localhost:3000/posts/${id}`, configObj)
     .then(response => response.json())
-    .then(data => { 
-      debugger              
+    .then(data => {           
       this.props.history.push(`/user/posts`)
 })
 
