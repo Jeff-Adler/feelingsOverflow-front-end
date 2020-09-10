@@ -13,6 +13,7 @@ class CommentContainer extends React.Component {
     }
 
     componentDidMount () {
+        this.mounted = true
         const token = localStorage.getItem("token")
         if (token) {
           this.retrieveComments(token)
@@ -29,11 +30,13 @@ class CommentContainer extends React.Component {
             })
               .then(response => response.json())
               .then(comments => {
-                              this.setState({
+                  if (this.mounted) {
+                               this.setState({
                                     comments : [...comments],
                                     sortedComments : [...comments],
                                     isLoaded : true
                                             }, () => this.sortComments())
+                                    }
                             }
                   )
     }
@@ -47,10 +50,14 @@ class CommentContainer extends React.Component {
                        }
               })
                 .then(response => response.json())
-                .then(votedComments => {this.setState({
-                    votedComments : votedComments,
-                    loadedVotedComments:true
-                })})
+                .then(votedComments => {
+                    if (this.mounted) {
+                        this.setState({
+                            votedComments : votedComments,
+                            loadedVotedComments:true
+                        })
+                    }
+                })
           }
     }
     
@@ -135,6 +142,10 @@ class CommentContainer extends React.Component {
                 </ListGroupItem>
             )
         }))
+    }
+
+    componentWillUnmount () {
+        this.mounted=false
     }
         
     render() {
