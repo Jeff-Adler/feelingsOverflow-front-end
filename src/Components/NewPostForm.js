@@ -91,11 +91,11 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="Eh, could be better"
+                                value="Could be better"
                                 name="mood_rating"
-                                checked={this.state.mood_rating === "Eh, could be better"}
+                                checked={this.state.mood_rating === "Could be better"}
                                 onChange={this.changeHelper}/>
-                                Eh, could be better
+                                Could be better
                         </Label> 
                     </FormGroup>
 
@@ -103,11 +103,11 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="Really having a hard time"
+                                value="Having a hard time"
                                 name="mood_rating"
-                                checked={this.state.mood_rating === "Really having a hard time"}
+                                checked={this.state.mood_rating === "Having a hard time"}
                                 onChange={this.changeHelper}/>
-                                Really having a hard time
+                                Having a hard time
                         </Label> 
                     </FormGroup>
                     
@@ -117,7 +117,7 @@ render() {
 
                     {/* Mood length begin */}
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1.25rem"}}>How long have you been feeling this way?</legend>
+                        <legend style={{fontSize:"1rem"}}>How long have you been feeling this way?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -135,11 +135,11 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="The past few days"
+                                value="A few days"
                                 name="mood_length"
-                                checked={this.state.mood_length === "The past few days"}
+                                checked={this.state.mood_length === "A few days"}
                                 onChange={this.changeHelper}/>
-                                The past few days
+                                A few days
                         </Label> 
                     </FormGroup>
 
@@ -147,11 +147,11 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="The past few weeks"
+                                value="A few weeks"
                                 name="mood_length"
-                                checked={this.state.mood_length === "The past few weeks"}
+                                checked={this.state.mood_length === "A few weeks"}
                                 onChange={this.changeHelper}/>
-                                The past few weeks
+                                A few weeks
                         </Label> 
                     </FormGroup>
 
@@ -196,13 +196,13 @@ render() {
 
 
                     <FormGroup>
-                        <Label style={{fontSize:"1.25rem"}} for="mood_location">Where are you when you are feeling this way?</Label>
+                        <Label style={{fontSize:"1rem"}} for="mood_location">Where are you when you are feeling this way?</Label>
                         <Input onChange={this.changeHelper} type="text" name="mood_location" value={this.state.mood_location} />
                     </FormGroup>
                     <br/><br/>
 
                     <FormGroup tag="fieldset">
-                        <legend  style={{fontSize:"1.25rem"}}>Do you know what may trigger this feeling?</legend>
+                        <legend  style={{fontSize:"1rem"}}>Do you know what may trigger this feeling?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -229,7 +229,7 @@ render() {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1.25rem"}} for="mood_trigger_detail">If yes, what is it?</Label>
+                        <Label style={{fontSize:"1rem"}} for="mood_trigger_detail">If yes, what is it?</Label>
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="mood_trigger_detail" 
@@ -241,8 +241,8 @@ render() {
                     <br/><br/>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1.25rem"}} for="mood_description">Okay, thanks for that info.  Now, describe the feeling as best as you can:</Label>
-                        <textarea style={{ fontSize:"1.25rem", width: "400px", height: "400px", border: "1px solid #ced4da" }} onChange={this.changeHelper} 
+                        <Label style={{fontSize:"1rem"}} for="mood_description">Okay, thanks for that info. <br/>  Now, describe the feeling as best as you can:</Label>
+                        <textarea style={{ fontSize:"1rem", width: "400px", height: "300px", border: "1px solid #ced4da" }} onChange={this.changeHelper} 
                         type="text" 
                         name="mood_description" 
                         value={this.state.mood_description} />
@@ -252,17 +252,17 @@ render() {
 
 
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1.25rem"}}>Do you want to use this post to:</legend>
+                        <legend style={{fontSize:"1rem"}}>Do you want to use this post to:</legend>
 
                     <FormGroup check>
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="Inspire others"
+                                value="Give Support"
                                 name="mood_purpose"
-                                checked={this.state.mood_purpose === "Inspire others"}
+                                checked={this.state.mood_purpose === "Give Support"}
                                 onChange={this.changeHelper}/>
-                                Inspire others
+                                Give Support
                         </Label>
                     </FormGroup>
 
@@ -270,11 +270,11 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
-                                value="Get some support"
+                                value="Get Support"
                                 name="mood_purpose"
-                                checked={this.state.mood_purpose === "Get some support"}
+                                checked={this.state.mood_purpose === "Get Support"}
                                 onChange={this.changeHelper}/>
-                                Get some support
+                                Get Support
                         </Label>
                     </FormGroup>
 
@@ -282,7 +282,7 @@ render() {
                     <br/><br/>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1.25rem"}} for="mood_title">Great, thanks for sharing!  What would you like to call this post?</Label>
+                        <Label style={{fontSize:"1rem"}} for="mood_title">Great, thanks for sharing!<br/>What would you like to call this post?</Label>
                         <Input 
                             onChange={this.changeHelper} 
                             type="text" 
@@ -295,7 +295,7 @@ render() {
 
 
                     <FormGroup tag="fieldset">
-                        <legend style={{fontSize:"1.25rem"}}>And how should we categorize this post?</legend>
+                        <legend style={{fontSize:"1rem"}}>Lastly, how should we categorize this post?</legend>
 
                     <FormGroup check>
                         <Label check>
@@ -361,6 +361,18 @@ render() {
                         <Label check>
                             <Input 
                                 type="radio" 
+                                value="Self-confidence"
+                                name="mood_category"
+                                checked={this.state.mood_category === "Self-confidence"}
+                                onChange={this.changeHelper}/>
+                                Self-confidence
+                        </Label>
+                    </FormGroup>
+
+                    <FormGroup check>
+                        <Label check>
+                            <Input 
+                                type="radio" 
                                 value="Other"
                                 name="mood_category"
                                 checked={this.state.mood_category === "Other"}
@@ -370,7 +382,7 @@ render() {
                     </FormGroup>
 
                     <FormGroup>
-                        <Label style={{fontSize:"1.25rem"}} for="mood_category">If other, what is it?</Label>
+                        <Label style={{fontSize:"1rem"}} for="mood_category">If other, what is it?</Label>
                         <Input onChange={this.changeHelper} 
                         type="text" 
                         name="mood_category_detail" 
