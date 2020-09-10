@@ -1,6 +1,6 @@
 import React from 'react'
 import { ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
-
+var moment = require('moment');
 
 class UserAnalytics extends React.Component {
 
@@ -22,6 +22,12 @@ class UserAnalytics extends React.Component {
             })
     }
 
+    convertJoinDateToDate = () => {
+        let convertedJoinDate = moment(Object.values(this.state.analytics[0])[0], "YYYY-MM-DD").format('MMMM Do, YYYY');
+        console.log(convertedJoinDate)
+        return convertedJoinDate
+    }
+
     render () {
         return (
         <>
@@ -33,7 +39,7 @@ class UserAnalytics extends React.Component {
                         <ListGroup id="user-form">
 
                         <ListGroupItem>
-                            <ListGroupItemText><strong>Joined: </strong> {Object.values(this.state.analytics[0])[0]}</ListGroupItemText>
+                            <ListGroupItemText><strong>Joined: </strong> {this.convertJoinDateToDate()}</ListGroupItemText>
                         </ListGroupItem>
 
                         <ListGroupItem>

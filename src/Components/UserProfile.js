@@ -1,16 +1,17 @@
 import React from 'react';
 import { NavLink, ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
 import { Link } from 'react-router-dom'
+var moment = require('moment');
 
 class UserProfile extends React.Component {
 
-    render() {
-        var today = new Date();
-            var dd = String(today.getDate()).padStart(2, '0');
-            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-            var yyyy = today.getFullYear();
+    convertBirthdateToDate = () => {
+        let convertBirthdate = moment(this.props.userObj.birthdate, "YYYY-MM-DD").format('MMMM Do, YYYY');
+        console.log(convertBirthdate)
+        return convertBirthdate
+    }
 
-            today = mm + '/' + dd + '/' + yyyy;
+    render() {
         return (
             <>
             <h3>User Profile</h3>
@@ -22,7 +23,7 @@ class UserProfile extends React.Component {
                 </ListGroupItem>
 
                 <ListGroupItem>
-                    <ListGroupItemText><strong>Birthdate:</strong> {this.props.userObj.birthdate} </ListGroupItemText>
+                    <ListGroupItemText><strong>Birthdate:</strong> {this.convertBirthdateToDate()} </ListGroupItemText>
                 </ListGroupItem>
 
                 <ListGroupItem>
