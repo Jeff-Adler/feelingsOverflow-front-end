@@ -3,6 +3,7 @@ import {Route, withRouter, Switch} from 'react-router-dom'
 import NotFound from '../Components/Errors/404'
 import UserPosts from '../Components/UserPosts'
 import Post from '../Components/Post'
+import EditPostForm from '../Components/EditPostForm'
 
 class UserPostContainer extends React.Component {
 
@@ -79,6 +80,30 @@ class UserPostContainer extends React.Component {
         })
     }
 
+    editHandler = (postObj) => {
+      let id = postObj.id
+      let postToSend = { post:postObj }
+      console.log("editHandler", postObj)
+    
+      const token = this.props.getToken()
+      const configObj = {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(postObj)
+      }
+    
+      fetch(`http://localhost:3000/posts/${id}`, configObj)
+      .then(response => response.json())
+      .then(data => {           
+        this.props.history.push(`/users/${this.props.user.id}/posts/${id}`)
+        window.location.reload()
+        })
+    }
+
     render() {
         return (
             <>
@@ -87,6 +112,13 @@ class UserPostContainer extends React.Component {
                 ?
                     <>
                         <Switch>
+                            <Route exact path={`/users/${this.props.user.id}/posts/:id/edit`} render={({match})=> {
+                                let id = parseInt(match.params.id)
+                                let foundPost = this.state.posts.find((post) => post.id ===id)
+                                return (
+                                    foundPost ? <EditPostForm postObj={foundPost} user={this.props.user} editHandler={this.editHandler} /> : <h3>Not Found</h3>
+                                )
+                            }} />
                             <Route exact path={`/users/${this.props.user.id}/posts/:postId`} render={({match})=> {
                                     let id = parseInt(match.params.postId)
                                     let foundPost = this.state.posts.find((post) => post.id === id)

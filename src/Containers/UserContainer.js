@@ -101,6 +101,8 @@ editHandler = (userObj) => {
     })
 }
 
+
+
 render () {
     return (
         <>
@@ -121,6 +123,7 @@ render () {
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
                                 foundUser ? <UserPostContainer getToken={this.props.getToken} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
+                                // foundPost ? <Post postObj={foundPost} user={this.props.user} editHandler={this.props.editHandler} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
                             )
                         }}/>
                         <Route exact path="/users/:id/edit" render={({match})=> {
