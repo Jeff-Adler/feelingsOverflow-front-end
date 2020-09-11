@@ -83,7 +83,7 @@ class CommentContainer extends React.Component {
               .then(response => response.json())
               .then(comment => {
                               this.setState({comments:[comment,...this.state.comments]}, 
-                                () => window.location.reload()
+                                () => window.location.reload() 
                                 )
                             }
                   )

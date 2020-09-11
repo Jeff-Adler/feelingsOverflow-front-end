@@ -6,7 +6,7 @@ import User from '../Components/User'
 import UserPostContainer from './UserPostContainer'
 import UserStats from '../Components/UserStats'
 
-class MyPostContainer extends React.Component {
+class MyContainer extends React.Component {
 
 state = {
         posts:null,
@@ -95,4 +95,4 @@ render () {
 }
 }
 
-export default MyPostContainer
+export default MyContainer

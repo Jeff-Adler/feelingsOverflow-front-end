@@ -7,7 +7,7 @@ import Signup from './Components/Signup'
 import Login from './Components/Login'
 import UserContainer from './Containers/UserContainer'
 import NotFound from './Components/Errors/404'
-import MyPostContainer from './Containers/MyPostContainer'
+import MyContainer from './Containers/MyContainer'
 
 class App extends React.Component {
 
@@ -153,7 +153,7 @@ class App extends React.Component {
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />
             {/* This route is necessary at this level of the hierarchy to allow for instant access to MyPosts from anywhere on the app */}
-            <Route path={`/users/${this.state.user.id}`} render={()=> <MyPostContainer editHandler={this.editHandler} user={this.state.user} currentUser={this.state.user} getToken={this.getToken} />}/>
+            <Route path={`/users/${this.state.user.id}`} render={()=> <MyContainer editHandler={this.editHandler} user={this.state.user} currentUser={this.state.user} getToken={this.getToken} />}/>
             <Route path="/users" render={(routerProps) => <UserContainer {...routerProps} updateUser={this.updateUser} currentUser={this.state.user} getToken={this.getToken}/>}/>
             <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} deleteHandler={this.deleteHandler} user={this.state.user} getToken={this.getToken} />}/>

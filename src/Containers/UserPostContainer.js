@@ -96,9 +96,12 @@ class UserPostContainer extends React.Component {
     
       fetch(`http://localhost:3000/posts/${id}`, configObj)
       .then(response => response.json())
-      .then(data => {           
+      .then(retrievedPosts => {    
+        this.setState({
+            posts : [...retrievedPosts],
+            unsortedPosts : [...retrievedPosts]
+        })
         this.props.history.push(`/users/${this.props.user.id}/posts/${id}`)
-        window.location.reload()
         })
     }
 
