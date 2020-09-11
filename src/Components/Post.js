@@ -53,8 +53,8 @@ render() {
             </ListGroup>
                 {this.createButton()}
             <br/>
-            <CommentContainer user={this.props.user} postObj={this.props.postObj}/> <br/>
-            { this.props.user.id === this.props.postObj.poster_id ? <Button style={{backgroundColor:"#cc0000", borderColor:"black"}}  onClick={this.deleteHelper}>Delete Post</Button> : ""}
+            <CommentContainer currentUser={this.props.currentUser} postObj={this.props.postObj}/> <br/>
+            { this.props.currentUser.id === this.props.postObj.poster_id ? <Button style={{backgroundColor:"#cc0000", borderColor:"black"}}  onClick={this.deleteHelper}>Delete Post</Button> : ""}
         </div>
     ) 
 }

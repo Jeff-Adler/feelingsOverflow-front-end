@@ -19,7 +19,7 @@ state = {
         }
 
 componentDidMount () {
-    if (this.props.user.id) {
+    if (this.props.currentUser.id) {
         const token = this.props.getToken()
         // this.retrievePosts(token)
         this.retrieveUsers(token)
@@ -60,7 +60,7 @@ editHandler = (userObj) => {
         body: JSON.stringify({user:newUser})
     }
 
-    fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}`, configObj)
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}`, configObj)
         .then(response => response.json())
         .then(data => { 
                 this.props.updateUser(data.user)               
@@ -78,11 +78,11 @@ render () {
                 <>
                     <br/><br/>
                     <Switch>
-                        <Route exact path="/users/:id" render={({match})=> {
+                        <Route path="/users/:id" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
-                                foundUser ? <User editHandler={this.editHandler} users={this.state.users} currentUser={this.props.user} user={foundUser}/> : <h3>Not Found</h3>
+                                foundUser ? <User getToken={this.props.getToken} editHandler={this.editHandler} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
                         <Route component={NotFound} />

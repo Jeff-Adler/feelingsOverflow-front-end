@@ -44,7 +44,7 @@ class CommentContainer extends React.Component {
 
     retrievePastVotes = (token) => {
         if (token) {
-            fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}/voted_comments`, {
+            fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/voted_comments`, {
               method: "GET",
               headers: {
                           Authorization: `Bearer ${token}`
