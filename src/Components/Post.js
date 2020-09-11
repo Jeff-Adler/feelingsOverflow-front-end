@@ -16,7 +16,7 @@ deleteHelper = () => {
 }
 
 createButton = () => {
-    if(this.props.user.id === this.props.postObj.poster_id){
+    if(this.props.currentUser.id === this.props.postObj.poster_id){
         return(
             <> 
                 <br/>
@@ -28,7 +28,6 @@ createButton = () => {
 }
 
 render() {
-    console.log(this.props)
     return(
         <div className="posts-container">
             <ListGroup className="list-group">
@@ -36,7 +35,7 @@ render() {
                     <strong>{this.props.postObj.mood_title}</strong><br/>
                     <i>{this.props.postObj.mood_category === "Other" ? this.props.postObj.mood_category_detail : this.props.postObj.mood_category}</i><br/><br/>
                     <strong><p className="post-text"> {this.props.postObj.mood_description}</p></strong>
-                    <NavLink tag={Link} to={`/user/${this.props.postObj.poster_id}/analytics`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
+                    <NavLink tag={Link} to={`/users/${this.props.postObj.poster_id}/stats`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
                     <div className="post-details">
                         {`\xa0`}
                         <strong>Mood: </strong> {`${this.props.postObj.mood_rating}`}

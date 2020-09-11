@@ -58,18 +58,6 @@ class User extends React.Component {
 
                     </ListGroup>
                 </div>
-                <Switch>
-                    <Route path={`/users/${this.props.user.id}/posts`} render={() => {
-                        return <UserPosts currentUser={this.props.currentUser} getToken={this.props.getToken} user={this.props.user}/> }}
-                    />
-                    <Route exact path={`/users/${this.props.user.id}/stats`} render={() => {
-                        return <UserStats getToken={this.props.getToken} user={this.props.user}/> }}
-                    />
-                    <Route exact path={`/users/${this.props.user.id}/edit`} render={() => {
-                        return <UserEditForm editHandler={this.props.editHandler} getToken={this.props.getToken} currentUser={this.props.currentUser} user={this.props.user}/> }}
-                    />
-                    <Route component={NotFound} />
-                </Switch>
             </>
         )
     }

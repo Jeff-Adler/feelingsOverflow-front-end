@@ -9,8 +9,8 @@ class UserStats extends React.Component {
     }
 
     componentDidMount () {
-        const token = localStorage.getItem("token")
-        fetch(`http://localhost:3000/users/${this.props.user.id}/analytics`, {
+        const token = this.props.getToken()
+        fetch(`http://localhost:3000/api/v1//users/${this.props.user.id}/analytics`, {
             method: "GET",
             headers: {
                         Authorization: `Bearer ${token}`

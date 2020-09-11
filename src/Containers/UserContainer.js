@@ -8,6 +8,8 @@ import UserEditForm from '../Components/UserEditForm'
 import UserAnalytics from '../Components/UserAnalytics'
 import OtherUserList from '../Components/OtherUserList'
 import User from '../Components/User'
+import UserPostContainer from './UserPostContainer'
+import UserStats from '../Components/UserStats'
 
 class UserContainer extends React.Component {
 
@@ -78,46 +80,35 @@ render () {
                 <>
                     <br/><br/>
                     <Switch>
-                        <Route path="/users/:id" render={({match})=> {
+                        <Route path="/users/:id/posts" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
-                                foundUser ? <User getToken={this.props.getToken} editHandler={this.editHandler} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
+                                foundUser ? <UserPostContainer getToken={this.props.getToken} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }}/>
+                        <Route exact path="/users/:id/edit" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id ===id)
+                            return (
+                                foundUser ? <UserEditForm editHandler={this.editHandler} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }}/>
+                        <Route exact path="/users/:id/stats" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id ===id)
+                            return (
+                                foundUser ? <UserStats getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
+                            )
+                        }}/>
+                        <Route exqct path="/users/:id" render={({match})=> {
+                            let id = parseInt(match.params.id)
+                            let foundUser = this.state.users.find((user) => user.id ===id)
+                            return (
+                                foundUser ? <User currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
                         <Route component={NotFound} />
-
-
-
-                        {/* Old Routes */}
-                        {/* <Route exact path="/users/info" render={() => <UserProfile userObj={this.props.user} />}/>  
-                        <Route exact path="/users/posts/:id" render={({match})=> {
-                            let id = parseInt(match.params.id)
-                            let foundPost = this.state.posts.find((post) => post.id ===id)
-                            return (
-                                foundPost ? <Post postObj={foundPost} user={this.props.user} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
-                            )
-                        }}  */}
-                        {/* /> */}
-                        {/* <Route exact path="/users/:id/analytics" render={({match})=> {
-                            let id = parseInt(match.params.id)
-                            let foundUser = this.state.users.find((user) => user.id ===id)
-                            return (
-                                foundUser ? <UserAnalytics user={foundUser}/> : <h3>Not Found</h3>
-                            )
-                        }} /> */}
-                        {/* <Route exact path="/users/posts" render={() => <UserList sortByCategory={this.sortByCategory} user={this.props.user} posts={this.state.posts} />}/> */}
-                        {/* <Route exact path="/user/:id/posts" render={({match})=> {
-                            let id = parseInt(match.params.id)
-                            let foundUser = this.state.users.find((user) => user.id === id)
-                            console.log(foundUser)
-                            return (
-                                foundUser ? <OtherUserList getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
-                            )
-                        }}/> */}
-                        {/* <Route exact path="/users/edit" render={() => <UserEditForm submitHandler={this.submitHandler} locationChangeHandler={this.locationChangeHandler} userObj={this.props.user} />}/>
-                        <Route exact path="/users" render={() => <UserList posts={this.state.posts} />}/> */}
-                        {/* <Route component={NotFound} /> */}
                     </Switch>
                 </>
             }

@@ -32,7 +32,7 @@ renderList = () => {
     return (this.searchPosts().map(postObj => {
         return (
                 <ListGroupItem key={postObj.id}>
-                    <ListGroupItemHeading tag={Link} to={`users/${postObj.poster_id}/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>{`\xa0`}            
+                    <ListGroupItemHeading tag={Link} to={`/users/${postObj.poster_id}/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>{`\xa0`}            
                     {postObj.mood_purpose === "Get Support" ? <img className="alert-star" src={alertStar} alt="needs support"/> : ""} 
                     <ListGroupItemText>
                         <i>{postObj.mood_category === "Other" ? postObj.mood_category_detail : postObj.mood_category}</i><br/>
