@@ -114,27 +114,6 @@ class App extends React.Component {
     this.setState({user:false})
   }
 
-//   deleteHandler = (postObj) => {
-//     let id = postObj.id
-//     let posterId = postObj.poster_id
-
-//     const token = this.getToken()
-//     const configObj = {
-//       method: 'DELETE',
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         'Content-Type': 'application/json',
-//         'Accept': 'application/json',
-//       },
-//     }
-//     fetch(`http://localhost:3000/posts/${id}`, configObj)
-//     .then(response => response.json())
-//     .then(data => {           
-//       this.props.history.push(`/users/${this.state.user.id}/posts`)
-// })
-
-// }
-
   render () {
     return (
       (this.state.isUserLoaded ?

@@ -61,7 +61,7 @@ submitHandler = (newPostObj) => {
         this.setState({
           posts: [post,...this.state.posts]
                       }, 
-            () => {this.props.history.push(`/posts/${post.id}`)})
+            () => {this.props.history.push(`users/${this.props.user.id}/posts/${post.id}`)})
       })
 }
 
@@ -93,13 +93,6 @@ render () {
                 ""
             :
                 <Switch> 
-                    <Route exact path="/posts/:id" render={({match})=> {
-                        let id = parseInt(match.params.id)
-                        let foundPost = this.state.posts.find((post) => post.id ===id)
-                        return (
-                            foundPost ? <Post postObj={foundPost} user={this.props.user} deleteHandler={this.props.deleteHandler}/> : <h3>Not Found</h3>
-                        )
-                    }} />
                     <Route exact path="/posts" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route exact path="/" render={() => <PostList sortByCategory={this.sortByCategory} submitHandler={this.submitHandler} posts={this.state.posts}/>} />
                     <Route component={NotFound} />
