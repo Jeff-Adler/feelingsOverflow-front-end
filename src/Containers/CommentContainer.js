@@ -82,6 +82,7 @@ class CommentContainer extends React.Component {
             })
               .then(response => response.json())
               .then(comment => {
+                              comment.vote_tally = 0
                               this.setState({comments:[comment,...this.state.comments]}, 
                                 () => this.sortComments() 
                                 )
