@@ -5,7 +5,6 @@ import UserEditForm from '../Components/UserEditForm'
 import User from '../Components/User'
 import UserPostContainer from './UserPostContainer'
 import UserStats from '../Components/UserStats'
-import UserPosts from '../Components/UserPosts'
 
 class MyPostContainer extends React.Component {
 

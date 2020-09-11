@@ -76,7 +76,6 @@ class UserPostContainer extends React.Component {
                     unsortedPosts : [...retrievedPosts]
                 })       
                 this.props.history.push(`/users/${this.props.user.id}/posts`)
-                window.location.reload()
         })
     }
 
