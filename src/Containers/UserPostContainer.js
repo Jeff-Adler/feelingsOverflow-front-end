@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch } from 'react-router-dom'
+import {Route, withRouter, Switch} from 'react-router-dom'
 import NotFound from '../Components/Errors/404'
 import UserPosts from '../Components/UserPosts'
 import Post from '../Components/Post'
@@ -60,7 +60,7 @@ class UserPostContainer extends React.Component {
     deleteHandler = (postObj) => {
         let id = postObj.id
     
-        const token = this.getToken()
+        const token = this.props.getToken()
         const configObj = {
           method: 'DELETE',
           headers: {
@@ -76,7 +76,7 @@ class UserPostContainer extends React.Component {
                     posts : [...retrievedPosts],
                     unsortedPosts : [...retrievedPosts]
                 })       
-                this.props.history.push(`/users/${this.state.user.id}/posts`)
+                this.props.history.push(`/users/${this.props.user.id}/posts`)
         })
     }
 
@@ -112,4 +112,4 @@ class UserPostContainer extends React.Component {
     }
 }
 
-export default UserPostContainer
+export default withRouter(UserPostContainer)

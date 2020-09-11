@@ -35,7 +35,7 @@ render() {
                     <strong>{this.props.postObj.mood_title}</strong><br/>
                     <i>{this.props.postObj.mood_category === "Other" ? this.props.postObj.mood_category_detail : this.props.postObj.mood_category}</i><br/><br/>
                     <strong><p className="post-text"> {this.props.postObj.mood_description}</p></strong>
-                    <NavLink tag={Link} to={`/users/${this.props.postObj.poster_id}/stats`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
+                    <NavLink tag={Link} to={`/users/${this.props.postObj.poster_id}`}><strong>{this.props.postObj.poster_name}</strong><br/><br/></NavLink>
                     <div className="post-details">
                         {`\xa0`}
                         <strong>Mood: </strong> {`${this.props.postObj.mood_rating}`}
