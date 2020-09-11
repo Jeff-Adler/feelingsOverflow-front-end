@@ -98,7 +98,7 @@ class UserPostContainer extends React.Component {
                             />
                             <Route exact path={`/users/${this.props.user.id}/posts`} render={()=> {
                                 return (
-                                    <UserPosts user={this.props.user} sortByCategory={this.props.sortByCategory} posts={this.state.posts}/>
+                                    <UserPosts user={this.props.user} sortByCategory={this.sortByCategory} posts={this.state.posts}/>
                                 )}
                              }/>
                             <Route component={NotFound} />
