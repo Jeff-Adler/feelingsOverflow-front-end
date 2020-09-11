@@ -9,8 +9,7 @@ class UserPostContainer extends React.Component {
     state = {
         posts: null,
         unsortedPosts : null,
-        sorted : false,
-        searchValue:''
+        sorted : false
     }
 
     componentDidMount () {
@@ -29,7 +28,6 @@ class UserPostContainer extends React.Component {
             })  
                 .then(response => response.json())
                 .then(retrievedPosts => {
-                    console.log(retrievedPosts)
                     this.setState({
                         posts : [...retrievedPosts],
                         unsortedPosts : [...retrievedPosts]
@@ -77,6 +75,7 @@ class UserPostContainer extends React.Component {
                     unsortedPosts : [...retrievedPosts]
                 })       
                 this.props.history.push(`/users/${this.props.user.id}/posts`)
+                window.location.reload()
         })
     }
 

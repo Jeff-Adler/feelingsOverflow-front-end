@@ -1,5 +1,4 @@
 import React from 'react';
-import Post from '../Components/Post'
 import { Route, Switch, withRouter} from 'react-router-dom'
 import PostList from '../Components/PostList'
 import NotFound from '../Components/Errors/404'
@@ -61,7 +60,7 @@ submitHandler = (newPostObj) => {
         this.setState({
           posts: [post,...this.state.posts]
                       }, 
-            () => {this.props.history.push(`users/${this.props.user.id}/posts/${post.id}`)})
+            () => {this.props.history.push(`/users/${this.props.user.id}/posts/${post.id}`)})
       })
 }
 

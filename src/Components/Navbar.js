@@ -15,6 +15,7 @@ import {
   NavbarText
 } from 'reactstrap';
 
+
 const NavBar = (props) => {
     const [isOpen, setIsOpen] = useState(false);
   

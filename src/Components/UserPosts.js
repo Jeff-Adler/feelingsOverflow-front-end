@@ -2,9 +2,7 @@ import React from 'react'
 import Search from './Search'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 import alertStar from './Images/alertStar.png'
-import {Route, Switch, Link } from 'react-router-dom'
-import Post from './Post'
-import NotFound from '../Components/Errors/404'
+import {Link} from 'react-router-dom'
 var moment = require('moment');
 
 class UserPosts extends React.Component {
@@ -55,7 +53,7 @@ class UserPosts extends React.Component {
         return (
             <>
                 {
-                this.state.posts !== null
+                this.props.posts !== null
                 ?
                     <>
                         <h3>{this.props.user.username}'s Posts</h3><br/>

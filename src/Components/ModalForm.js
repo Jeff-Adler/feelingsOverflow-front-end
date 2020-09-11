@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
 import CommentForm from './CommentForm'
-import NewPostForm from'./NewPostForm'
+import PostForm from'./PostForm'
 
 const ModalForm = (props) => {
   const {
@@ -23,7 +23,7 @@ const ModalForm = (props) => {
           ? 
             <CommentForm postComment={props.postComment} toggle={toggle}/> 
           :
-            <NewPostForm submitHandler={props.submitHandler} toggle={toggle}/>
+            <PostForm submitHandler={props.submitHandler} toggle={toggle}/>
           }
         </ModalBody>
       </Modal>

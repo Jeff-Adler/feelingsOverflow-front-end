@@ -19,8 +19,14 @@ class App extends React.Component {
       signupError: null,
       authenticationError: "",
       authenticating: false
+      // navbarClicked: false
     }
   }
+
+  // navbarClickHandler = () => {
+  //   this.props.history.push(`/users/${this.state.user.id}/posts`) 
+  //   window.location.reload()
+  // }
 
   getToken = () => {
     return localStorage.getItem("token")
@@ -118,7 +124,7 @@ class App extends React.Component {
     return (
       (this.state.isUserLoaded ?
         <div className="App">
-          {this.state.user ? <Navbar currentUser={this.state.user} clickHandler={this.logOutHandler}/> : null}
+          {this.state.user ? <Navbar navbarClickHandler={this.navbarClickHandler} currentUser={this.state.user} clickHandler={this.logOutHandler}/> : null}
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />

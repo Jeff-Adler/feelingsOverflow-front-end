@@ -1,11 +1,6 @@
 import React from 'react';
 import { NavLink, ListGroup, ListGroupItem, ListGroupItemText } from 'reactstrap';
 import { Link } from 'react-router-dom'
-import {Route, Switch } from 'react-router-dom'
-import UserPosts from './UserPosts'
-import UserStats from './UserStats'
-import UserEditForm from './UserEditForm'
-import NotFound from '../Components/Errors/404'
 var moment = require('moment');
 
 class User extends React.Component {

@@ -1,30 +1,25 @@
 import React from 'react';
-import Post from '../Components/Post'
 import {Route, Switch } from 'react-router-dom'
-import UserList from '../Components/UserList'
-import UserProfile from '../Components/UserProfile'
 import NotFound from '../Components/Errors/404'
 import UserEditForm from '../Components/UserEditForm'
-import UserAnalytics from '../Components/UserAnalytics'
-import OtherUserList from '../Components/OtherUserList'
 import User from '../Components/User'
 import UserPostContainer from './UserPostContainer'
 import UserStats from '../Components/UserStats'
+import UserPosts from '../Components/UserPosts'
 
 class UserContainer extends React.Component {
 
 state = {
-        // posts: null,
-        // unsortedPosts : null,
-        users:null
-        // sorted : false
+        users:null,
+        posts:null,
+        unsortedPosts:null
         }
 
 componentDidMount () {
     if (this.props.currentUser.id) {
         const token = this.props.getToken()
-        // this.retrievePosts(token)
         this.retrieveUsers(token)
+        this.retrieveMyPosts(token)
     }
 }
 
@@ -39,6 +34,42 @@ retrieveUsers = (token) => {
                 .then(users => {
                     this.setState({users:users})
                 })
+}
+
+retrieveMyPosts = (token) => {
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}/posts`, {
+            method: "GET",
+            headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+            })  
+                .then(response => response.json())
+                .then(retrievedPosts => {
+                    this.setState({
+                        posts : [...retrievedPosts],
+                        unsortedPosts : [...retrievedPosts]
+                    })
+                })
+}
+
+sortByCategory = () => {
+    if (this.state.sorted === false) {
+        const sortedPosts = this.state.posts.sort((a,b) => {
+            return (
+                a.mood_category.localeCompare(b.mood_category)
+                )
+        })
+        this.setState({
+            posts:[...sortedPosts],
+            sorted:true
+        })
+    } else {
+        const unsortedPosts = this.state.unsortedPosts 
+        this.setState({
+            posts:[...unsortedPosts],
+            sorted:false
+        })
+    }
 }
 
 //Sends user info patch requests
@@ -80,6 +111,11 @@ render () {
                 <>
                     <br/><br/>
                     <Switch>
+                        <Route exact path={`/users/${this.props.currentUser.id}/posts`} render={()=> {
+                                return (
+                                    <UserPosts user={this.props.currentUser} sortByCategory={this.sortByCategory} posts={this.state.posts}/>
+                                )}
+                        }/>
                         <Route path="/users/:id/posts" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
@@ -101,7 +137,7 @@ render () {
                                 foundUser ? <UserStats getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
-                        <Route exqct path="/users/:id" render={({match})=> {
+                        <Route exact path="/users/:id" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
