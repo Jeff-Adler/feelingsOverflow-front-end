@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Switch } from 'react-router-dom'
 import NotFound from '../Components/Errors/404'
-import UserEditForm from '../Components/UserEditForm'
 import User from '../Components/User'
 import UserPostContainer from './UserPostContainer'
 import UserStats from '../Components/UserStats'
@@ -47,13 +46,6 @@ render () {
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
                                 foundUser ? <UserPostContainer getToken={this.props.getToken} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
-                            )
-                        }}/>
-                        <Route exact path="/users/:id/edit" render={({match})=> {
-                            let id = parseInt(match.params.id)
-                            let foundUser = this.state.users.find((user) => user.id ===id)
-                            return (
-                                foundUser ? <UserEditForm editHandler={this.editHandler} currentUser={this.props.currentUser} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
                         <Route exact path="/users/:id/stats" render={({match})=> {

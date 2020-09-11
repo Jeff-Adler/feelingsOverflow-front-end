@@ -73,7 +73,7 @@ render () {
                         }}/>
                         <Route exact path={`/users/${this.props.currentUser.id}/edit`} render={()=> {
                             return (
-                                <UserEditForm editHandler={this.props.editHandler} currentUser={this.props.currentUser} user={this.props.user}/> 
+                                <UserEditForm editHandler={this.props.editHandler} getToken={this.props.getToken} currentUser={this.props.currentUser} user={this.props.user}/> 
                             )
                         }}/>
                         <Route exact path={`/users/${this.props.currentUser.id}/stats`} render={()=> {
@@ -81,7 +81,7 @@ render () {
                                 <UserStats getToken={this.props.getToken} user={this.props.user}/> 
                             )
                         }}/>
-                        <Route exact path={`/users/${this.props.currentUser.id}/posts`} render={()=> {
+                        <Route exact path={`/users/${this.props.currentUser.id}`} render={()=> {
                             return (
                                 <User currentUser={this.props.currentUser} user={this.props.user}/> 
                             )

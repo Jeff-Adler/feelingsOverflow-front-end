@@ -115,9 +115,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
                                 <Input style={{ width: "300px" }} type="text" name="location" placeholder="location" autoComplete="address-level1" value={this.state.location} onChange={this.locationChangeHandler}  />
                             </FormGroup>
 
-                                    <Button type="submit" value="Login">Submit</Button><br/><br/>
-
-                                    {/* <NavLink tag={Link} to="/login">Returning User? Log In!</NavLink> */}
+                            <Button type="submit" value="Login">Submit</Button><br/><br/>
                             </Form>
                         </div>
                     </>
