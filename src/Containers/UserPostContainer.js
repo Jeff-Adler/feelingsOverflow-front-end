@@ -121,18 +121,17 @@ class UserPostContainer extends React.Component {
                                 )
                             }} />
                             <Route exact path={`/users/${this.props.user.id}/posts/:postId`} render={({match})=> {
-                                    let id = parseInt(match.params.postId)
-                                    let foundPost = this.state.posts.find((post) => post.id === id)
-                                    return (
-                                        foundPost ? <Post currentUser={this.props.currentUser} user={this.props.user} deleteHandler={this.deleteHandler} getToken={this.props.getToken} postObj={foundPost}/> : <h3>Not Found</h3>
-                                    )
-                                }}
-                            />
+                                let id = parseInt(match.params.postId)
+                                let foundPost = this.state.posts.find((post) => post.id === id)
+                                return (
+                                    foundPost ? <Post currentUser={this.props.currentUser} user={this.props.user} deleteHandler={this.deleteHandler} getToken={this.props.getToken} postObj={foundPost}/> : <h3>Not Found</h3>
+                                )
+                            }} />
                             <Route exact path={`/users/${this.props.user.id}/posts`} render={()=> {
                                 return (
                                     <UserPosts user={this.props.user} sortByCategory={this.sortByCategory} posts={this.state.posts}/>
                                 )}
-                             }/>
+                             } />
                             <Route component={NotFound} />
                         </Switch>
                     </>

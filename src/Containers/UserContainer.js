@@ -55,6 +55,7 @@ render () {
                                 foundUser ? <UserStats getToken={this.props.getToken} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
+                        {/* User Profile Page */}
                         <Route exact path="/users/:id" render={({match})=> {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
