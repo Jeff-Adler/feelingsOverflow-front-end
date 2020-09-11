@@ -82,7 +82,6 @@ class UserPostContainer extends React.Component {
 
     editHandler = (postObj) => {
       let id = postObj.id
-      let postToSend = { post:postObj }
       console.log("editHandler", postObj)
     
       const token = this.props.getToken()

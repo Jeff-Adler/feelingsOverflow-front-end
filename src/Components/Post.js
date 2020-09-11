@@ -2,7 +2,6 @@ import React from 'react'
 import CommentContainer from '../Containers/CommentContainer'
 import {NavLink, ListGroup, ListGroupItem, Button} from 'reactstrap'
 import { Link, withRouter } from 'react-router-dom'
-import EditPostForm from './EditPostForm.js'
 var moment = require('moment');
 
 class Post extends React.Component {
