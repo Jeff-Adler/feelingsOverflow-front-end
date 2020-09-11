@@ -96,7 +96,6 @@ class App extends React.Component {
             this.setState({user:data.user,
                           authenticating: false}, 
                           () => {this.props.history.push("/")
-                                window.location.reload()
                           }) 
                       } else {
                         this.setState({authenticationError: data.message,

@@ -9,7 +9,7 @@ class CommentForm extends React.Component{
     }
 
     changeHandler = (event) => {
-        this.setState({comment : event.target.value}, () => console.log(this.state.comment))
+        this.setState({comment : event.target.value})
     }
 
     submitHandler = (event) => {
