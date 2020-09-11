@@ -7,6 +7,7 @@ import Signup from './Components/Signup'
 import Login from './Components/Login'
 import UserContainer from './Containers/UserContainer'
 import NotFound from './Components/Errors/404'
+import MyPostContainer from './Containers/MyPostContainer'
 
 class App extends React.Component {
 
@@ -19,14 +20,8 @@ class App extends React.Component {
       signupError: null,
       authenticationError: "",
       authenticating: false
-      // navbarClicked: false
     }
   }
-
-  // navbarClickHandler = () => {
-  //   this.props.history.push(`/users/${this.state.user.id}/posts`) 
-  //   window.location.reload()
-  // }
 
   getToken = () => {
     return localStorage.getItem("token")
@@ -114,6 +109,35 @@ class App extends React.Component {
     this.setState({user:userData})
   }
 
+  //Sends user info patch requests
+  editHandler = (userObj) => {
+      
+    let newUser = {
+        birthdate: userObj.birthdate,
+        gender: userObj.gender,
+        location: userObj.location
+    }
+
+    const token = this.props.getToken()
+
+    const configObj = {
+        method: 'PATCH',
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({user:newUser})
+    }
+
+    fetch(`http://localhost:3000/api/v1/users/${this.props.currentUser.id}`, configObj)
+        .then(response => response.json())
+        .then(data => { 
+                this.props.updateUser(data.user)               
+                this.props.history.push(`/user/info`)
+    })
+  }
+
   logOutHandler = () => {
     localStorage.removeItem("token")
     this.props.history.push("/login") 
@@ -128,6 +152,8 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/login" render={() => <Login authenticating={this.state.authenticating} submitHandler={this.loginHandler} authenticationError={this.state.authenticationError} user={this.state.user} clickHandler={this.logOutHandler}/>} />
             <Route exact path="/signup" render={() => <Signup submitHandler={this.signupHandler} user={this.state.user} clickHandler={this.logOutHandler} signupError={this.state.signupError} />} />
+            {/* This route is necessary at this level of the hierarchy to allow for instant access to MyPosts from anywhere on the app */}
+            <Route path={`/users/${this.state.user.id}/posts`} render={()=> <MyPostContainer editHandler={this.editHandler} user={this.state.user} currentUser={this.state.user} getToken={this.getToken} />}/>
             <Route path="/users" render={(routerProps) => <UserContainer {...routerProps} updateUser={this.updateUser} currentUser={this.state.user} getToken={this.getToken}/>}/>
             <Route path="/posts" render={(routerProps) => <PostContainer {...routerProps} user={this.state.user} getToken={this.getToken} />}/>
             <Route exact path="/" render={(routerProps) => <PostContainer {...routerProps} deleteHandler={this.deleteHandler} user={this.state.user} getToken={this.getToken} />}/>
