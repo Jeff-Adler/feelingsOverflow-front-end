@@ -1,8 +1,9 @@
 import React from 'react'
 import Search from './Search'
-import {Link} from 'react-router-dom'
 import {ListGroup, ListGroupItem, ListGroupItemHeading, ListGroupItemText, Button} from 'reactstrap';
 import alertStar from './Images/alertStar.png'
+import {Route, Switch, Link } from 'react-router-dom'
+import Post from './Post'
 var moment = require('moment');
 
 class UserPosts extends React.Component {
@@ -19,7 +20,7 @@ class UserPosts extends React.Component {
     }
 
     retrievePosts = (token) => {
-        fetch(`http://localhost:3000/users/${this.props.user.id}/posts`, {
+        fetch(`http://localhost:3000/api/v1/users/${this.props.user.id}/posts`, {
             method: "GET",
             headers: {
                         Authorization: `Bearer ${token}`
@@ -75,7 +76,7 @@ class UserPosts extends React.Component {
             this.searchPosts().map(postObj => {
                 return (
                     <ListGroupItem key={postObj.id}>
-                        <ListGroupItemHeading tag={Link} to={`/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>{`\xa0`}            
+                        <ListGroupItemHeading tag={Link} to={`users/${this.props.user.id}/posts/${postObj.id}/`}>{postObj.mood_title}</ListGroupItemHeading>{`\xa0`}            
                         {postObj.mood_purpose === "Get Support" ? <img className="alert-star" src={alertStar} alt="needs support"/> : ""} 
                         <ListGroupItemText>
                             <i>{postObj.mood_category === "Other" ? postObj.mood_category_detail : postObj.mood_category}</i><br/>
@@ -99,7 +100,17 @@ class UserPosts extends React.Component {
                     <ListGroup className="posts">
                         {this.renderList()}
                     </ListGroup>   
-                </div>   
+                </div> 
+                <Switch>
+                    <Route exact path={`/users/${this.props.user.id}/posts/:postId`} render={({match})=> {
+                            let id = parseInt(match.params.postId)
+                            let foundPost = this.state.posts.find((post) => post.id === id)
+                            return (
+                                foundPost ? <Post getToken={this.props.getToken} postObj={foundPost}/> : <h3>Not Found</h3>
+                            )
+                        }}
+                    />
+                </Switch>  
             </>
         )
     }

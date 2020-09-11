@@ -82,7 +82,7 @@ render () {
                             let id = parseInt(match.params.id)
                             let foundUser = this.state.users.find((user) => user.id ===id)
                             return (
-                                foundUser ? <User editHandler={this.editHandler} users={this.state.users} user={foundUser}/> : <h3>Not Found</h3>
+                                foundUser ? <User editHandler={this.editHandler} users={this.state.users} currentUser={this.props.user} user={foundUser}/> : <h3>Not Found</h3>
                             )
                         }}/>
                         <Route component={NotFound} />
