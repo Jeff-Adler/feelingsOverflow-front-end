@@ -76,7 +76,7 @@ Y //press Enter
 
 7. Click a post to navigate to its show page. View comments, vote on comments, and submit a comment!
 
-![page_page](./screenshots/page_page.png?raw=true "page_page")
+![post_page](./screenshots/post_page.png?raw=true "post_page")
 ![comment_page](./screenshots/comment_page.png?raw=true "comment_page")
 ![comment_form](./screenshots/comment_form.png?raw=true "comment_form")
 
