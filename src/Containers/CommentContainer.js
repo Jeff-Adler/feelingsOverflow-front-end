@@ -23,12 +23,15 @@ class CommentContainer extends React.Component {
   }
 
   retrieveComments = (token) => {
-    fetch(`http://localhost:3000/posts/${this.props.postObj.id}/comments`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://feelings-overflow-app-api.herokuapp.com/posts/${this.props.postObj.id}/comments`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((response) => response.json())
       .then((comments) => {
         if (this.mounted) {
@@ -47,7 +50,7 @@ class CommentContainer extends React.Component {
   retrievePastVotes = (token) => {
     if (token) {
       fetch(
-        `http://localhost:3000/api/v1/users/${this.props.currentUser.id}/voted_comments`,
+        `https://feelings-overflow-app-api.herokuapp.com/api/v1/users/${this.props.currentUser.id}/voted_comments`,
         {
           method: "GET",
           headers: {
@@ -76,7 +79,7 @@ class CommentContainer extends React.Component {
     };
 
     const token = localStorage.getItem("token");
-    fetch("http://localhost:3000/comments/", {
+    fetch("https://feelings-overflow-app-api.herokuapp.com/comments/", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -116,7 +119,7 @@ class CommentContainer extends React.Component {
     };
 
     fetch(
-      `http://localhost:3000/comments/${comment.id}/votes/create`,
+      `https://feelings-overflow-app-api.herokuapp.com/comments/${comment.id}/votes/create`,
       configObj
     )
       .then((resp) => resp.json())
